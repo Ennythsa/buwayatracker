@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Buwaya Tracker</title>
+<meta name="description" content="Open-source, offline-first voter information for Filipino voters.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;800&family=Source+Serif+4:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header class="top"><div class="bar">
+  <a class="brand" href="#top" id="brandName">Buwaya Tracker</a>
+  <nav aria-label="Main"><a href="#candidates" data-i="nCand"></a><a href="#dynasties" data-i="nDyn"></a><a href="#offline" data-i="nOff"></a><a href="#contribute" data-i="nCon"></a></nav>
+  <select id="lang" aria-label="Language"><option value="en">English</option><option value="fil">Filipino</option><option value="ceb">Bisaya</option></select>
+</div></header>
+
+<main id="top">
+<section class="hero"><div class="wrap">
+  <h1 data-i="h1"></h1>
+  <p class="lead" data-i="lead"></p>
+  <input id="q" class="bigsearch" type="search" data-ph="ph" autocomplete="off" aria-label="Search">
+</div><div class="teeth" aria-hidden="true"></div></section>
+
+<section id="candidates" class="wrap">
+  <div class="filters">
+    <label><span data-i="party"></span><select id="party"></select></label>
+    <label><span data-i="office"></span><select id="office"></select></label>
+    <button class="ghost" id="reset" type="button" data-i="clear"></button>
+    <span id="count" class="count" aria-live="polite"></span>
+  </div>
+  <div id="grid" class="grid"></div>
+  <p id="empty" class="empty" hidden data-i="none"></p>
+  <p id="loadError" class="empty" hidden></p>
+</section>
+
+<section id="dynasties" class="band"><div class="wrap">
+  <h2 data-i="dynH"></h2><p class="small" data-i="dynP"></p>
+  <div class="graphbox"><canvas id="graph" aria-label="Political family network"></canvas><div id="tip" class="gtip" hidden></div></div>
+  <div id="legend" class="legend"></div>
+</div></section>
+
+<section id="offline" class="wrap two">
+  <div><h2 data-i="offH"></h2><p data-i="offP"></p>
+  <p><a class="btn" id="dlApp" href="#" data-i="dlA"></a> <a class="btn alt" id="dlData" href="#" download data-i="dlD"></a></p>
+  <p class="small"><span data-i="status"></span>: <span id="statusTxt"></span></p></div>
+  <ol class="steps"><li>1. Copy <code>candidates.csv</code> + the program to one folder.</li><li>2. Compile with Dev-C++ and run.</li><li>3. Search, compare or export from the menu.</li></ol>
+</section>
+
+<section id="contribute" class="band"><div class="wrap two">
+  <div><h2 data-i="conH"></h2><p data-i="conP"></p><p><a class="btn" id="repoLink" href="#" data-i="repo"></a></p></div>
+  <ul class="rules"><li data-i="r1"></li><li data-i="r2"></li><li data-i="r3"></li></ul>
+</div></section>
+</main>
+
+<div id="tray" class="tray" hidden><span><b id="trayN"></b> <span data-i="sel"></span></span><button id="cmpBtn" class="btn" type="button" data-i="cmp"></button><button id="clrSel" class="ghost" type="button">✕</button></div>
+
+<dialog id="dlg">
+  <div class="dhead"><h3 id="dTitle"></h3><button class="ghost" id="dClose" type="button" data-i="close"></button></div>
+  <div id="dBody"></div>
+  <div class="dfoot"><button class="btn" id="dExport" type="button" data-i="txt"></button> <button class="btn alt" id="dPrint" type="button" data-i="print"></button></div>
+</dialog>
+
+<footer class="wrap small"><span id="disclaimer"></span></footer>
+<script src="js/config.js"></script><script src="js/i18n.js"></script><script src="js/app.js"></script><script src="js/graph.js"></script>
+</body>
+</html>
