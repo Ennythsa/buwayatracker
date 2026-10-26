@@ -25,12 +25,6 @@ Rules for all three files:
 - **relations.txt**: use the politician IDs. For `parent`, the first ID is the parent, the second is the child. Dynasties are worked out automatically from connected relatives.
 - **news.txt**: date as `YYYY-MM-DD`. The link and politician ID are optional (`...|summary||4` adds a profile link but no article link). Only `http` and `https` links are shown.
 
-## Publish with GitHub Pages
-
-1. Create a repository and upload everything in this folder (keep the `data` folder).
-2. Go to **Settings → Pages**, choose **Deploy from a branch**, select `main` and `/ (root)`, and save.
-3. Open `index.html` and replace `YOUR-USERNAME/YOUR-REPO` in the `EDIT_URL` line near the top of the script, so the "Edit on GitHub" links point to your repository.
-
 Your site will be at `https://YOUR-USERNAME.github.io/YOUR-REPO/`.
 
 ## Preview on your computer
