@@ -50,25 +50,60 @@ th{width:22%;color:var(--mute);font-weight:500}
 .news{display:grid;gap:10px}.news .card{margin:0}.news h3{margin:6px 0 4px;font-size:16px}
 @media (max-width:760px){.cols{grid-template-columns:1fr}}
 @media (max-width:760px){main{grid-template-columns:1fr;grid-template-rows:48% 1fr}aside{border-left:0;border-top:1px solid var(--line)}}
+
+#extra-view{position:fixed;inset:0;z-index:20;background:var(--bg);color:var(--ink);overflow:auto;padding:18px;box-sizing:border-box}
+.extra-wrap{max-width:1100px;margin:0 auto}.extra-head{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+.extra-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
+.extra-table-wrap{overflow:auto}.extra-table{min-width:720px}.extra-table th{width:auto;position:sticky;top:0;background:var(--panel)}
+.extra-table td,.extra-table th{padding:9px;border-bottom:1px solid var(--line);vertical-align:top}
+.cite{font-size:.8em;vertical-align:super;margin-left:2px}.cite a{color:var(--accent);text-decoration:none;border-bottom:1px dotted var(--accent)}
+.cite a:hover::after{content:attr(data-tip);position:absolute;z-index:30;max-width:280px;background:var(--panel);color:var(--ink);border:1px solid var(--line);box-shadow:0 3px 14px #0002;border-radius:6px;padding:8px;margin:14px 0 0 -90px;font-size:12px;vertical-align:baseline}
+.pill{display:inline-block;border:1px solid var(--line);border-radius:20px;padding:2px 8px;font-size:12px;color:var(--mute)}
+.extra-note{padding:10px;border:1px solid var(--line);border-radius:8px;background:var(--card);margin:10px 0}
+.row-actions{display:flex;gap:6px;flex-wrap:wrap}.row-actions button{margin:0}
+@media(max-width:760px){#top{flex-wrap:wrap}#extra-view{padding:12px}}
 </style>
 </head>
 <body>
-<header><div><h1>Buwaya Tracker</h1><p>Political dynasty graph · all names and links are fictional sample data</p></div><div id="top"><button data-show="home">Home</button><button data-show="tracker">Dynasty Graph</button></div></header>
+<header><div><h1>Buwaya Tracker</h1><p>Political dynasty graph · all names and links are fictional sample data</p></div><div id="top"><button data-show="home">Home</button><button data-show="tracker">Dynasty Graph</button><button id="open-news">News &amp; Sources</button><button id="open-data">Records Table</button><button id="open-auth">Sign in</button></div></header>
 <section id="v-home"></section>
 <main id="v-tracker" hidden>
 <section id="stage"><canvas id="cv"></canvas><div id="legend"></div></section>
 <aside><nav id="tabs"></nav><div id="pane"></div></aside>
 </main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
 const EDIT_URL='https://github.com/YOUR-USERNAME/YOUR-REPO/edit/main/data/';
+// Configure these with your Supabase Project URL and anon/publishable key.
+// Never place a service_role/secret key in this public HTML.
+
+const SUPABASE_URL='https://hfkwmqvbopizmzdkboan.supabase.co';
+const SUPABASE_ANON_KEY='sb_publishable_AIdhguufnXgAcSbq22V-1A_vAhcxfQn';
+
+
+
+
+const supabaseReady=()=>window.supabase&&/^https:\/\/.+/.test(SUPABASE_URL)&&!SUPABASE_URL.includes('YOUR_')&&!SUPABASE_ANON_KEY.includes('YOUR_');
+const sb=supabaseReady()?window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY):null;
+async function dbRows(table){if(!sb)return null;const {data,error}=await sb.from(table).select('*');if(error)throw error;return data||[]}
+
 const txt=async f=>{const r=await fetch(f,{cache:'no-store'});if(!r.ok)throw new Error('Could not load '+f+' ('+r.status+')');return r.text()};
 const rows=t=>t.split(/\r?\n/).map(l=>l.trim()).filter(l=>l&&l[0]!=='#').map(l=>l.split('|').map(x=>x.trim()));
 const sn=n=>{const w=n.split(/\s+/);let i=w.length-1;while(i>0&&/^(de|del|dela|delos|san|santa|van|von)$/i.test(w[i-1]))i--;return w.slice(i).join(' ')};
 async function main(){
-const P=rows(await txt('politicians.txt')).filter(c=>c.length>=6&&/^\d+$/.test(c[0])).map(c=>({id:+c[0],name:c[1],party:c[2],pos:c[3],plat:c[4],rec:c.slice(5).join('|'),s:sn(c[1])}));
-const ids=new Set(P.map(p=>p.id));
-const R=rows(await txt('relations.txt')).filter(c=>ids.has(+c[0])&&ids.has(+c[1])&&['spouse','parent','sibling','cousin'].includes(c[2])).map(c=>[+c[0],+c[1],c[2]]);
-const NEWS=rows(await txt('news.txt')).filter(c=>c.length>=4).map(c=>({date:c[0],cat:c[1],title:c[2],sum:c[3],link:c[4]||'',pid:c[5]||''})).sort((a,b)=>b.date.localeCompare(a.date));
+let P,R,NEWS;
+if(sb){
+  const [pp,rr,nn]=await Promise.all([dbRows('politicians'),dbRows('relations'),dbRows('news')]);
+  P=pp.map(p=>({id:+p.id,name:p.name,party:p.party||'',pos:p.position||'',plat:p.platform||'',rec:p.track_record||'',s:sn(p.name)}));
+  const ids=new Set(P.map(p=>p.id));
+  R=rr.filter(r=>ids.has(+r.person_a)&&ids.has(+r.person_b)&&['spouse','parent','sibling','cousin'].includes(r.relation_type)).map(r=>[+r.person_a,+r.person_b,r.relation_type]);
+  NEWS=nn.map(n=>({date:n.published_at||'',cat:n.category||'General',title:n.title||'',sum:n.summary||'',link:n.url||'',pid:n.politician_id||''})).sort((a,b)=>b.date.localeCompare(a.date));
+}else{
+  P=rows(await txt('politicians.txt')).filter(c=>c.length>=6&&/^\d+$/.test(c[0])).map(c=>({id:+c[0],name:c[1],party:c[2],pos:c[3],plat:c[4],rec:c.slice(5).join('|'),s:sn(c[1])}));
+  const ids=new Set(P.map(p=>p.id));
+  R=rows(await txt('relations.txt')).filter(c=>ids.has(+c[0])&&ids.has(+c[1])&&['spouse','parent','sibling','cousin'].includes(c[2])).map(c=>[+c[0],+c[1],c[2]]);
+  NEWS=rows(await txt('news.txt')).filter(c=>c.length>=4).map(c=>({date:c[0],cat:c[1],title:c[2],sum:c[3],link:c[4]||'',pid:c[5]||''})).sort((a,b)=>b.date.localeCompare(a.date));
+}
 const PAL=['#7F77DD','#1D9E75','#D85A30','#BA7517','#378ADD','#D4537E'],COL={};[...new Set(P.map(p=>p.party))].forEach((k,i)=>{COL[k]=PAL[i%PAL.length]});
 const STY={parent:{d:[],w:2.4},spouse:{d:[],w:1.4},sibling:{d:[7,4],w:1.4},cousin:{d:[2,4],w:1.6}};
 const byId=new Map(P.map(p=>[p.id,p]));
@@ -196,5 +231,76 @@ rHome();show(location.hash==='#tracker'?'tracker':'home');
 }
 main().catch(e=>{console.error(e);const h=document.getElementById('v-home');h.hidden=false;h.innerHTML='<div class="wrap"><h2>Couldn’t load the data files</h2><p class="mute">'+String(e.message||e).replace(/[<>&]/g,'')+'. Open this site through GitHub Pages or a local server (for example <code>python -m http.server</code>) instead of double-clicking the file.</p></div>'});
 </script>
+
+<!-- Supplementary features. Authentication and edits in this standalone file are LOCAL DEMO ONLY. -->
+<section id="extra-view" hidden aria-live="polite"><div class="extra-wrap">
+  <div class="extra-head"><div><h1 id="extra-title">News &amp; Sources</h1><p class="mute" id="extra-subtitle">Search and verify reporting before drawing conclusions.</p></div><button class="btn" id="extra-close">Back to tracker</button></div>
+  <div id="extra-content"></div>
+</div></section>
+<script>
+(function(){
+ const $=s=>document.querySelector(s), view=$('#extra-view'), content=$('#extra-content');
+ const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+ const getUser=()=>{try{return JSON.parse(localStorage.getItem('bt_demo_user')||'null')}catch{return null}};
+ let liveRole='visitor';
+ const isAdmin=()=>liveRole==='admin';
+ async function refreshRole(){liveRole='visitor';if(sb){const {data:{user}}=await sb.auth.getUser();if(user){const {data}=await sb.from('profiles').select('role').eq('id',user.id).maybeSingle();liveRole=data?.role==='admin'?'admin':'visitor';localStorage.setItem('bt_demo_user',JSON.stringify({email:user.email||'',role:liveRole}))}}}
+ const demoPeople=[
+  {id:'sample-1',name:'Sample Politician A',party:'Example Party',position:'Public official',platform:'Public service and transparency',record:'DEMO ENTRY: Replace with verified, dated claims before publishing.',status:'Needs verification',sources:[{label:'Official government portal',url:'https://www.gov.ph/'},{label:'Official gazette',url:'https://www.officialgazette.gov.ph/'}]},
+  {id:'sample-2',name:'Sample Politician B',party:'Example Party',position:'Legislator',platform:'Legislation and public accountability',record:'DEMO ENTRY: Add a sourced record; do not treat this placeholder as a factual claim.',status:'Needs verification',sources:[{label:'House of Representatives',url:'https://www.congress.gov.ph/'},{label:'Senate of the Philippines',url:'https://senate.gov.ph/'}]},
+  {id:'sample-3',name:'Sample Politician C',party:'Independent',position:'Local official',platform:'Local governance and public services',record:'DEMO ENTRY: Add documented actions, dates, outcomes, and case status where relevant.',status:'Needs verification',sources:[{label:'Commission on Audit',url:'https://www.coa.gov.ph/'},{label:'Commission on Elections',url:'https://comelec.gov.ph/'}]}
+ ];
+ const loadPeople=async()=>{if(sb){const [ps,ss]=await Promise.all([dbRows('politicians'),dbRows('sources')]);return ps.map(p=>({...p,id:String(p.id),position:p.position||'',record:p.track_record||'',sources:ss.filter(s=>String(s.politician_id)===String(p.id)).map(s=>({label:s.label,url:s.url}))}))}try{const x=JSON.parse(localStorage.getItem('bt_demo_people')||'null');return Array.isArray(x)?x:demoPeople.map(p=>({...p,sources:p.sources.map(s=>({...s}))}))}catch{return demoPeople}};
+ const savePeople=p=>localStorage.setItem('bt_demo_people',JSON.stringify(p));
+ const currentUser=()=>sb?.auth?.getUser();
+ function open(title,sub,html){$('#extra-title').textContent=title;$('#extra-subtitle').textContent=sub;content.innerHTML=html;view.hidden=false}
+ function close(){view.hidden=true}
+ $('#extra-close').onclick=close;
+ $('#open-news').onclick=()=>news();
+ $('#open-data').onclick=()=>table();
+ $('#open-auth').onclick=()=>auth();
+ function news(){
+  open('News search & source desk','Search the web for coverage, then record the original source and date. Search results are external and are not endorsements.',`
+  <div class="card"><h2>Search news</h2><form id="news-form"><input id="news-q" placeholder="e.g. politician name, bill number, audit report" required><select id="news-source"><option value="https://news.google.com/search?q=">Google News</option><option value="https://www.google.com/search?q=">Google Search</option><option value="https://www.youtube.com/results?search_query=">YouTube reporting</option></select><button class="btn">Search in new tab</button></form>
+  <p class="mute">A true embedded search/results feed usually needs a provider API or backend. Many search engines block iframe embedding, so this opens the selected search provider safely instead.</p></div>
+  <div class="extra-grid"><div class="card"><h2>Source checklist</h2><ul><li>Prefer official documents for laws, votes, budgets, and case status.</li><li>Use multiple reputable news reports for disputed events.</li><li>Separate allegations from findings, convictions, acquittals, and appeals.</li><li>Record publication date, author, original URL, and the exact claim supported.</li></ul></div>
+  <div class="card"><h2>Example source portals</h2><ul><li><a target="_blank" rel="noopener noreferrer" href="https://www.gov.ph/">Philippine government portal</a></li><li><a target="_blank" rel="noopener noreferrer" href="https://www.officialgazette.gov.ph/">Official Gazette</a></li><li><a target="_blank" rel="noopener noreferrer" href="https://www.coa.gov.ph/">Commission on Audit</a></li><li><a target="_blank" rel="noopener noreferrer" href="https://comelec.gov.ph/">Commission on Elections</a></li></ul></div></div>`);
+  $('#news-form').onsubmit=e=>{e.preventDefault();const q=$('#news-q').value.trim(),base=$('#news-source').value;if(q)window.open(base+encodeURIComponent(q),'_blank','noopener,noreferrer')};
+ }
+ async function table(){
+  const people=await loadPeople();
+  open('Politician records','Searchable, readable records. Demo edits are stored in this browser only; they do not write to politicians.txt on your server.',`
+  <div class="extra-note"><b>Data mode:</b> ${isAdmin()?'Admin demo mode':'Read-only visitor mode'}. ${isAdmin()?'Edits can be saved locally and exported as JSON.':'Sign in with an authorized admin account to enable the local demo editor.'} If Supabase is configured, records are loaded from the database and edits are protected by database policies.</div>
+  <input id="people-filter" placeholder="Filter by name, party, position, record…">
+  <div class="extra-table-wrap"><table class="extra-table"><thead><tr><th>Name</th><th>Party / position</th><th>Platform</th><th>Track record</th><th>Sources</th><th>Actions</th></tr></thead><tbody id="people-body"></tbody></table></div>
+  ${isAdmin()?'<div class="card"><h2>Add / edit record</h2><form id="person-form"><input type="hidden" id="p-id"><input id="p-name" placeholder="Full name" required><input id="p-party" placeholder="Party"><input id="p-position" placeholder="Position"><textarea id="p-platform" placeholder="Platform"></textarea><textarea id="p-record" placeholder="Track record — distinguish verified facts from allegations"></textarea><input id="p-status" placeholder="Status / verification note"><textarea id="p-sources" placeholder="One source per line: Label | https://example.com/source" required></textarea><button class="btn">Save record locally</button> <button type="button" id="p-new">Clear form</button></form><button class="btn" id="export-json">Export local records as JSON</button> <button class="btn" id="export-txt">Export politicians.txt format</button><span id="export-msg" class="ok"></span></div>':''}`);
+  const body=$('#people-body');
+  async function render(){const q=($('#people-filter').value||'').toLowerCase();const allPeople=await loadPeople();const filtered=allPeople.filter(p=>[p.name,p.party,p.position,p.platform,p.record].join(' ').toLowerCase().includes(q));
+   body.innerHTML=filtered.map(p=>`<tr><td><b>${esc(p.name)}</b><br><span class="pill">${esc(p.status||'Unreviewed')}</span></td><td>${esc(p.party)}<br>${esc(p.position)}</td><td>${esc(p.platform)}</td><td>${esc(p.record)}</td><td>${(p.sources||[]).map((s,i)=>`<div><sup class="cite"><a href="${/^https?:\/\//i.test(s.url)?esc(s.url):'#'}" target="_blank" rel="noopener noreferrer" data-tip="${esc(s.label)}">${i+1}</a></sup> <a href="${/^https?:\/\//i.test(s.url)?esc(s.url):'#'}" target="_blank" rel="noopener noreferrer">${esc(s.label)}</a></div>`).join('')}</td><td>${isAdmin()?`<button class="btn" data-edit="${esc(p.id)}">Edit</button> <button data-delete="${esc(p.id)}">Delete</button>`:'<span class="mute">Read only</span>'}</td></tr>`).join('')||'<tr><td colspan="6">No matching records.</td></tr>';
+  }
+  $('#people-filter').oninput=()=>render();render();
+  if(isAdmin()){
+   const clear=()=>{$('#person-form').reset();$('#p-id').value=''};
+   $('#p-new').onclick=clear;
+   body.onclick=async e=>{const eb=e.target.closest('[data-edit]'),db=e.target.closest('[data-delete]');let ps=await loadPeople();if(db&&confirm('Delete this record?')){if(sb){const {error}=await sb.from('politicians').delete().eq('id',db.dataset.delete);if(error){alert(error.message);return}}else savePeople(ps.filter(p=>p.id!==db.dataset.delete));await render()}if(eb){const p=ps.find(x=>String(x.id)===eb.dataset.edit);if(!p)return;$('#p-id').value=p.id;$('#p-name').value=p.name;$('#p-party').value=p.party;$('#p-position').value=p.position;$('#p-platform').value=p.platform;$('#p-record').value=p.record;$('#p-status').value=p.status||'';$('#p-sources').value=(p.sources||[]).map(s=>s.label+' | '+s.url).join('\n');window.scrollTo({top:document.body.scrollHeight,behavior:'smooth'})}};
+   $('#person-form').onsubmit=async e=>{e.preventDefault();const ps=await loadPeople(),rawId=$('#p-id').value,sources=$('#p-sources').value.split(/\r?\n/).map(l=>{const i=l.indexOf('|');return i<0?null:{label:l.slice(0,i).trim(),url:l.slice(i+1).trim()}}).filter(s=>s&&s.label&&/^https?:\/\//i.test(s.url));const p={name:$('#p-name').value.trim(),party:$('#p-party').value.trim(),position:$('#p-position').value.trim(),platform:$('#p-platform').value.trim(),track_record:$('#p-record').value.trim(),status:$('#p-status').value.trim()};if(sb){let saved;if(rawId){const {data,error}=await sb.from('politicians').update(p).eq('id',rawId).select('id').single();if(error){$('#export-msg').textContent=error.message;return}saved=data}else{const {data,error}=await sb.from('politicians').insert(p).select('id').single();if(error){$('#export-msg').textContent=error.message;return}saved=data}const {error:delErr}=await sb.from('sources').delete().eq('politician_id',saved.id);if(delErr){$('#export-msg').textContent=delErr.message;return}if(sources.length){const {error:insErr}=await sb.from('sources').insert(sources.map(s=>({...s,politician_id:saved.id})));if(insErr){$('#export-msg').textContent=insErr.message;return}}}else{const id=rawId||('local-'+Date.now()),localP={id,...p,record:p.track_record,sources};const i=ps.findIndex(x=>String(x.id)===id);if(i>=0)ps[i]=localP;else ps.push(localP);savePeople(ps)}await render();clear();$('#export-msg').textContent=sb?'Saved to database.':'Saved in this browser only.'};
+   $('#export-json').onclick=async()=>download('politicians.json',JSON.stringify(await loadPeople(),null,2),'application/json');
+   $('#export-txt').onclick=async()=>{const lines=(await loadPeople()).map((p,i)=>[i+1,p.name,p.party,p.position,p.platform,p.record].map(x=>String(x||'').replace(/[|\r\n]/g,' ')).join('|')).join('\n');download('politicians.txt',lines,'text/plain;charset=utf-8')};
+  }
+ }
+ function download(name,data,type){const a=document.createElement('a'),u=URL.createObjectURL(new Blob([data],{type}));a.href=u;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(u),1000)}
+ async function auth(){
+  await refreshRole(); const u=sb?((await sb.auth.getUser()).data.user?{email:(await sb.auth.getUser()).data.user.email,role:liveRole}:null):getUser();
+  open(u?'Account':'Sign in / sign up',u?'Current local demo session':'Demo-only account UI. Do not use for real accounts or sensitive data.',u?`<div class="card"><p>Signed in as <b>${esc(u.email)}</b></p><p>Role: ${esc(u.role)}</p><button class="btn" id="logout">Sign out</button></div><div class="extra-note">This local demo identity is not secure authentication. Real role assignment must happen on a trusted server, never from a browser form.</div>`:`
+  <div class="extra-grid"><div class="card"><h2>Sign in</h2><form id="signin"><input id="in-email" type="email" placeholder="Email" required><input id="in-pass" type="password" placeholder="Password (demo only)" required><button class="btn">Sign in</button></form></div>
+  <div class="card"><h2>Create demo account</h2><form id="signup"><input id="up-email" type="email" placeholder="Email" required><input id="up-pass" type="password" minlength="8" placeholder="Password (8+ characters)" required><button class="btn">Create account</button></form><p class="mute">New accounts are visitor accounts. This demo does not store or verify passwords.</p></div></div>
+  <div class="extra-note"><b>Admin access:</b> this standalone HTML cannot safely verify who is an administrator. The editor is intentionally not enabled by self-selecting an admin role. A real deployment needs server-managed roles.</div><p id="auth-msg" role="status"></p>`);
+  if(u){$('#logout').onclick=async()=>{if(sb)await sb.auth.signOut();localStorage.removeItem('bt_demo_user');liveRole='visitor';await auth()};return}
+  $('#signin').onsubmit=async e=>{e.preventDefault();if(!sb){$('#auth-msg').textContent='Add your Supabase project URL and anon key to enable real sign-in.';return}const {error}=await sb.auth.signInWithPassword({email:$('#in-email').value.trim(),password:$('#in-pass').value});if(error){$('#auth-msg').textContent=error.message;return}await auth();};
+  $('#signup').onsubmit=async e=>{e.preventDefault();if(!sb){$('#auth-msg').textContent='Add your Supabase project URL and anon key to enable real sign-up.';return}const {error}=await sb.auth.signUp({email:$('#up-email').value.trim(),password:$('#up-pass').value});if(error){$('#auth-msg').textContent=error.message;return}$('#auth-msg').textContent='Account created. Check your email if confirmation is enabled, then sign in.'};
+ }
+})();
+</script>
+
 </body>
 </html>
