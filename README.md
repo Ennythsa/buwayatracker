@@ -11,22 +11,6 @@ data/
   news.txt              date|category|title|summary|link|politician id
 ```
 
-## Editing the data on GitHub (no coding)
-
-1. Open a file in the `data` folder on GitHub.
-2. Click the **pencil icon** (Edit this file).
-3. Add or change lines, then click **Commit changes**.
-4. The site updates within a minute or two.
-
-Rules for all three files:
-- One record per line, fields separated by `|`. Never type `|` inside a field.
-- Lines starting with `#` are comments and are ignored.
-- **politicians.txt**: IDs must be unique numbers. New parties get a color automatically. Field limits (for the C program): name 100, party and position 50, platform and track record 300 characters.
-- **relations.txt**: use the politician IDs. For `parent`, the first ID is the parent, the second is the child. Dynasties are worked out automatically from connected relatives.
-- **news.txt**: date as `YYYY-MM-DD`. The link and politician ID are optional (`...|summary||4` adds a profile link but no article link). Only `http` and `https` links are shown.
-
-Your site will be at `https://YOUR-USERNAME.github.io/YOUR-REPO/`.
-
 ## Preview on your computer
 
 Browsers block data loading when you double-click `index.html`. Run a small local server in this folder instead:
