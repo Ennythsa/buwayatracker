@@ -1,0 +1,23 @@
+1|Ferdinand Marcos Sr.|Not yet added|Former President|To be added|To be added
+2|Imelda Marcos|Not yet added|Former First Lady|To be added|To be added
+3|Bongbong Marcos|Not yet added|President|To be added|To be added
+4|Imee Marcos|Not yet added|Senator|To be added|To be added
+5|Sandro Marcos|Not yet added|Congressman|To be added|To be added
+6|Matthew Manotoc|Not yet added|Ilocos Norte Governor|To be added|To be added
+7|Martin Romualdez|Not yet added|Leyte Congressman|To be added|To be added
+8|Vicente Duterte|Not yet added|Former Davao Governor|To be added|To be added
+9|Rodrigo Duterte|Not yet added|Former President|To be added|To be added
+10|Sara Duterte|Not yet added|Vice President|To be added|To be added
+11|Paolo Duterte|Not yet added|Davao City Congressman|To be added|To be added
+12|Sebastian Duterte|Not yet added|Davao City Mayor|To be added|To be added
+13|Joseph Estrada|Not yet added|Former President|To be added|To be added
+14|Jinggoy Estrada|Not yet added|Senator|To be added|To be added
+15|JV Ejercito|Not yet added|Senator|To be added|To be added
+16|Manny Villar|Not yet added|Former Senator|To be added|To be added
+17|Cynthia Villar|Not yet added|Former Senator|To be added|To be added
+18|Mark Villar|Not yet added|Senator|To be added|To be added
+19|Camille Villar|Not yet added|Senator|To be added|To be added
+20|Raffy Tulfo|Not yet added|Senator|To be added|To be added
+21|Erwin Tulfo|Not yet added|Senator|To be added|To be added
+22|Alan Peter Cayetano|Not yet added|Senator|To be added|To be added
+23|Pia Cayetano|Not yet added|Senator|To be added|To be added

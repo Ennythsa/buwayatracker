@@ -1,0 +1,5 @@
+# News shown on the Home page. Currently empty.
+# Format: date|category|title|summary|link (optional)|politician id (optional)
+# Date must be YYYY-MM-DD. Newest items appear first. Do not use the | character inside a field.
+# To add a profile link but no article link, keep two bars: ...|summary||4
+# Write the summary in your own words and link to the original article.

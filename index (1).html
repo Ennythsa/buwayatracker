@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Buwaya Tracker</title>
+<style>
+:root{color-scheme:light dark;--bg:#f4f3ef;--panel:#ffffff;--ink:#1f1e1b;--mute:#6b6a64;--line:#dedbd0;--accent:#6d4aff;--edge:#a19e92;--card:#f4f3ef;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#141416;--panel:#1c1c1f;--ink:#ecebe6;--mute:#9a988f;--line:#33322e;--accent:#a58bff;--edge:#6b6a64;--card:#232326}}
+:root[data-theme="dark"]{--bg:#141416;--panel:#1c1c1f;--ink:#ecebe6;--mute:#9a988f;--line:#33322e;--accent:#a58bff;--edge:#6b6a64;--card:#232326}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+html,body{height:100%;margin:0}
+body{display:flex;flex-direction:column;background:var(--bg);color:var(--ink);font:14px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+header{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 16px;border-bottom:1px solid var(--line);background:var(--panel)}
+h1{font-size:18px;margin:0}header p{margin:0;color:var(--mute);font-size:12px}
+#stats{color:var(--mute);font-size:12px;text-align:right}
+main{flex:1;min-height:0;display:grid;grid-template-columns:1fr 370px}
+#stage{position:relative;min-height:0;overflow:hidden}
+#cv{position:absolute;inset:0;width:100%;height:100%;touch-action:none;display:block}
+#legend{position:absolute;left:10px;bottom:10px;background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:8px 10px;font-size:12px;max-width:calc(100% - 20px)}
+#legend div{display:flex;flex-wrap:wrap;gap:4px 12px;align-items:center}
+#legend i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:4px}
+#legend svg{vertical-align:middle;margin-right:3px}
+aside{display:flex;flex-direction:column;min-height:0;background:var(--panel);border-left:1px solid var(--line)}
+nav{display:flex;border-bottom:1px solid var(--line);overflow-x:auto}
+nav button{flex:1;padding:10px 6px;background:none;border:0;border-bottom:2px solid transparent;color:var(--mute);font:inherit;cursor:pointer;white-space:nowrap}
+nav button.on{color:var(--ink);border-bottom-color:var(--accent)}
+#pane{padding:14px;overflow:auto;flex:1;min-height:0}
+h2{font-size:15px;margin:0 0 8px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:10px;margin-bottom:10px}
+.mute{color:var(--mute);font-size:12px}
+.tag{display:inline-block;font-size:11px;color:var(--mute);border:1px solid var(--line);border-radius:10px;padding:0 7px;margin-right:4px}
+button.lk{background:none;border:0;padding:0;color:var(--accent);font:inherit;cursor:pointer;text-align:left}
+button.btn{background:var(--accent);color:#fff;border:0;border-radius:6px;padding:7px 12px;font:inherit;cursor:pointer}
+input,select,textarea{width:100%;box-sizing:border-box;padding:8px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--ink);font:inherit;margin-bottom:8px}
+textarea{resize:vertical;min-height:90px}
+ul{margin:6px 0 0;padding-left:0;list-style:none}li{margin-bottom:4px}
+table{width:100%;border-collapse:collapse;font-size:13px;table-layout:fixed}
+td,th{border-top:1px solid var(--line);padding:6px 4px;vertical-align:top;text-align:left;word-wrap:break-word}
+th{width:22%;color:var(--mute);font-weight:500}
+.ok{color:#1D9E75;font-size:12px;margin-left:8px}
+[hidden]{display:none!important}a{color:var(--accent)}header{flex-wrap:wrap}
+#top{display:flex;gap:6px}#top button{background:none;border:1px solid var(--line);border-radius:6px;color:var(--mute);padding:6px 12px;font:inherit;cursor:pointer}#top button.on{background:var(--accent);border-color:var(--accent);color:#fff}
+#v-home{flex:1;min-height:0;overflow:auto}.wrap{max-width:980px;margin:0 auto;padding:20px 16px 40px}
+.hero h2{font-size:26px;margin:0 0 6px}.hero{padding:8px 0 6px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin:16px 0 24px}.stats .card{margin:0;text-align:center}.stats b{display:block;font-size:24px}
+.cols{display:grid;grid-template-columns:2fr 1fr;gap:24px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 14px}.chips button{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:3px 11px;color:var(--mute);font:inherit;cursor:pointer}.chips button.on{background:var(--accent);border-color:var(--accent);color:#fff}
+.news{display:grid;gap:10px}.news .card{margin:0}.news h3{margin:6px 0 4px;font-size:16px}
+@media (max-width:760px){.cols{grid-template-columns:1fr}}
+@media (max-width:760px){main{grid-template-columns:1fr;grid-template-rows:48% 1fr}aside{border-left:0;border-top:1px solid var(--line)}}
+</style>
+</head>
+<body>
+<header><div><h1>Buwaya Tracker</h1><p>Political dynasty graph · all names and links are fictional sample data</p></div><div id="top"><button data-show="home">Home</button><button data-show="tracker">Dynasty Graph</button></div></header>
+<section id="v-home"></section>
+<main id="v-tracker" hidden>
+<section id="stage"><canvas id="cv"></canvas><div id="legend"></div></section>
+<aside><nav id="tabs"></nav><div id="pane"></div></aside>
+</main>
+<script>
+const EDIT_URL='https://github.com/YOUR-USERNAME/YOUR-REPO/edit/main/data/';
+const txt=async f=>{const r=await fetch(f,{cache:'no-store'});if(!r.ok)throw new Error('Could not load '+f+' ('+r.status+')');return r.text()};
+const rows=t=>t.split(/\r?\n/).map(l=>l.trim()).filter(l=>l&&l[0]!=='#').map(l=>l.split('|').map(x=>x.trim()));
+const sn=n=>{const w=n.split(/\s+/);let i=w.length-1;while(i>0&&/^(de|del|dela|delos|san|santa|van|von)$/i.test(w[i-1]))i--;return w.slice(i).join(' ')};
+async function main(){
+const P=rows(await txt('politicians.txt')).filter(c=>c.length>=6&&/^\d+$/.test(c[0])).map(c=>({id:+c[0],name:c[1],party:c[2],pos:c[3],plat:c[4],rec:c.slice(5).join('|'),s:sn(c[1])}));
+const ids=new Set(P.map(p=>p.id));
+const R=rows(await txt('relations.txt')).filter(c=>ids.has(+c[0])&&ids.has(+c[1])&&['spouse','parent','sibling','cousin'].includes(c[2])).map(c=>[+c[0],+c[1],c[2]]);
+const NEWS=rows(await txt('news.txt')).filter(c=>c.length>=4).map(c=>({date:c[0],cat:c[1],title:c[2],sum:c[3],link:c[4]||'',pid:c[5]||''})).sort((a,b)=>b.date.localeCompare(a.date));
+const PAL=['#7F77DD','#1D9E75','#D85A30','#BA7517','#378ADD','#D4537E'],COL={};[...new Set(P.map(p=>p.party))].forEach((k,i)=>{COL[k]=PAL[i%PAL.length]});
+const STY={parent:{d:[],w:2.4},spouse:{d:[],w:1.4},sibling:{d:[7,4],w:1.4},cousin:{d:[2,4],w:1.6}};
+const byId=new Map(P.map(p=>[p.id,p]));
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const adj=new Map(P.map(p=>[p.id,[]]));
+R.forEach(([a,b,t])=>{adj.get(a).push({to:b,t,a,b});adj.get(b).push({to:a,t,a,b})});
+const relLabel=(e,from)=>e.t==='parent'?(e.a===from?'Parent of':'Child of'):e.t[0].toUpperCase()+e.t.slice(1)+' of';
+/* dynasties = connected family groups */
+const comp=new Map(),dyn=[];
+P.forEach(p=>{if(comp.has(p.id))return;const q=[p.id],m=[];comp.set(p.id,dyn.length);
+while(q.length){const x=q.pop();m.push(x);adj.get(x).forEach(e=>{if(!comp.has(e.to)){comp.set(e.to,dyn.length);q.push(e.to)}})}
+m.sort((a,b)=>a-b);dyn.push({m,name:m.length>1?'House of '+byId.get(m[0]).s:'Independent: '+byId.get(m[0]).name})});
+function path(a,b){const prev=new Map([[a,null]]),q=[a];
+while(q.length){const x=q.shift();if(x===b)break;adj.get(x).forEach(e=>{if(!prev.has(e.to)){prev.set(e.to,{from:x,e});q.push(e.to)}})}
+if(!prev.has(b))return null;const out=[];let c=b;while(c!==a){const s=prev.get(c);out.unshift(s);c=s.from}return out}
+/* ---------- state ---------- */
+let tab='dyn',sel=null,hover=null,hl=null,q='',cA=P[0]?.id,cB=P[Math.min(4,P.length-1)]?.id;
+const $=s=>document.querySelector(s),pane=$('#pane');
+/* ---------- graph ---------- */
+const cv=$('#cv'),ctx=cv.getContext('2d'),stage=$('#stage');
+let W=300,H=300,dpr=1,view={x:0,y:0,k:1,set:0},alpha=1;
+const N=P.map((p,i)=>{const a=i/P.length*6.283;return{id:p.id,x:Math.cos(a)*160,y:Math.sin(a)*160,vx:0,vy:0,r:9+adj.get(p.id).length*3,fx:false}});
+const nm=new Map(N.map(n=>[n.id,n]));
+function fit(){const r=stage.getBoundingClientRect();dpr=devicePixelRatio||1;W=r.width;H=r.height;cv.width=W*dpr;cv.height=H*dpr;if(!view.set&&W>10){view.x=W/2;view.y=H/2;view.set=1}}
+new ResizeObserver(fit).observe(stage);fit();
+function step(){const a=alpha;
+for(let i=0;i<N.length;i++)for(let j=i+1;j<N.length;j++){const A=N[i],B=N[j];let dx=B.x-A.x,dy=B.y-A.y,d2=dx*dx+dy*dy+.01,d=Math.sqrt(d2),f=3200/d2*a;dx/=d;dy/=d;A.vx-=dx*f;A.vy-=dy*f;B.vx+=dx*f;B.vy+=dy*f}
+R.forEach(([x,y])=>{const A=nm.get(x),B=nm.get(y);let dx=B.x-A.x,dy=B.y-A.y,d=Math.hypot(dx,dy)||1,f=(d-105)*.05*a;dx/=d;dy/=d;A.vx+=dx*f;A.vy+=dy*f;B.vx-=dx*f;B.vy-=dy*f});
+N.forEach(n=>{n.vx-=n.x*.01*a;n.vy-=n.y*.01*a;if(!n.fx){n.x+=n.vx;n.y+=n.vy}n.vx*=.8;n.vy*=.8});alpha*=.985}
+function focusSet(){if(hl)return hl;const id=hover??sel;if(id==null)return null;const s=new Set([id]);adj.get(id).forEach(e=>s.add(e.to));return s}
+function matchSet(){if(!q)return null;const k=q.toLowerCase();return new Set(P.filter(p=>p.name.toLowerCase().includes(k)||p.plat.toLowerCase().includes(k)).map(p=>p.id))}
+function draw(){const cs=getComputedStyle(document.documentElement),g=n=>cs.getPropertyValue(n).trim();
+ctx.setTransform(dpr,0,0,dpr,0,0);ctx.fillStyle=g('--bg');ctx.fillRect(0,0,W,H);
+ctx.save();ctx.translate(view.x,view.y);ctx.scale(view.k,view.k);
+const F=focusSet(),M=matchSet(),fid=hover??sel;
+dyn.forEach(d=>{if(d.m.length<2)return;let cx=0,cy=0;d.m.forEach(i=>{cx+=nm.get(i).x;cy+=nm.get(i).y});cx/=d.m.length;cy/=d.m.length;
+let r=0;d.m.forEach(i=>{r=Math.max(r,Math.hypot(nm.get(i).x-cx,nm.get(i).y-cy))});r+=48;
+ctx.globalAlpha=1;ctx.beginPath();ctx.arc(cx,cy,r,0,6.283);ctx.fillStyle=g('--accent');ctx.globalAlpha=.06;ctx.fill();
+ctx.globalAlpha=.35;ctx.setLineDash([4,5]);ctx.lineWidth=1;ctx.strokeStyle=g('--accent');ctx.stroke();ctx.setLineDash([]);
+ctx.globalAlpha=.8;ctx.fillStyle=g('--mute');ctx.font='600 12px system-ui,sans-serif';ctx.textAlign='center';ctx.fillText(d.name,cx,cy-r+16)});
+R.forEach(([a,b,t])=>{const A=nm.get(a),B=nm.get(b),on=F&&fid!=null&&(a===fid||b===fid||(hl&&hl.has(a)&&hl.has(b)));
+const dim=(F&&!on)||(M&&!(M.has(a)&&M.has(b)));ctx.globalAlpha=dim?.12:1;ctx.beginPath();ctx.moveTo(A.x,A.y);ctx.lineTo(B.x,B.y);
+ctx.setLineDash(STY[t].d);ctx.lineWidth=STY[t].w;ctx.strokeStyle=on?g('--accent'):g('--edge');ctx.stroke();ctx.setLineDash([])});
+N.forEach(n=>{const p=byId.get(n.id),dim=(F&&!F.has(n.id))||(M&&!M.has(n.id));ctx.globalAlpha=dim?.18:1;
+ctx.beginPath();ctx.arc(n.x,n.y,n.r,0,6.283);ctx.fillStyle=COL[p.party]||'#888';ctx.fill();
+if(n.id===sel||n.id===cA&&tab==='cmp'||n.id===cB&&tab==='cmp'){ctx.lineWidth=3;ctx.strokeStyle=g('--accent');ctx.beginPath();ctx.arc(n.x,n.y,n.r+4,0,6.283);ctx.stroke()}
+ctx.fillStyle=g('--ink');ctx.font='12px system-ui,sans-serif';ctx.textAlign='center';ctx.fillText(p.name,n.x,n.y+n.r+15);
+ctx.fillStyle=g('--mute');ctx.font='11px system-ui,sans-serif';ctx.fillText(p.pos,n.x,n.y+n.r+28)});
+ctx.restore();ctx.globalAlpha=1}
+(function loop(){if(alpha>.01)step();draw();requestAnimationFrame(loop)})();
+/* ---------- pointer interaction ---------- */
+const toW=(x,y)=>[(x-view.x)/view.k,(y-view.y)/view.k];
+function hit(x,y){const [wx,wy]=toW(x,y);for(let i=N.length-1;i>=0;i--){const n=N[i];if(Math.hypot(n.x-wx,n.y-wy)<n.r+5)return n}return null}
+let drag=null;
+cv.addEventListener('pointerdown',e=>{const r=cv.getBoundingClientRect(),x=e.clientX-r.left,y=e.clientY-r.top,n=hit(x,y);cv.setPointerCapture(e.pointerId);
+drag={n,x,y,vx:view.x,vy:view.y,moved:false};if(n){n.fx=true;alpha=Math.max(alpha,.3)}});
+cv.addEventListener('pointermove',e=>{const r=cv.getBoundingClientRect(),x=e.clientX-r.left,y=e.clientY-r.top;
+if(drag){if(Math.hypot(x-drag.x,y-drag.y)>3)drag.moved=true;
+if(drag.n&&drag.moved){const [wx,wy]=toW(x,y);drag.n.x=wx;drag.n.y=wy;alpha=Math.max(alpha,.3)}
+else if(!drag.n&&drag.moved){view.x=drag.vx+x-drag.x;view.y=drag.vy+y-drag.y}}
+else{const n=hit(x,y);hover=n?n.id:null;cv.style.cursor=n?'pointer':'grab'}});
+cv.addEventListener('pointerup',()=>{if(!drag)return;if(drag.n)drag.n.fx=false;
+if(!drag.moved){if(drag.n)select(drag.n.id);else{sel=null;if(tab==='prof')go('dyn')}}drag=null});
+cv.addEventListener('pointerleave',()=>{if(!drag)hover=null});
+cv.addEventListener('wheel',e=>{e.preventDefault();const r=cv.getBoundingClientRect(),x=e.clientX-r.left,y=e.clientY-r.top,k=Math.min(2.5,Math.max(.4,view.k*(e.deltaY<0?1.1:.9))),f=k/view.k;
+view.x=x-(x-view.x)*f;view.y=y-(y-view.y)*f;view.k=k},{passive:false});
+/* ---------- panel ---------- */
+const TABS=[['dyn','Dynasties'],['search','Search'],['cmp','Compare'],['prof','Profile'],['exp','Export']];
+$('#tabs').innerHTML=TABS.map(t=>`<button data-t="${t[0]}">${t[1]}</button>`).join('');
+$('#tabs').addEventListener('click',e=>{const b=e.target.closest('button');if(b)go(b.dataset.t)});
+pane.addEventListener('click',e=>{const b=e.target.closest('[data-go]');if(b)select(+b.dataset.go)});
+function select(id){sel=id;show('tracker');go('prof')}
+function go(t){tab=t;hl=null;document.querySelectorAll('#tabs button').forEach(b=>b.classList.toggle('on',b.dataset.t===t));
+({dyn:rDyn,search:rSearch,cmp:rCmp,prof:rProf,exp:rExp})[t]()}
+const chip=id=>`<button class="lk" data-go="${id}">${esc(byId.get(id).name)}</button>`;
+function rDyn(){pane.innerHTML='<h2>Political dynasties</h2><p class="mute">Each dashed circle on the graph is a family group. Hover a card to highlight it, click a name for the profile.</p>'+
+dyn.map((d,i)=>{const pos=d.m.map(id=>byId.get(id).pos);return`<div class="card" data-d="${i}"><b>${esc(d.name)}</b><div class="mute">${d.m.length} member${d.m.length>1?'s':''} · holds ${pos.map(esc).join(', ')}</div><ul>${d.m.map(id=>`<li>${chip(id)} <span class="mute">${esc(byId.get(id).party)}</span></li>`).join('')}</ul></div>`}).join('');
+pane.querySelectorAll('[data-d]').forEach(c=>{c.onmouseenter=()=>{hl=new Set(dyn[+c.dataset.d].m)};c.onmouseleave=()=>{hl=null}})}
+function rSearch(){pane.innerHTML=`<h2>Search &amp; filter</h2><input id="qi" placeholder="Name or platform keyword" value="${esc(q)}"><div id="res"></div>`;
+const run=()=>{const m=P.filter(p=>!q||p.name.toLowerCase().includes(q.toLowerCase())||p.plat.toLowerCase().includes(q.toLowerCase()));
+$('#res').innerHTML=m.length?m.map(p=>`<div class="card"><b>${chip(p.id)}</b><div class="mute">ID ${p.id} · ${esc(p.party)} · ${esc(p.pos)}</div><div>${esc(p.plat)}</div></div>`).join(''):'<p class="mute">No matching records found.</p>'};
+$('#qi').oninput=e=>{q=e.target.value.trim();run()};run()}
+function rCmp(){const opts=v=>P.map(p=>`<option value="${p.id}"${p.id===v?' selected':''}>${esc(p.name)}</option>`).join('');
+pane.innerHTML=`<h2>Compare two politicians</h2><select id="ca">${opts(cA)}</select><select id="cb">${opts(cB)}</select><div id="out"></div>`;
+const run=()=>{const A=byId.get(cA),B=byId.get(cB);if(cA===cB){$('#out').innerHTML='<p class="mute">Pick two different politicians.</p>';return}
+const pth=path(cA,cB);let rel;
+if(!pth)rel='No family link found. These two are in different dynasties.';
+else{rel='<ul>'+pth.map(s=>`<li>${chip(s.from)} <span class="tag">${relLabel(s.e,s.from)}</span> ${chip(s.e.to)}</li>`).join('')+'</ul>'}
+const row=(l,a,b)=>`<tr><th>${l}</th><td>${esc(a)}</td><td>${esc(b)}</td></tr>`;
+$('#out').innerHTML=`<table>${row('Name',A.name,B.name)}${row('Party',A.party,B.party)}${row('Position',A.pos,B.pos)}${row('Platform',A.plat,B.plat)}${row('Record',A.rec,B.rec)}</table><div class="card" style="margin-top:10px"><b>Family connection</b><div>${rel}</div></div>`};
+$('#ca').onchange=e=>{cA=+e.target.value;run()};$('#cb').onchange=e=>{cB=+e.target.value;run()};run()}
+function rProf(){if(sel==null){pane.innerHTML='<h2>Profile</h2><p class="mute">Click a node on the graph to see a politician.</p>';return}
+const p=byId.get(sel),d=dyn[comp.get(sel)];
+pane.innerHTML=`<h2><span style="color:${COL[p.party]}">●</span> ${esc(p.name)}</h2><div class="mute">ID ${p.id} · ${esc(p.party)} · ${esc(p.pos)}</div>
+<div class="card" style="margin-top:10px"><b>Dynasty</b><div>${esc(d.name)}</div></div>
+<div class="card"><b>Relatives</b>${adj.get(sel).length?'<ul>'+adj.get(sel).map(e=>`<li><span class="tag">${relLabel(e,sel)}</span> ${chip(e.to)}</li>`).join('')+'</ul>':'<div class="mute">No known relatives in the database.</div>'}</div>
+<div class="card"><b>Platform</b><div>${esc(p.plat)}</div></div>
+<div class="card"><b>Track record</b><div>${esc(p.rec)}</div></div>
+<a href="${EDIT_URL}politicians.txt" target="_blank" rel="noopener noreferrer">Edit this record on GitHub</a>`}
+function rExp(){const L=['=========================================','      BUWAYA TRACKER CANDIDATE SUMMARY   ','=========================================',''];
+P.forEach(p=>{L.push('ID: '+p.id,'Name: '+p.name,'Party: '+p.party,'Position: '+p.pos,'Platform: '+p.plat,'Track Record: '+p.rec,'Dynasty: '+dyn[comp.get(p.id)].name,'-----------------------------------------')});
+pane.innerHTML=`<h2>Export summary report</h2><textarea id="rp" readonly style="min-height:320px;font:12px/1.4 ui-monospace,Menlo,Consolas,monospace">${esc(L.join('\n'))}</textarea><button class="btn" id="cp">Copy report</button><span class="ok" id="ms"></span>`;
+$('#cp').onclick=()=>{const t=$('#rp');t.select();let done=false;try{navigator.clipboard.writeText(t.value).then(()=>{$('#ms').textContent='Report copied.'},()=>{$('#ms').textContent='Press Ctrl+C to copy.'});done=true}catch(_){}
+if(!done)$('#ms').textContent='Press Ctrl+C to copy.'}}
+/* ---------- chrome ---------- */
+const sw=(d,w)=>`<svg width="22" height="8"><line x1="0" y1="4" x2="22" y2="4" stroke="currentColor" stroke-width="${w}" stroke-dasharray="${d.join(' ')}"/></svg>`;
+$('#legend').innerHTML='<div>'+Object.keys(COL).map(k=>`<span><i style="background:${COL[k]}"></i>${k}</span>`).join('')+'</div><div style="margin-top:4px;color:var(--mute)">'+
+Object.keys(STY).map(k=>`<span>${sw(STY[k].d,STY[k].w)}${k}</span>`).join('')+'</div>';
+go('dyn');
+let nf='All';
+const newsCard=n=>{const d=new Date(n.date+'T00:00:00'),ds=isNaN(d)?n.date:d.toLocaleDateString('en-US',{year:'numeric',month:'short',day:'numeric'}),p=byId.get(+n.pid);
+return`<div class="card"><span class="tag">${esc(n.cat)}</span><span class="mute">${esc(ds)}</span><h3>${esc(n.title)}</h3><div>${esc(n.sum)}</div><div style="margin-top:6px">${/^https?:\/\//.test(n.link)?`<a href="${esc(n.link)}" target="_blank" rel="noopener noreferrer">Read more</a> `:''}${p?`<button class="lk" data-go="${p.id}">Profile: ${esc(p.name)}</button>`:''}</div></div>`};
+function rHome(){const cats=['All',...new Set(NEWS.map(n=>n.cat))],list=NEWS.filter(n=>nf==='All'||n.cat===nf),nd=dyn.map((d,i)=>[d,i]).filter(x=>x[0].m.length>1);
+$('#v-home').innerHTML=`<div class="wrap"><div class="hero"><h2>Know who you’re voting for.</h2><p class="mute">Track politicians, their platforms and records, and see which families hold power across offices.</p><button class="btn" data-show="tracker">Open the dynasty graph</button></div>
+<div class="stats">${[[P.length,'Politicians'],[nd.length,'Dynasties'],[R.length,'Family links'],[new Set(P.map(p=>p.party)).size,'Parties']].map(s=>`<div class="card"><b>${s[0]}</b><span class="mute">${s[1]}</span></div>`).join('')}</div>
+<div class="cols"><div><h2>Latest news</h2><div class="chips">${cats.map(c=>`<button data-nf="${esc(c)}" class="${c===nf?'on':''}">${esc(c)}</button>`).join('')}</div><div class="news">${list.length?list.map(newsCard).join(''):'<p class="mute">No news yet.</p>'}</div></div>
+<div><h2>Dynasty watch</h2>${nd.length?nd.map(([d,i])=>`<div class="card"><b>${esc(d.name)}</b><div class="mute">${d.m.length} members · ${[...new Set(d.m.map(id=>byId.get(id).pos))].map(esc).join(', ')}</div><button class="lk" data-dg="${i}">View on graph</button></div>`).join(''):'<p class="mute">No family links yet.</p>'}</div></div>
+<p class="mute" style="margin-top:28px">Edit the data on GitHub: <a href="${EDIT_URL}politicians.txt" target="_blank" rel="noopener noreferrer">politicians</a> · <a href="${EDIT_URL}relations.txt" target="_blank" rel="noopener noreferrer">relations</a> · <a href="${EDIT_URL}news.txt" target="_blank" rel="noopener noreferrer">news</a></p></div>`}
+function show(v){$('#v-home').hidden=v!=='home';$('#v-tracker').hidden=v!=='tracker';document.querySelectorAll('#top button').forEach(b=>b.classList.toggle('on',b.dataset.show===v));if(v==='tracker')fit();if(location.hash!=='#'+v)history.replaceState(null,'','#'+v)}
+$('#v-home').addEventListener('click',e=>{const b=e.target.closest('[data-show],[data-nf],[data-dg],[data-go]');if(!b)return;
+if(b.dataset.show)show(b.dataset.show);else if(b.dataset.nf!==undefined){nf=b.dataset.nf;rHome()}else if(b.dataset.dg)select(dyn[+b.dataset.dg].m[0]);else select(+b.dataset.go)});
+$('#top').addEventListener('click',e=>{const b=e.target.closest('[data-show]');if(b)show(b.dataset.show)});
+window.addEventListener('hashchange',()=>show(location.hash==='#tracker'?'tracker':'home'));
+rHome();show(location.hash==='#tracker'?'tracker':'home');
+}
+main().catch(e=>{console.error(e);const h=document.getElementById('v-home');h.hidden=false;h.innerHTML='<div class="wrap"><h2>Couldn’t load the data files</h2><p class="mute">'+String(e.message||e).replace(/[<>&]/g,'')+'. Open this site through GitHub Pages or a local server (for example <code>python -m http.server</code>) instead of double-clicking the file.</p></div>'});
+</script>
+</body>
+</html>
