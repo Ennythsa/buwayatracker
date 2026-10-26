@@ -1,0 +1,43 @@
+name: Sync Supabase data to TXT files
+
+on:
+  workflow_dispatch:
+  schedule:
+    # GitHub scheduled workflows use UTC. This runs every five minutes.
+    - cron: '*/5 * * * *'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sync-supabase-txt
+  cancel-in-progress: false
+
+jobs:
+  export-txt:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    env:
+      SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+      SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
+      BUWAYA_DATA_DIR: ${{ vars.BUWAYA_DATA_DIR }}
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+      - name: Export public Supabase records to TXT
+        run: python scripts/export_supabase_txt.py
+      - name: Commit TXT files if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add politicians.txt relations.txt news.txt
+          if git diff --cached --quiet; then
+            echo "TXT files already match Supabase; nothing to commit."
+          else
+            git commit -m "Sync TXT data from Supabase"
+            git push
+          fi
