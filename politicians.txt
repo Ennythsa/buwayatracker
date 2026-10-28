@@ -28,3 +28,11 @@
 26|Cesar B. Dolorito|unknown|Barangay Captain|stan loona|unknown
 27|Isidro F. Tumulak Jr.|unknown|Barangay Captain|unknown|unknown
 28|Alejandro D. Borres|unknown|unknown|unknown|unknown
+29|Bernardo L. Lapiña Jr.|unknown|Barangay Captain|unknown|unknown
+30|Ana C. Tabal|unknown|Barangay Captain|unknown|unknown
+31|Lucresia D. Gabato|unknown|Barangay Captain|unknown|unknown
+32|Winefredo A. Macario|unknown|Barangay Captain|unknown|unknown
+33|Mark Jason Tabucal|unknown|Barangay Captain|unknown|unknown
+34|Jemcerson T. Sable|unknown|Barangay Captain|unknown|unknown
+35|Aurelio R. Laspoña|unknown|Barangay Captain|unknown|unknown
+36|Sergio S. Ocaña|unknown|Barangay Captain|unknown|unknown
