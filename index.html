@@ -3,108 +3,123 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cse.google.com https://www.google.com https://www.gstatic.com; style-src 'self' 'unsafe-inline' https://www.google.com https://fonts.googleapis.com; img-src 'self' data: blob: https:; connect-src 'self' https://api.github.com https://cse.google.com https://www.google.com; frame-src https://cse.google.com https://www.google.com; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <title>Buwaya Tracker</title>
 <style>
-:root{color-scheme:light dark;--bg:#f4f3ef;--panel:#ffffff;--ink:#1f1e1b;--mute:#6b6a64;--line:#dedbd0;--accent:#6d4aff;--edge:#a19e92;--card:#f4f3ef;
+:root{color-scheme:light dark;--bg:#f4f5f8;--panel:#ffffff;--ink:#1c1d21;--mute:#6a6d78;--line:#dfe1e8;--accent:#1d5fd1;--edge:#a3a6b3;--card:#f4f5f8;
 box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#141416;--panel:#1c1c1f;--ink:#ecebe6;--mute:#9a988f;--line:#33322e;--accent:#a58bff;--edge:#6b6a64;--card:#232326}}
-:root[data-theme="dark"]{--bg:#141416;--panel:#1c1c1f;--ink:#ecebe6;--mute:#9a988f;--line:#33322e;--accent:#a58bff;--edge:#6b6a64;--card:#232326}
-html{scroll-padding-top:env(safe-area-inset-top,0px)}
-html,body{height:100%;margin:0}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#121317;--panel:#1b1c22;--ink:#ecedf1;--mute:#9a9dab;--line:#32343d;--accent:#6ea0ff;--edge:#6b6e7b;--card:#23242c}}
+:root[data-theme="dark"]{--bg:#121317;--panel:#1b1c22;--ink:#ecedf1;--mute:#9a9dab;--line:#32343d;--accent:#6ea0ff;--edge:#6b6e7b;--card:#23242c}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}html,body{height:100%;margin:0}
 body{display:flex;flex-direction:column;background:var(--bg);color:var(--ink);font:14px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
-header{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 16px;border-bottom:1px solid var(--line);background:var(--panel)}
-h1{font-size:18px;margin:0}header p{margin:0;color:var(--mute);font-size:12px}
-#stats{color:var(--mute);font-size:12px;text-align:right}
-main{flex:1;min-height:0;display:grid;grid-template-columns:1fr 370px}
-#stage{position:relative;min-height:0;overflow:hidden}
-#cv{position:absolute;inset:0;width:100%;height:100%;touch-action:none;display:block}
-#legend{position:absolute;left:10px;bottom:10px;background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:8px 10px;font-size:12px;max-width:calc(100% - 20px)}
-#legend div{display:flex;flex-wrap:wrap;gap:4px 12px;align-items:center}
-#legend i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:4px}
-#legend svg{vertical-align:middle;margin-right:3px}
-aside{display:flex;flex-direction:column;min-height:0;background:var(--panel);border-left:1px solid var(--line)}
-nav{display:flex;border-bottom:1px solid var(--line);overflow-x:auto}
-nav button{flex:1;padding:10px 6px;background:none;border:0;border-bottom:2px solid transparent;color:var(--mute);font:inherit;cursor:pointer;white-space:nowrap}
-nav button.on{color:var(--ink);border-bottom-color:var(--accent)}
-#pane{padding:14px;overflow:auto;flex:1;min-height:0}
-h2{font-size:15px;margin:0 0 8px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:10px;margin-bottom:10px}
-.mute{color:var(--mute);font-size:12px}
+[hidden]{display:none!important}a{color:var(--accent)}h1{margin:0 0 8px;font-size:26px}h2{font-size:16px;margin:0 0 8px}h3{font-size:15px;margin:18px 0 8px}h4{font-size:13px;margin:12px 0 8px;color:var(--mute)}
+.bar{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:10px 20px;background:var(--panel);border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:center;gap:10px}.logo{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,#1d5fd1,#0b3a8c);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700}
+#top{display:flex;gap:4px;flex-wrap:wrap}#top button{background:none;border:0;border-radius:6px;color:var(--ink);padding:7px 11px;font:inherit;cursor:pointer}#top button.on{background:var(--card);font-weight:600;color:var(--accent)}
+.ban{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:9px 20px;background:linear-gradient(90deg,#e8590c,#d6336c);color:#fff}.byel{background:#ffd43b;color:#1c1d21;border-radius:20px;padding:5px 14px;text-decoration:none;font-weight:600;margin-left:auto}
+#v-home,#v-dir,#v-cmp,#v-news,#v-data{flex:1;min-height:0;overflow:auto}
+.wrap{max-width:1000px;margin:0 auto;padding:20px 16px 40px}
+.hero{background:linear-gradient(135deg,#0b4fa8,#06357a);color:#fff;padding:36px 20px 40px}.hw{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1.2fr 1fr;gap:28px;align-items:center}
+.hero h1{font-size:38px;line-height:1.1;margin:0 0 10px}.hero p{color:#cfe0ff;font-size:16px;margin:0 0 16px}
+.hero input{width:100%;padding:14px 16px;font-size:16px;border-radius:8px;border:0;box-sizing:border-box;background:#fff;color:#1c1d21;margin:0}
+#hr{background:#fff;color:#1c1d21;border-radius:8px;margin-top:6px}#hr button{display:block;width:100%;text-align:left;padding:8px 12px;border:0;background:none;font:inherit;cursor:pointer;color:#1c1d21}#hr button:hover{background:#eef3ff}
+.hc{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}.hc button{background:rgba(255,255,255,.14);border:0;color:#fff;border-radius:8px;padding:8px 14px;font:inherit;cursor:pointer}
+.hcard{background:rgba(255,255,255,.12);border-radius:14px;padding:18px}.hcard h3{margin:0 0 12px;font-size:18px}
+.tiles{display:grid;grid-template-columns:1fr 1fr;gap:10px}.tiles button{background:rgba(255,255,255,.14);border:0;border-radius:10px;color:#fff;padding:14px 8px;font:inherit;cursor:pointer}.tiles b{display:flex;margin:0 auto 6px;width:42px;height:42px;border-radius:50%;background:#1d6bff;align-items:center;justify-content:center;font-size:18px}
+.vall{width:100%;margin-top:10px;padding:12px;border:0;border-radius:10px;background:rgba(255,255,255,.14);color:#fff;font:inherit;cursor:pointer}
+.cols{display:grid;grid-template-columns:2fr 1fr;gap:24px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px;margin-bottom:10px}.mute{color:var(--mute);font-size:12px}
 .tag{display:inline-block;font-size:11px;color:var(--mute);border:1px solid var(--line);border-radius:10px;padding:0 7px;margin-right:4px}
 button.lk{background:none;border:0;padding:0;color:var(--accent);font:inherit;cursor:pointer;text-align:left}
-button.btn{background:var(--accent);color:#fff;border:0;border-radius:6px;padding:7px 12px;font:inherit;cursor:pointer}
-input,select,textarea{width:100%;box-sizing:border-box;padding:8px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--ink);font:inherit;margin-bottom:8px}
-textarea{resize:vertical;min-height:90px}
-ul{margin:6px 0 0;padding-left:0;list-style:none}li{margin-bottom:4px}
-table{width:100%;border-collapse:collapse;font-size:13px;table-layout:fixed}
-td,th{border-top:1px solid var(--line);padding:6px 4px;vertical-align:top;text-align:left;word-wrap:break-word}
-th{width:22%;color:var(--mute);font-weight:500}
-.ok{color:#1D9E75;font-size:12px;margin-left:8px}
-[hidden]{display:none!important}a{color:var(--accent)}header{flex-wrap:wrap}
-#top{display:flex;gap:6px}#top button{background:none;border:1px solid var(--line);border-radius:6px;color:var(--mute);padding:6px 12px;font:inherit;cursor:pointer}#top button.on{background:var(--accent);border-color:var(--accent);color:#fff}
-#v-home{flex:1;min-height:0;overflow:auto}.wrap{max-width:980px;margin:0 auto;padding:20px 16px 40px}
-.hero h2{font-size:26px;margin:0 0 6px}.hero{padding:8px 0 6px}
-.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin:16px 0 24px}.stats .card{margin:0;text-align:center}.stats b{display:block;font-size:24px}
-.cols{display:grid;grid-template-columns:2fr 1fr;gap:24px}
-.chips{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 14px}.chips button{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:3px 11px;color:var(--mute);font:inherit;cursor:pointer}.chips button.on{background:var(--accent);border-color:var(--accent);color:#fff}
+button.btn,button.btn2{border:0;border-radius:6px;padding:8px 14px;font:inherit;cursor:pointer;background:var(--accent);color:#fff}button.btn2{background:var(--card);color:var(--ink);border:1px solid var(--line)}
+input,select,textarea{width:100%;box-sizing:border-box;padding:8px;border:1px solid var(--line);border-radius:6px;background:var(--panel);color:var(--ink);font:inherit;margin-bottom:8px}textarea{resize:vertical;min-height:80px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 14px}.chips button{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:3px 11px;color:var(--mute);font:inherit;cursor:pointer}.chips button.on{background:var(--accent);border-color:var(--accent);color:#fff}
 .news{display:grid;gap:10px}.news .card{margin:0}.news h3{margin:6px 0 4px;font-size:16px}
-@media (max-width:760px){.cols{grid-template-columns:1fr}}
-@media (max-width:760px){main{grid-template-columns:1fr;grid-template-rows:48% 1fr}aside{border-left:0;border-top:1px solid var(--line)}}
-
-#extra-view{position:fixed;inset:0;z-index:20;background:var(--bg);color:var(--ink);overflow:auto;padding:18px;box-sizing:border-box}
-.extra-wrap{max-width:1100px;margin:0 auto}.extra-head{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:14px}
-.extra-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
-.extra-table-wrap{overflow:auto}.extra-table{min-width:720px}.extra-table th{width:auto;position:sticky;top:0;background:var(--panel)}
-.extra-table td,.extra-table th{padding:9px;border-bottom:1px solid var(--line);vertical-align:top}
-.cite{font-size:.8em;vertical-align:super;margin-left:2px}.cite a{color:var(--accent);text-decoration:none;border-bottom:1px dotted var(--accent)}
-.cite a:hover::after{content:attr(data-tip);position:absolute;z-index:30;max-width:280px;background:var(--panel);color:var(--ink);border:1px solid var(--line);box-shadow:0 3px 14px #0002;border-radius:6px;padding:8px;margin:14px 0 0 -90px;font-size:12px;vertical-align:baseline}
-.pill{display:inline-block;border:1px solid var(--line);border-radius:20px;padding:2px 8px;font-size:12px;color:var(--mute)}
-.extra-note{padding:10px;border:1px solid var(--line);border-radius:8px;background:var(--card);margin:10px 0}
-.row-actions{display:flex;gap:6px;flex-wrap:wrap}.row-actions button{margin:0}
-@media(max-width:760px){#top{flex-wrap:wrap}#extra-view{padding:12px}}
+ul{margin:6px 0 0;padding-left:0;list-style:none}li{margin-bottom:4px}.ok{color:#1D9E75;font-size:12px;margin-top:6px}code{font-size:12px}
+.lvh{font-size:22px;border-bottom:1px solid var(--line);padding-bottom:6px;margin:26px 0 4px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}
+.pc{display:flex;flex-direction:column;align-items:center;gap:6px;padding:16px 8px;background:var(--panel);border:1px solid var(--line);border-radius:12px;font:inherit;color:var(--ink);cursor:pointer;text-align:center}.pc:hover{box-shadow:0 4px 14px rgba(0,0,0,.14)}
+.av{position:relative;border-radius:50%;overflow:hidden;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;flex:none}.av img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+sup.cite{position:relative;font-size:.75em;margin-left:1px}sup.cite a{text-decoration:none;font-weight:600}
+sup.cite .tip{display:none;position:absolute;left:0;top:1.6em;z-index:20;width:210px;padding:8px;background:var(--panel);color:var(--ink);border:1px solid var(--line);border-radius:6px;font-size:12px;line-height:1.35;word-break:break-all;box-shadow:0 4px 14px rgba(0,0,0,.18)}
+sup.cite:hover .tip,sup.cite:focus-within .tip{display:block}
+#modal{position:fixed;inset:0;background:rgba(0,0,0,.55);display:flex;justify-content:center;padding:20px 12px;overflow:auto;z-index:50}
+.mb{position:relative;background:var(--panel);border-radius:12px;width:min(720px,100%);padding:20px;margin:auto 0;height:fit-content}.x{position:absolute;right:10px;top:6px;font-size:26px;background:none;border:0;color:var(--mute);cursor:pointer}
+.ph{display:flex;gap:16px;align-items:center;margin-bottom:12px}.fg label{display:block;font-size:12px;color:var(--mute)}.rr{display:flex;gap:6px}.rr select{margin-bottom:6px}
+.cmp{background:#1b1a2e;color:#eceaf7;border-radius:14px;padding:18px;margin-top:12px}.cmp h4{margin:20px 0 10px;color:#b8b5d6;letter-spacing:.06em;text-transform:uppercase;font-size:12px}
+.c3{display:grid;grid-template-columns:1fr 64px 1fr;gap:12px;align-items:center}.c2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.pp{text-align:center}.pp .av{margin:0 auto 6px;border:3px solid var(--k)}.vs{width:52px;height:52px;border-radius:50%;border:2px solid #4a4870;display:flex;align-items:center;justify-content:center;font-weight:700;margin:auto}
+.tl{border-top:2px solid var(--k);padding-top:10px}.tli{position:relative;padding:0 0 10px 16px;font-size:13px}.tli i{position:absolute;left:0;top:6px;width:8px;height:8px;border-radius:50%;background:var(--k)}
+.cmp .mu{color:#a9a6c4;font-size:12px}.cmp a{color:#ffd43b}.cmp sup.cite .tip{color:#eceaf7;background:#2a2945;border-color:#4a4870}.stat{background:#24233d;border-radius:8px;padding:8px;text-align:center;font-size:12px;margin-top:8px}
+table{width:100%;border-collapse:collapse;font-size:13px}td,th{border-top:1px solid var(--line);padding:6px 4px;vertical-align:top;text-align:left;word-wrap:break-word}
+.tw{overflow-x:auto;border:1px solid var(--line);border-radius:8px;background:var(--panel)}.dt{min-width:640px}.dt th{background:var(--card);white-space:nowrap}.dt input{margin:0;padding:5px}
+#v-data input,#v-news input,#v-news select,#v-dir input{max-width:420px}
+#v-tracker{flex:1;min-height:0;display:grid;grid-template-columns:1fr 370px}#stage{position:relative;min-height:0;overflow:hidden}
+#cv{position:absolute;inset:0;width:100%;height:100%;touch-action:none;display:block}
+#legend{position:absolute;left:10px;bottom:10px;background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:8px 10px;font-size:12px;max-width:calc(100% - 20px)}#legend div{display:flex;flex-wrap:wrap;gap:4px 12px;align-items:center}
+#legend i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:4px}#legend svg{vertical-align:middle;margin-right:3px}
+aside{display:flex;flex-direction:column;min-height:0;background:var(--panel);border-left:1px solid var(--line)}
+#tabs{display:flex;border-bottom:1px solid var(--line)}#tabs button{flex:1;padding:10px 6px;background:none;border:0;border-bottom:2px solid transparent;color:var(--mute);font:inherit;cursor:pointer}#tabs button.on{color:var(--ink);border-bottom-color:var(--accent)}
+#pane{padding:14px;overflow:auto;flex:1;min-height:0}
+@media (max-width:760px){.hw,.cols,.c3,.c2{grid-template-columns:1fr}.hero h1{font-size:28px}#v-tracker{grid-template-columns:1fr;grid-template-rows:48% 1fr}aside{border-left:0;border-top:1px solid var(--line)}.vs{margin:4px auto}}
 </style>
 </head>
 <body>
-<header><div><h1>Buwaya Tracker</h1><p>Political dynasty graph · all names and links are fictional sample data</p></div><div id="top"><button data-show="home">Home</button><button data-show="tracker">Dynasty Graph</button><button id="open-news">News &amp; Sources</button><button id="open-data">Records Table</button><button id="open-auth" aria-label="Account" title="Account">Sign in</button><button id="open-logout" hidden aria-label="Sign out" title="Sign out">🚪 Sign out</button></div></header>
-<section id="v-home"></section>
-<main id="v-tracker" hidden>
-<section id="stage"><canvas id="cv"></canvas><div id="legend"></div></section>
-<aside><nav id="tabs"></nav><div id="pane"></div></aside>
-</main>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<header class="bar"><div class="brand"><div class="logo">BT</div><div><b>Buwaya Tracker</b><div class="mute">A community-run tracker of Philippine politicians</div></div></div>
+<div id="top"><button data-show="home">Home</button><button data-show="dir">Directory</button><button data-show="tracker">Dynasty graph</button><button data-show="cmp">Compare</button><button data-show="news">News search</button><button data-show="data">Data</button><button id="adm">Admin sign in</button></div></header>
+<div class="ban"><b>Help keep it accurate</b><span>Pinakakurakot sa T1</span><a class="byel" id="contrib" target="_blank" rel="noopener noreferrer">Contribute →</a></div>
+<section id="v-home"></section><section id="v-dir" hidden></section>
+<main id="v-tracker" hidden><section id="stage"><canvas id="cv"></canvas><div id="legend"></div></section><aside><div id="tabs"></div><div id="pane"></div></aside></main>
+<section id="v-cmp" hidden></section><section id="v-news" hidden></section><section id="v-data" hidden></section>
+<div id="modal" hidden><div class="mb"><button class="x" id="mx" aria-label="Close">×</button><div id="mc"></div></div></div>
 <script>
-const EDIT_URL='https://github.com/YOUR-USERNAME/YOUR-REPO/edit/main/data/';
-// Configure these with your Supabase Project URL and anon/publishable key.
-// Never place a service_role/secret key in this public HTML.
-
-const SUPABASE_URL='https://hfkwmqvbopizmzdkboan.supabase.co';
-const SUPABASE_ANON_KEY='sb_publishable_AIdhguufnXgAcSbq22V-1A_vAhcxfQn';
-
-
-
-
-const supabaseReady=()=>window.supabase&&/^https:\/\/.+/.test(SUPABASE_URL)&&!SUPABASE_URL.includes('YOUR_')&&!SUPABASE_ANON_KEY.includes('YOUR_');
-const sb=supabaseReady()?window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY):null;
-async function dbRows(table){if(!sb)return null;const {data,error}=await sb.from(table).select('*');if(error)throw error;return data||[]}
-
+const REPO0='ariehaku/bububububub',BRANCH='main',CSE_ID='';   /* CSE_ID: optional Google Programmable Search Engine ID */
+const _h=location.hostname,_p=location.pathname.split('/')[1];
+const REPO=_h.endsWith('.github.io')&&_p?_h.split('.')[0]+'/'+_p:REPO0;   /* detected from the site address */
+let DIR='data/',EDIT_URL='';
+const $=s=>document.querySelector(s);
 const txt=async f=>{const r=await fetch(f,{cache:'no-store'});if(!r.ok)throw new Error('Could not load '+f+' ('+r.status+')');return r.text()};
+const get=async f=>{try{return await txt(DIR+f)}catch(e){if(DIR){DIR='';return await txt(f)}throw e}};   /* data/ folder, or repo root */
 const rows=t=>t.split(/\r?\n/).map(l=>l.trim()).filter(l=>l&&l[0]!=='#').map(l=>l.split('|').map(x=>x.trim()));
 const sn=n=>{const w=n.split(/\s+/);let i=w.length-1;while(i>0&&/^(de|del|dela|delos|san|santa|van|von)$/i.test(w[i-1]))i--;return w.slice(i).join(' ')};
 async function main(){
-let P,R,NEWS;
-if(sb){
-  const [pp,rr,nn]=await Promise.all([dbRows('politicians'),dbRows('relations'),dbRows('news')]);
-  P=pp.map(p=>({id:+p.id,name:p.name,party:p.party||'',pos:p.position||'',plat:p.platform||'',rec:p.track_record||'',s:sn(p.name)}));
-  const ids=new Set(P.map(p=>p.id));
-  R=rr.filter(r=>ids.has(+r.person_a)&&ids.has(+r.person_b)&&['spouse','parent','sibling','cousin'].includes(r.relation_type)).map(r=>[+r.person_a,+r.person_b,r.relation_type]);
-  NEWS=nn.map(n=>({date:n.published_at||'',cat:n.category||'General',title:n.title||'',sum:n.summary||'',link:n.url||'',pid:n.politician_id||''})).sort((a,b)=>b.date.localeCompare(a.date));
-}else{
-  P=rows(await txt('politicians.txt')).filter(c=>c.length>=6&&/^\d+$/.test(c[0])).map(c=>({id:+c[0],name:c[1],party:c[2],pos:c[3],plat:c[4],rec:c.slice(5).join('|'),s:sn(c[1])}));
-  const ids=new Set(P.map(p=>p.id));
-  R=rows(await txt('relations.txt')).filter(c=>ids.has(+c[0])&&ids.has(+c[1])&&['spouse','parent','sibling','cousin'].includes(c[2])).map(c=>[+c[0],+c[1],c[2]]);
-  NEWS=rows(await txt('news.txt')).filter(c=>c.length>=4).map(c=>({date:c[0],cat:c[1],title:c[2],sum:c[3],link:c[4]||'',pid:c[5]||''})).sort((a,b)=>b.date.localeCompare(a.date));
-}
-const PAL=['#7F77DD','#1D9E75','#D85A30','#BA7517','#378ADD','#D4537E'],COL={};[...new Set(P.map(p=>p.party))].forEach((k,i)=>{COL[k]=PAL[i%PAL.length]});
+const TB={pol:{f:'politicians.txt',n:'Politicians',cols:['ID','Name','Party','Position','Platform','Track record'],w:[60,160,130,140,260,300],lim:[0,100,50,50,300,300],size:6},
+rel:{f:'relations.txt',n:'Relations',cols:['Person A (ID)','Person B (ID)','Type'],w:[110,110,120],size:3},
+prof:{f:'profiles.txt',n:'Profiles',cols:['Politician ID','Photo (link or photos/…)','Level','Group','Area / district'],w:[100,260,130,160,200],size:5},
+news:{f:'news.txt',n:'News',cols:['Date (YYYY-MM-DD)','Category','Title','Summary','Link (optional)','Politician ID (optional)'],w:[120,110,220,300,200,110],size:6},
+src:{f:'sources.txt',n:'Sources',cols:['Politician ID','No.','Source title','URL'],w:[100,60,280,320],size:4}};
+const RAW={},HEAD={},SHA={};
+const lead=t=>{const o=[];for(const l of t.split(/\r?\n/)){const x=l.trim();if(x[0]==='#')o.push(x);else if(x)break}return o.join('\n')};
+const norm=(k,c)=>{const n=TB[k].size;c=c.slice(0,n-1).concat([c.slice(n-1).join('|')]);while(c.length<n)c.push('');return c};
+const parse=(k,t)=>{HEAD[k]=lead(t);RAW[k]=rows(t).map(c=>norm(k,c))};
+const T={pol:await get('politicians.txt')};
+for(const k of ['rel','news','src','prof'])T[k]=await get(TB[k].f).catch(()=>'');
+for(const k in T)parse(k,T[k]);
+EDIT_URL='https://github.com/'+REPO+'/edit/'+BRANCH+'/'+DIR;$('#contrib').href='https://github.com/'+REPO;
+/* ---------- admin session (GitHub token) ---------- */
+let tok=sessionStorage.getItem('bt-tok')||'',admin=false,idle=0,msg='';
+const api=(path,o={})=>fetch('https://api.github.com/'+path,{...o,headers:{Accept:'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28',Authorization:'Bearer '+tok,...(o.headers||{})}});
+const b64=s=>{let b='';new TextEncoder().encode(s).forEach(c=>{b+=String.fromCharCode(c)});return btoa(b)};
+const unb64=s=>new TextDecoder().decode(Uint8Array.from(atob(s.replace(/\s/g,'')),c=>c.charCodeAt(0)));
+function signOut(){tok='';admin=false;sessionStorage.removeItem('bt-tok');location.reload()}
+const bump=()=>{clearTimeout(idle);if(admin)idle=setTimeout(signOut,900000)};
+['pointerdown','keydown'].forEach(ev=>document.addEventListener(ev,bump));
+async function signIn(t){tok=t.trim();const r=await api('repos/'+REPO);
+if(!r.ok)throw new Error(r.status===401?'That token was rejected.':'Could not open the repository ('+r.status+'). Check the token’s repository access.');
+const j=await r.json();if(j.permissions&&!j.permissions.push)throw new Error('This token has no write access to '+REPO+'.');
+for(const k in TB){const f=await api(`repos/${REPO}/contents/${DIR}${TB[k].f}?ref=${BRANCH}`);
+if(f.ok){const d=await f.json();SHA[k]=d.sha;parse(k,unb64(d.content))}else if(f.status===404){SHA[k]=undefined}else throw new Error('Could not load '+TB[k].f+' ('+f.status+')')}
+admin=true;sessionStorage.setItem('bt-tok',tok);bump()}
+if(tok){try{await signIn(tok)}catch(e){tok='';admin=false;sessionStorage.removeItem('bt-tok')}}   /* admins always see the freshest data */
+$('#adm').textContent=admin?'Sign out (admin)':'Admin sign in';
+const P=RAW.pol.filter(c=>/^\d+$/.test(c[0])&&c[1]).map(c=>({id:+c[0],name:c[1],party:c[2],pos:c[3],plat:c[4],rec:c[5],s:sn(c[1])}));
+const ids=new Set(P.map(p=>p.id));
+const R=RAW.rel.filter(c=>ids.has(+c[0])&&ids.has(+c[1])&&['spouse','parent','sibling','cousin'].includes(c[2])).map(c=>[+c[0],+c[1],c[2]]);
+const NEWS=RAW.news.filter(c=>c[0]&&c[2]).map(c=>({date:c[0],cat:c[1],title:c[2],sum:c[3],link:c[4],pid:c[5]})).sort((a,b)=>b.date.localeCompare(a.date));
+const SRC=new Map();RAW.src.forEach(c=>{if(/^\d+$/.test(c[0])&&/^\d+$/.test(c[1])){const m=SRC.get(+c[0])||{};m[+c[1]]={t:c[2],u:c[3]};SRC.set(+c[0],m)}});
+const PF=new Map(RAW.prof.filter(c=>/^\d+$/.test(c[0])).map(c=>[+c[0],{photo:c[1],level:c[2],group:c[3],area:c[4]}]));
+const PAL=['#7F77DD','#1D9E75','#D85A30','#378ADD','#BA7517','#D4537E','#639922','#E24B4A','#0F6E56','#993556'],COL={};[...new Set(P.map(p=>p.party))].forEach((k,i)=>{COL[k]=PAL[i%PAL.length]});
 const STY={parent:{d:[],w:2.4},spouse:{d:[],w:1.4},sibling:{d:[7,4],w:1.4},cousin:{d:[2,4],w:1.6}};
 const byId=new Map(P.map(p=>[p.id,p]));
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
@@ -121,7 +136,7 @@ while(q.length){const x=q.shift();if(x===b)break;adj.get(x).forEach(e=>{if(!prev
 if(!prev.has(b))return null;const out=[];let c=b;while(c!==a){const s=prev.get(c);out.unshift(s);c=s.from}return out}
 /* ---------- state ---------- */
 let tab='dyn',sel=null,hover=null,hl=null,q='',cA=P[0]?.id,cB=P[Math.min(4,P.length-1)]?.id;
-const $=s=>document.querySelector(s),pane=$('#pane');
+const pane=$('#pane');
 /* ---------- graph ---------- */
 const cv=$('#cv'),ctx=cv.getContext('2d'),stage=$('#stage');
 let W=300,H=300,dpr=1,view={x:0,y:0,k:1,set:0},alpha=1;
@@ -148,7 +163,7 @@ R.forEach(([a,b,t])=>{const A=nm.get(a),B=nm.get(b),on=F&&fid!=null&&(a===fid||b
 const dim=(F&&!on)||(M&&!(M.has(a)&&M.has(b)));ctx.globalAlpha=dim?.12:1;ctx.beginPath();ctx.moveTo(A.x,A.y);ctx.lineTo(B.x,B.y);
 ctx.setLineDash(STY[t].d);ctx.lineWidth=STY[t].w;ctx.strokeStyle=on?g('--accent'):g('--edge');ctx.stroke();ctx.setLineDash([])});
 N.forEach(n=>{const p=byId.get(n.id),dim=(F&&!F.has(n.id))||(M&&!M.has(n.id));ctx.globalAlpha=dim?.18:1;
-ctx.beginPath();ctx.arc(n.x,n.y,n.r,0,6.283);ctx.fillStyle=COL[p.party]||'#888';ctx.fill();
+ctx.beginPath();ctx.arc(n.x,n.y,n.r,0,6.283);ctx.fillStyle=PAL[comp.get(n.id)%PAL.length];ctx.fill();
 if(n.id===sel||n.id===cA&&tab==='cmp'||n.id===cB&&tab==='cmp'){ctx.lineWidth=3;ctx.strokeStyle=g('--accent');ctx.beginPath();ctx.arc(n.x,n.y,n.r+4,0,6.283);ctx.stroke()}
 ctx.fillStyle=g('--ink');ctx.font='12px system-ui,sans-serif';ctx.textAlign='center';ctx.fillText(p.name,n.x,n.y+n.r+15);
 ctx.fillStyle=g('--mute');ctx.font='11px system-ui,sans-serif';ctx.fillText(p.pos,n.x,n.y+n.r+28)});
@@ -170,148 +185,184 @@ if(!drag.moved){if(drag.n)select(drag.n.id);else{sel=null;if(tab==='prof')go('dy
 cv.addEventListener('pointerleave',()=>{if(!drag)hover=null});
 cv.addEventListener('wheel',e=>{e.preventDefault();const r=cv.getBoundingClientRect(),x=e.clientX-r.left,y=e.clientY-r.top,k=Math.min(2.5,Math.max(.4,view.k*(e.deltaY<0?1.1:.9))),f=k/view.k;
 view.x=x-(x-view.x)*f;view.y=y-(y-view.y)*f;view.k=k},{passive:false});
-/* ---------- panel ---------- */
-const TABS=[['dyn','Dynasties'],['search','Search'],['cmp','Compare'],['prof','Profile'],['exp','Export']];
-$('#tabs').innerHTML=TABS.map(t=>`<button data-t="${t[0]}">${t[1]}</button>`).join('');
-$('#tabs').addEventListener('click',e=>{const b=e.target.closest('button');if(b)go(b.dataset.t)});
-pane.addEventListener('click',e=>{const b=e.target.closest('[data-go]');if(b)select(+b.dataset.go)});
-function select(id){sel=id;show('tracker');go('prof')}
-function go(t){tab=t;hl=null;document.querySelectorAll('#tabs button').forEach(b=>b.classList.toggle('on',b.dataset.t===t));
-({dyn:rDyn,search:rSearch,cmp:rCmp,prof:rProf,exp:rExp})[t]()}
+/* ---------- categories, avatars, citations ---------- */
+const LV=['National','Provincial','City / Municipal','Barangay','Other'],GO=['Executive','Senators','House of Representatives','Governors & Vice Governors','Provincial Board','Mayors & Vice Mayors','Councilors','Barangay Officials','Former officials'];
+const RULES=[[/president|first lady|first gentleman/,'National','Executive'],[/senator/,'National','Senators'],[/congress|representative|party-?list/,'National','House of Representatives'],[/governor/,'Provincial','Governors & Vice Governors'],[/board member|provincial/,'Provincial','Provincial Board'],[/mayor/,'City / Municipal','Mayors & Vice Mayors'],[/councilor|councillor|sangguniang/,'City / Municipal','Councilors'],[/barangay|kagawad|punong|sk chair/,'Barangay','Barangay Officials']];
+function cat(p){const f=PF.get(p.id)||{},s=p.pos.toLowerCase();let lv='Other',gr='Other officials';
+for(const [re,l,g] of RULES)if(re.test(s)){lv=l;gr=g;break}
+if(/^former\b/.test(s))gr='Former officials';
+return{lv:f.level||lv,gr:f.group||gr,area:f.area||''}}
+const ini=n=>n.split(/\s+/).filter(w=>/^[A-Za-z]/.test(w)).map(w=>w[0]).slice(0,2).join('').toUpperCase();
+const av=(p,z)=>{const f=PF.get(p.id)||{},ph=/^(https?:\/\/|photos\/)/.test(f.photo||'')?f.photo:'';
+return`<div class="av" style="width:${z}px;height:${z}px;font-size:${Math.round(z/3)}px;background:${PAL[comp.get(p.id)%PAL.length]}"><span>${esc(ini(p.name))}</span>${ph?`<img src="${esc(ph)}" alt="${esc(p.name)}" loading="lazy">`:''}</div>`};
+document.addEventListener('error',e=>{if(e.target.tagName==='IMG'&&e.target.closest('.av'))e.target.remove()},true);
+function fmtRec(id,t){const m=SRC.get(id)||{};return esc(t).replace(/\[(\d+)\]/g,(x,n)=>{const s=m[n];return s&&/^https?:\/\//.test(s.u)?`<sup class="cite"><a href="${esc(s.u)}" target="_blank" rel="noopener noreferrer">[${n}]</a><span class="tip"><b>${esc(s.t)}</b><br>${esc(s.u)}</span></sup>`:x})}
+function srcList(id){const m=SRC.get(id);if(!m)return'';return'<div style="margin-top:8px">'+Object.keys(m).sort((a,b)=>a-b).map(n=>/^https?:\/\//.test(m[n].u)?`<div class="mute">[${n}] <a href="${esc(m[n].u)}" target="_blank" rel="noopener noreferrer">${esc(m[n].t)}</a></div>`:'').join('')+'</div>'}
 const chip=id=>`<button class="lk" data-go="${id}">${esc(byId.get(id).name)}</button>`;
-function rDyn(){pane.innerHTML='<h2>Political dynasties</h2><p class="mute">Each dashed circle on the graph is a family group. Hover a card to highlight it, click a name for the profile.</p>'+
-dyn.map((d,i)=>{const pos=d.m.map(id=>byId.get(id).pos);return`<div class="card" data-d="${i}"><b>${esc(d.name)}</b><div class="mute">${d.m.length} member${d.m.length>1?'s':''} · holds ${pos.map(esc).join(', ')}</div><ul>${d.m.map(id=>`<li>${chip(id)} <span class="mute">${esc(byId.get(id).party)}</span></li>`).join('')}</ul></div>`}).join('');
-pane.querySelectorAll('[data-d]').forEach(c=>{c.onmouseenter=()=>{hl=new Set(dyn[+c.dataset.d].m)};c.onmouseleave=()=>{hl=null}})}
-function rSearch(){pane.innerHTML=`<h2>Search &amp; filter</h2><input id="qi" placeholder="Name or platform keyword" value="${esc(q)}"><div id="res"></div>`;
-const run=()=>{const m=P.filter(p=>!q||p.name.toLowerCase().includes(q.toLowerCase())||p.plat.toLowerCase().includes(q.toLowerCase()));
-$('#res').innerHTML=m.length?m.map(p=>`<div class="card"><b>${chip(p.id)}</b><div class="mute">ID ${p.id} · ${esc(p.party)} · ${esc(p.pos)}</div><div>${esc(p.plat)}</div></div>`).join(''):'<p class="mute">No matching records found.</p>'};
-$('#qi').oninput=e=>{q=e.target.value.trim();run()};run()}
-function rCmp(){const opts=v=>P.map(p=>`<option value="${p.id}"${p.id===v?' selected':''}>${esc(p.name)}</option>`).join('');
-pane.innerHTML=`<h2>Compare two politicians</h2><select id="ca">${opts(cA)}</select><select id="cb">${opts(cB)}</select><div id="out"></div>`;
-const run=()=>{const A=byId.get(cA),B=byId.get(cB);if(cA===cB){$('#out').innerHTML='<p class="mute">Pick two different politicians.</p>';return}
-const pth=path(cA,cB);let rel;
-if(!pth)rel='No family link found. These two are in different dynasties.';
-else{rel='<ul>'+pth.map(s=>`<li>${chip(s.from)} <span class="tag">${relLabel(s.e,s.from)}</span> ${chip(s.e.to)}</li>`).join('')+'</ul>'}
-const row=(l,a,b)=>`<tr><th>${l}</th><td>${esc(a)}</td><td>${esc(b)}</td></tr>`;
-$('#out').innerHTML=`<table>${row('Name',A.name,B.name)}${row('Party',A.party,B.party)}${row('Position',A.pos,B.pos)}${row('Platform',A.plat,B.plat)}${row('Record',A.rec,B.rec)}</table><div class="card" style="margin-top:10px"><b>Family connection</b><div>${rel}</div></div>`};
-$('#ca').onchange=e=>{cA=+e.target.value;run()};$('#cb').onchange=e=>{cB=+e.target.value;run()};run()}
-function rProf(){if(sel==null){pane.innerHTML='<h2>Profile</h2><p class="mute">Click a node on the graph to see a politician.</p>';return}
-const p=byId.get(sel),d=dyn[comp.get(sel)];
-pane.innerHTML=`<h2><span style="color:${COL[p.party]}">●</span> ${esc(p.name)}</h2><div class="mute">ID ${p.id} · ${esc(p.party)} · ${esc(p.pos)}</div>
-<div class="card" style="margin-top:10px"><b>Dynasty</b><div>${esc(d.name)}</div></div>
-<div class="card"><b>Relatives</b>${adj.get(sel).length?'<ul>'+adj.get(sel).map(e=>`<li><span class="tag">${relLabel(e,sel)}</span> ${chip(e.to)}</li>`).join('')+'</ul>':'<div class="mute">No known relatives in the database.</div>'}</div>
+const nameOf=id=>byId.get(+id)?byId.get(+id).name:'?';
+/* ---------- modal: profile view ---------- */
+let curEdit=0;const closeM=()=>{$('#modal').hidden=true};
+function openProf(id){const p=byId.get(id);if(!p)return;sel=id;const c=cat(p),d=dyn[comp.get(id)];
+$('#mc').innerHTML=`<div class="ph">${av(p,110)}<div><h2 style="margin:0;font-size:22px">${esc(p.name)}</h2><div>${esc(p.pos)}</div><div class="mute">${esc(p.party)} · ${esc(c.lv)} › ${esc(c.gr)}${c.area?' › '+esc(c.area):''}</div><div style="margin-top:6px"><span class="tag">${esc(d.name)}</span></div></div></div>
+<div class="card"><b>Family</b>${adj.get(id).length?'<ul>'+adj.get(id).map(e=>`<li><span class="tag">${relLabel(e,id)}</span> ${chip(e.to)}</li>`).join('')+'</ul>':'<div class="mute">No known relatives in the database.</div>'}</div>
 <div class="card"><b>Platform</b><div>${esc(p.plat)}</div></div>
-<div class="card"><b>Track record</b><div>${esc(p.rec)}</div></div>
-<a href="${EDIT_URL}politicians.txt" target="_blank" rel="noopener noreferrer">Edit this record on GitHub</a>`}
+<div class="card"><b>Track record</b><div>${fmtRec(id,p.rec)}</div>${srcList(id)}</div>
+<div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center"><button class="btn" data-graph="${id}">View on graph</button><select id="cw" style="width:auto;margin:0"><option value="">Compare with…</option>${P.filter(x=>x.id!==id).map(x=>`<option value="${x.id}">${esc(x.name)}</option>`).join('')}</select><button class="btn2" data-cmpw="${id}">Compare</button>${admin?`<button class="btn2" data-edit="${id}">Edit</button>`:''}</div>
+<p><a href="https://news.google.com/search?q=${encodeURIComponent('"'+p.name+'"')}" target="_blank" rel="noopener noreferrer">Search news about ${esc(p.name)}</a></p>`;
+$('#modal').hidden=false}
+/* ---------- modal: add / edit (admin) ---------- */
+const RT=[['spouse','Spouse of'],['parent','Parent of'],['child','Child of'],['sibling','Sibling of'],['cousin','Cousin of']];
+const relRow=(o,t)=>`<div class="rr"><select class="rt">${RT.map(x=>`<option value="${x[0]}"${x[0]===t?' selected':''}>${x[1]}</option>`).join('')}</select><select class="rp"><option value="">Choose a person…</option>${P.filter(p=>p.id!==curEdit).map(p=>`<option value="${p.id}"${String(p.id)===String(o)?' selected':''}>${esc(p.name)}</option>`).join('')}</select><button class="lk" type="button" data-rx>Remove</button></div>`;
+function openEdit(id){if(!admin)return;curEdit=id??Math.max(0,...RAW.pol.map(r=>+r[0]||0))+1;
+const p=id?byId.get(id):{name:'',party:'',pos:'',plat:'',rec:''},f=PF.get(id)||{},ph=v=>esc(/^(Not yet added|To be added)$/.test(v)?'':v),
+rl=id?adj.get(id).map(e=>[e.to,e.t==='parent'?(e.a===id?'parent':'child'):e.t]):[];
+$('#mc').innerHTML=`<h2>${id?'Edit profile':'Add profile'} <span class="mute">#${curEdit}</span></h2><div class="fg">
+<label>Name *<input id="f-name" maxlength="100" value="${esc(p.name)}"></label>
+<label>Party<input id="f-party" maxlength="50" value="${ph(p.party)}"></label>
+<label>Position (e.g. Senator, Governor, Mayor, City Councilor)<input id="f-pos" maxlength="50" value="${esc(p.pos)}"></label>
+<label>Photo (link, or a file in the photos folder)<input id="f-photo" value="${esc(f.photo||'')}"></label>
+<label>Or upload a photo<input type="file" id="f-file" accept="image/*"></label><div id="f-prev"></div>
+<label>Level (blank = detect from position)<select id="f-lv"><option value=""></option>${LV.map(l=>`<option${l===f.level?' selected':''}>${l}</option>`).join('')}</select></label>
+<label>Group (blank = detect, e.g. City Councilors)<input id="f-gr" value="${esc(f.group||'')}"></label>
+<label>Area / district (e.g. Cebu City, 1st District)<input id="f-area" value="${esc(f.area||'')}"></label>
+<label>Platform (max 300)<textarea id="f-plat" maxlength="300">${ph(p.plat)}</textarea></label>
+<label>Track record (max 300; add [1], [2] for sources listed on the Data tab)<textarea id="f-rec" maxlength="300">${ph(p.rec)}</textarea></label></div>
+<b>Relations</b> <span class="mute">(optional)</span><div id="rl">${rl.map(x=>relRow(x[0],x[1])).join('')}</div><button class="lk" type="button" data-ar>+ Add a relation</button>
+<p><button class="btn" data-save>Save to GitHub</button> <button class="btn2" data-cancel>Cancel</button></p><div class="ok" id="ms"></div>`;
+$('#modal').hidden=false}
+const st=m=>{const e=$('#ms');if(e)e.textContent=m};
+const setRow=(k,id,row)=>{const i=RAW[k].findIndex(r=>+r[0]===id);if(i>=0)RAW[k][i]=row;else RAW[k].push(row)};
+async function saveProf(){const g=s=>$('#'+s).value.trim(),id=curEdit;
+setRow('pol',id,[String(id),g('f-name'),g('f-party')||'Not yet added',g('f-pos'),g('f-plat')||'To be added',g('f-rec')||'To be added']);
+setRow('prof',id,[String(id),g('f-photo'),g('f-lv'),g('f-gr'),g('f-area')]);
+RAW.rel=RAW.rel.filter(r=>+r[0]!==id&&+r[1]!==id);
+document.querySelectorAll('#mc .rr').forEach(r=>{const o=r.querySelector('.rp').value,t=r.querySelector('.rt').value;if(!o)return;if(t==='child')RAW.rel.push([o,String(id),'parent']);else RAW.rel.push([String(id),o,t])});
+st('Saving…');for(const k of ['pol','prof','rel']){const er=await commit(k);if(er){st('Not saved: '+er);return}}
+st('Saved. Reloading…');location.reload()}
+async function upPhoto(f){const im=await createImageBitmap(f),s=Math.min(1,480/Math.max(im.width,im.height)),c=document.createElement('canvas');c.width=Math.round(im.width*s);c.height=Math.round(im.height*s);c.getContext('2d').drawImage(im,0,0,c.width,c.height);
+const bl=await new Promise(r=>c.toBlob(r,'image/jpeg',.85));let bin='';new Uint8Array(await bl.arrayBuffer()).forEach(x=>{bin+=String.fromCharCode(x)});
+const path='photos/'+curEdit+'.jpg',ex=await api(`repos/${REPO}/contents/${path}?ref=${BRANCH}`),sha=ex.ok?(await ex.json()).sha:undefined;
+const r=await api(`repos/${REPO}/contents/${path}`,{method:'PUT',body:JSON.stringify({message:'Add photo '+path,content:btoa(bin),sha,branch:BRANCH})});
+if(r.ok){$('#f-photo').value=path;$('#f-prev').innerHTML=`<img src="${URL.createObjectURL(bl)}" alt="" width="90" style="border-radius:50%">`;st('Photo uploaded.')}else st('Photo upload failed ('+r.status+').')}
+$('#modal').addEventListener('click',e=>{const t=e.target;if(t.id==='modal'||t.id==='mx'||t.dataset.cancel!==undefined)closeM();
+else if(t.dataset.rx!==undefined)t.closest('.rr').remove();
+else if(t.dataset.ar!==undefined)$('#rl').insertAdjacentHTML('beforeend',relRow('','spouse'));
+else if(t.dataset.save!==undefined)saveProf().catch(er=>st('Error: '+er.message))});
+$('#modal').addEventListener('change',e=>{if(e.target.id==='f-file'&&e.target.files[0])upPhoto(e.target.files[0]).catch(er=>st('Upload failed: '+er.message))});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeM()});
+/* ---------- directory ---------- */
+let dq='',dl='All',nf='All';
+function rDir(){const c={};P.forEach(p=>{const l=cat(p).lv;c[l]=(c[l]||0)+1});
+$('#v-dir').innerHTML=`<div class="wrap"><div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:center"><h1>Politicians</h1>${admin?'<button class="btn" data-edit="new">+ Add profile</button>':''}</div><input id="dq" value="${esc(dq)}" placeholder="Search name, position, area…"><div class="chips">${['All',...LV.filter(l=>c[l])].map(l=>`<button data-lv="${l}" class="${l===dl?'on':''}">${l}${l==='All'?'':' ('+c[l]+')'}</button>`).join('')}</div><div id="dlist"></div></div>`;
+$('#dq').oninput=e=>{dq=e.target.value;dList()};dList()}
+function dList(){const f=dq.toLowerCase(),t=new Map();
+P.forEach(p=>{const k=cat(p);if(dl!=='All'&&k.lv!==dl)return;if(f&&!(p.name+' '+p.pos+' '+p.plat+' '+k.gr+' '+k.area).toLowerCase().includes(f))return;
+const L=t.get(k.lv)||new Map();t.set(k.lv,L);const G=L.get(k.gr)||new Map();L.set(k.gr,G);const A=G.get(k.area)||[];G.set(k.area,A);A.push(p)});
+const ord=(m,arr)=>[...m].sort((x,y)=>{const i=arr.indexOf(x[0]),j=arr.indexOf(y[0]);return(i<0?99:i)-(j<0?99:j)||String(x[0]).localeCompare(y[0])});
+$('#dlist').innerHTML=t.size?ord(t,LV).map(([l,L])=>`<h2 class="lvh">${esc(l)}</h2>`+ord(L,GO).map(([g,G])=>`<h3>${esc(g)}</h3>`+[...G].sort((a,b)=>a[0].localeCompare(b[0])).map(([a,A])=>`${a?`<h4>${esc(a)}</h4>`:''}<div class="grid">${A.map(p=>`<button class="pc" data-go="${p.id}">${av(p,92)}<b>${esc(p.name)}</b><span class="mute">${esc(p.pos)}</span></button>`).join('')}</div>`).join('')).join('')).join(''):'<p class="mute">No profiles match.</p>'}
+/* ---------- compare ---------- */
+const done=p=>{const f=PF.get(p.id)||{},ck=[!!f.photo,!!p.party&&p.party!=='Not yet added',!!p.plat&&p.plat!=='To be added',!!p.rec&&p.rec!=='To be added',!!SRC.get(p.id)];return Math.round(ck.filter(Boolean).length/ck.length*100)};
+const sents=p=>p.rec&&p.rec!=='To be added'?p.rec.split(/\.\s+/).filter(Boolean):[];
+const cited=p=>{const s=sents(p);return s.length?Math.round(s.filter(x=>/\[\d+\]/.test(x)).length/s.length*100):0};
+const tl=p=>sents(p).map(x=>`<div class="tli"><i></i><div>${fmtRec(p.id,x.replace(/\.$/,'')+'.')}</div></div>`).join('')||'<div class="mu">No track record yet.</div>';
+function rCmp(){const opts=v=>P.map(p=>`<option value="${p.id}"${p.id===v?' selected':''}>${esc(p.name)}</option>`).join('');
+$('#v-cmp').innerHTML=`<div class="wrap"><h1>Compare profiles</h1><div class="c2"><select id="ca">${opts(cA)}</select><select id="cb">${opts(cB)}</select></div><div id="cout"></div></div>`;
+$('#ca').onchange=e=>{cA=+e.target.value;cOut()};$('#cb').onchange=e=>{cB=+e.target.value;cOut()};cOut()}
+function cOut(){const A=byId.get(cA),B=byId.get(cB);if(!A||!B||cA===cB){$('#cout').innerHTML='<p class="mute">Pick two different politicians.</p>';return}
+const pth=path(cA,cB),rel=pth?pth.map(s=>`${esc(nameOf(s.from))} · ${relLabel(s.e,s.from)} · ${esc(nameOf(s.e.to))}`).join('<br>'):'No family link found',col=['#f5b700','#ef6f6c'];
+const side=(p,i)=>`<div class="pp" style="--k:${col[i]}">${av(p,84)}<div><b>${esc(p.name)}</b></div><div class="mu">${esc(p.pos)}</div><div class="mu">${esc(p.party)}</div></div>`;
+const donut=(v,c,l)=>`<div style="text-align:center"><svg viewBox="0 0 36 36" width="104"><circle cx="18" cy="18" r="15.9" fill="none" stroke="#33334d" stroke-width="4"/><circle cx="18" cy="18" r="15.9" fill="none" stroke="${c}" stroke-width="4" stroke-linecap="round" stroke-dasharray="${v} ${100-v}" transform="rotate(-90 18 18)"/><text x="18" y="20.5" text-anchor="middle" fill="#fff" font-size="7" font-weight="700">${v}%</text></svg><div class="mu">${l}</div></div>`;
+const perf=(p,i)=>`<div><div style="display:flex;justify-content:space-around;flex-wrap:wrap">${donut(done(p),col[i],'Profile filled in')}${donut(cited(p),col[i],'Statements cited')}</div><div class="stat">${esc(dyn[comp.get(p.id)].name)} · ${adj.get(p.id).length} family links</div></div>`;
+$('#cout').innerHTML=`<div class="cmp"><b>PROFILE COMPARISON</b><h4>01 · Profiles</h4><div class="c3">${side(A,0)}<div class="vs">VS</div>${side(B,1)}</div><div class="mu" style="text-align:center;margin-top:12px">${rel}</div>
+<h4>02 · Track record timeline</h4><div class="c2"><div class="tl" style="--k:${col[0]}">${tl(A)}</div><div class="tl" style="--k:${col[1]}">${tl(B)}</div></div>
+<h4>03 · Profile data</h4><div class="c2">${perf(A,0)}${perf(B,1)}</div><div class="mu" style="margin-top:14px">“Profile filled in” and “Statements cited” show how complete and sourced a profile is. They are not a rating of the politician.</div>
+<div class="c2" style="margin-top:14px"><div><b>Platform</b><div class="mu">${esc(A.plat)}</div></div><div><b>Platform</b><div class="mu">${esc(B.plat)}</div></div></div></div>`}
+/* ---------- graph side panel ---------- */
+function go(t){tab=t;hl=null;document.querySelectorAll('#tabs button').forEach(b=>b.classList.toggle('on',b.dataset.t===t));({dyn:rDyn,search:rSearch,exp:rExp})[t]()}
+$('#tabs').innerHTML=[['dyn','Dynasties'],['search','Search'],['exp','Export']].map(t=>`<button data-t="${t[0]}">${t[1]}</button>`).join('');
+$('#tabs').addEventListener('click',e=>{const b=e.target.closest('button');if(b)go(b.dataset.t)});
+function select(id){sel=id;openProf(id)}
+function rDyn(){pane.innerHTML='<h2>Political dynasties</h2><p class="mute">Each dashed circle is a family group. Hover a card to highlight it; click a name to open the profile.</p>'+dyn.map((d,i)=>[d,i]).filter(x=>x[0].m.length>1).map(([d,i])=>`<div class="card" data-d="${i}"><b>${esc(d.name)}</b><div class="mute">${d.m.length} members</div><ul>${d.m.map(id=>`<li>${chip(id)} <span class="mute">${esc(byId.get(id).pos)}</span></li>`).join('')}</ul></div>`).join('');
+pane.querySelectorAll('[data-d]').forEach(c=>{c.onmouseenter=()=>{hl=new Set(dyn[+c.dataset.d].m)};c.onmouseleave=()=>{hl=null}})}
+function rSearch(){pane.innerHTML=`<h2>Search the graph</h2><input id="qi" placeholder="Name or platform keyword" value="${esc(q)}"><div id="res"></div>`;
+const run=()=>{const m=P.filter(p=>!q||(p.name+' '+p.plat).toLowerCase().includes(q.toLowerCase()));$('#res').innerHTML=m.length?m.map(p=>`<div class="card"><b>${chip(p.id)}</b><div class="mute">${esc(p.pos)}</div></div>`).join(''):'<p class="mute">No matching records found.</p>'};$('#qi').oninput=e=>{q=e.target.value.trim();run()};run()}
 function rExp(){const L=['=========================================','      BUWAYA TRACKER CANDIDATE SUMMARY   ','=========================================',''];
 P.forEach(p=>{L.push('ID: '+p.id,'Name: '+p.name,'Party: '+p.party,'Position: '+p.pos,'Platform: '+p.plat,'Track Record: '+p.rec,'Dynasty: '+dyn[comp.get(p.id)].name,'-----------------------------------------')});
-pane.innerHTML=`<h2>Export summary report</h2><textarea id="rp" readonly style="min-height:320px;font:12px/1.4 ui-monospace,Menlo,Consolas,monospace">${esc(L.join('\n'))}</textarea><button class="btn" id="cp">Copy report</button><span class="ok" id="ms"></span>`;
-$('#cp').onclick=()=>{const t=$('#rp');t.select();let done=false;try{navigator.clipboard.writeText(t.value).then(()=>{$('#ms').textContent='Report copied.'},()=>{$('#ms').textContent='Press Ctrl+C to copy.'});done=true}catch(_){}
-if(!done)$('#ms').textContent='Press Ctrl+C to copy.'}}
-/* ---------- chrome ---------- */
-const sw=(d,w)=>`<svg width="22" height="8"><line x1="0" y1="4" x2="22" y2="4" stroke="currentColor" stroke-width="${w}" stroke-dasharray="${d.join(' ')}"/></svg>`;
-$('#legend').innerHTML='<div>'+Object.keys(COL).map(k=>`<span><i style="background:${COL[k]}"></i>${k}</span>`).join('')+'</div><div style="margin-top:4px;color:var(--mute)">'+
-Object.keys(STY).map(k=>`<span>${sw(STY[k].d,STY[k].w)}${k}</span>`).join('')+'</div>';
+pane.innerHTML=`<h2>Export summary report</h2><textarea id="rp" readonly style="min-height:320px;font:12px/1.4 ui-monospace,Menlo,Consolas,monospace">${esc(L.join('\n'))}</textarea><button class="btn" id="cp">Copy report</button><span class="ok" id="ms2"></span>`;
+$('#cp').onclick=()=>{const t=$('#rp');t.select();try{navigator.clipboard.writeText(t.value).then(()=>{$('#ms2').textContent=' Copied.'},()=>{$('#ms2').textContent=' Press Ctrl+C to copy.'})}catch(_){$('#ms2').textContent=' Press Ctrl+C to copy.'}}}
+$('#legend').innerHTML='<div>'+dyn.map((d,i)=>[d,i]).filter(x=>x[0].m.length>1).map(([d,i])=>`<span><i style="background:${PAL[i%PAL.length]}"></i>${esc(d.name)}</span>`).join('')+'</div><div style="margin-top:4px;color:var(--mute)">'+Object.keys(STY).map(k=>`<span><svg width="22" height="8"><line x1="0" y1="4" x2="22" y2="4" stroke="currentColor" stroke-width="${STY[k].w}" stroke-dasharray="${STY[k].d.join(' ')}"/></svg>${k}</span>`).join('')+'</div>';
 go('dyn');
-let nf='All';
+/* ---------- data tables (admin editing) ---------- */
+let dk='pol';
+const clean=k=>RAW[k].map(r=>r.map(v=>String(v).replace(/[|\r\n]+/g,' ').trim()));
+function validate(k,rs){const e=[],L=TB[k].lim||[],ok=u=>/^https?:\/\//.test(u),pid=new Set((k==='pol'?rs:clean('pol')).map(r=>r[0]));
+rs.forEach((r,i)=>{const w='Row '+(i+1)+': ';
+if(k==='pol'){if(!/^\d+$/.test(r[0]))e.push(w+'ID must be a number.');if(rs.filter(x=>x[0]===r[0]).length>1)e.push(w+'ID '+r[0]+' is used more than once.');if(!r[1])e.push(w+'name is required.');r.forEach((v,c)=>{if(L[c]&&v.length>L[c])e.push(w+TB.pol.cols[c]+' is over '+L[c]+' characters.')})}
+if(k==='rel'){if(!pid.has(r[0])||!pid.has(r[1]))e.push(w+'both IDs must exist in Politicians.');if(!['spouse','parent','sibling','cousin'].includes(r[2]))e.push(w+'type must be spouse, parent, sibling or cousin.')}
+if(k==='prof'){if(!pid.has(r[0]))e.push(w+'politician ID not found.');if(r[1]&&!/^(https?:\/\/|photos\/)/.test(r[1]))e.push(w+'photo must be a link or start with photos/.');if(r[2]&&!LV.includes(r[2]))e.push(w+'level must be one of: '+LV.join(', ')+'.')}
+if(k==='news'){if(!/^\d{4}-\d{2}-\d{2}$/.test(r[0]))e.push(w+'date must be YYYY-MM-DD.');if(!r[1]||!r[2]||!r[3])e.push(w+'category, title and summary are required.');if(r[4]&&!ok(r[4]))e.push(w+'link must start with http:// or https://.');if(r[5]&&!pid.has(r[5]))e.push(w+'politician ID not found.')}
+if(k==='src'){if(!pid.has(r[0]))e.push(w+'politician ID not found.');if(!/^\d+$/.test(r[1]))e.push(w+'No. must be a number.');if(!r[2])e.push(w+'title is required.');if(!ok(r[3]))e.push(w+'URL must start with http:// or https://.')}});
+return e}
+async function commit(k){const rs=clean(k),er=validate(k,rs);if(er.length)return er.slice(0,6).join(' · ');RAW[k]=rs;
+if(k==='prof'&&!HEAD.prof)HEAD.prof='# Extra profile info. Format: id|photo (link or photos/file.jpg)|level|group|area\n# Leave level and group blank to detect them from the position.';
+const text=(HEAD[k]?HEAD[k]+'\n':'')+rs.map(r=>r.join('|')).join('\n')+'\n';
+const r=await api(`repos/${REPO}/contents/${DIR}${TB[k].f}`,{method:'PUT',body:JSON.stringify({message:'Update '+TB[k].f+' from the admin page',content:b64(text),sha:SHA[k],branch:BRANCH})});
+if(r.ok){SHA[k]=(await r.json()).content.sha;return''}
+return(r.status===409||r.status===422)?'GitHub has a newer version of '+TB[k].f+'. Sign out, sign in again and retry.':'Save failed ('+r.status+').'}
+function fmtCell(r,c,v){if(dk==='pol'&&c===5)return fmtRec(+RAW.pol[r][0],v);
+if(dk==='rel'&&c<2)return esc(v)+' <span class="mute">'+esc(nameOf(v))+'</span>';
+if(/^https?:\/\//.test(v)&&((dk==='news'&&c===4)||(dk==='src'&&c===3)))return`<a href="${esc(v)}" target="_blank" rel="noopener noreferrer">${esc(dk==='src'?v:'link')}</a>`;return esc(v)}
+function rData(){const t=TB[dk],rs=RAW[dk];
+const bar=admin?`<div class="card">Signed in as admin. Edit the cells, then press <b>Save to GitHub</b>. Nothing is saved until you do. You are signed out after 15 idle minutes. Tip: use <b>+ Add profile</b> on the Directory page for a friendlier form.</div>`
+:`<div class="card"><b>Admin sign in</b><div class="mute" style="margin:4px 0 8px">Only people with write access to the GitHub repository <code>${esc(REPO)}</code> can edit. Paste a fine-grained access token with “Contents: Read and write” for this repository. It stays in this browser tab only. Public sign-up isn’t available because this site has no server.</div><input id="tk" type="password" autocomplete="off" placeholder="GitHub token (github_pat_…)"> <button class="btn" id="si">Sign in</button></div>`;
+const cell=(r,c,v)=>admin?`<input data-r="${r}" data-c="${c}" value="${esc(v)}" style="min-width:${t.w[c]}px">`:fmtCell(r,c,v);
+$('#v-data').innerHTML=`<div class="wrap"><h1>Data tables</h1><p class="mute">The same information as the text files in the <code>${esc(DIR||'repository root')}</code>, shown as tables.</p><div class="chips">${Object.keys(TB).map(k=>`<button data-dk="${k}" class="${k===dk?'on':''}">${TB[k].n}</button>`).join('')}</div>${msg?`<div class="card">${msg}</div>`:''}${bar}
+<div class="tw"><table class="dt"><thead><tr>${t.cols.map(c=>`<th>${esc(c)}</th>`).join('')}${admin?'<th></th>':''}</tr></thead><tbody>${rs.map((r,i)=>`<tr>${r.map((v,c)=>`<td>${cell(i,c,v)}</td>`).join('')}${admin?`<td><button class="lk" data-del="${i}">Delete</button></td>`:''}</tr>`).join('')||'<tr><td class="mute">No rows.</td></tr>'}</tbody></table></div>
+${admin?'<p><button class="btn" data-add="1">Add row</button> <button class="btn" data-save="1">Save to GitHub</button></p>':''}</div>`;msg=''}
+$('#v-data').addEventListener('input',e=>{const t=e.target;if(t.dataset.r!==undefined)RAW[dk][+t.dataset.r][+t.dataset.c]=t.value});
+$('#v-data').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;const d=b.dataset;
+if(d.dk){dk=d.dk;rData()}
+else if(d.del!==undefined){RAW[dk].splice(+d.del,1);rData()}
+else if(d.add){const r=Array(TB[dk].size).fill('');if(dk==='pol'){r[0]=String(Math.max(0,...RAW.pol.map(x=>+x[0]||0))+1);r[2]='Not yet added';r[4]='To be added';r[5]='To be added'}if(dk==='rel')r[2]='spouse';if(dk==='news')r[0]=new Date().toISOString().slice(0,10);if(dk==='src')r[1]='1';RAW[dk].push(r);rData()}
+else if(d.save){commit(dk).then(er=>{msg=er?'<b>Not saved.</b> '+esc(er):'Saved '+esc(TB[dk].f)+' to GitHub. Reload the page to see it everywhere.';rData()}).catch(er=>{msg='Network error: '+esc(er.message);rData()})}
+else if(b.id==='si'){const v=$('#tk').value;if(!v.trim())return;b.disabled=true;signIn(v).then(()=>location.reload()).catch(er=>{tok='';msg='<b>Sign in failed.</b> '+esc(er.message);rData()})}});
+$('#adm').onclick=()=>{if(admin)signOut();else show('data')};
+/* ---------- home ---------- */
 const newsCard=n=>{const d=new Date(n.date+'T00:00:00'),ds=isNaN(d)?n.date:d.toLocaleDateString('en-US',{year:'numeric',month:'short',day:'numeric'}),p=byId.get(+n.pid);
 return`<div class="card"><span class="tag">${esc(n.cat)}</span><span class="mute">${esc(ds)}</span><h3>${esc(n.title)}</h3><div>${esc(n.sum)}</div><div style="margin-top:6px">${/^https?:\/\//.test(n.link)?`<a href="${esc(n.link)}" target="_blank" rel="noopener noreferrer">Read more</a> `:''}${p?`<button class="lk" data-go="${p.id}">Profile: ${esc(p.name)}</button>`:''}</div></div>`};
-function rHome(){const cats=['All',...new Set(NEWS.map(n=>n.cat))],list=NEWS.filter(n=>nf==='All'||n.cat===nf),nd=dyn.map((d,i)=>[d,i]).filter(x=>x[0].m.length>1);
-$('#v-home').innerHTML=`<div class="wrap"><div class="hero"><h2>Know who you’re voting for.</h2><p class="mute">Track politicians, their platforms and records, and see which families hold power across offices.</p><button class="btn" data-show="tracker">Open the dynasty graph</button></div>
-<div class="stats">${[[P.length,'Politicians'],[nd.length,'Dynasties'],[R.length,'Family links'],[new Set(P.map(p=>p.party)).size,'Parties']].map(s=>`<div class="card"><b>${s[0]}</b><span class="mute">${s[1]}</span></div>`).join('')}</div>
-<div class="cols"><div><h2>Latest news</h2><div class="chips">${cats.map(c=>`<button data-nf="${esc(c)}" class="${c===nf?'on':''}">${esc(c)}</button>`).join('')}</div><div class="news">${list.length?list.map(newsCard).join(''):'<p class="mute">No news yet.</p>'}</div></div>
-<div><h2>Dynasty watch</h2>${nd.length?nd.map(([d,i])=>`<div class="card"><b>${esc(d.name)}</b><div class="mute">${d.m.length} members · ${[...new Set(d.m.map(id=>byId.get(id).pos))].map(esc).join(', ')}</div><button class="lk" data-dg="${i}">View on graph</button></div>`).join(''):'<p class="mute">No family links yet.</p>'}</div></div>
-<p class="mute" style="margin-top:28px">Edit the data on GitHub: <a href="${EDIT_URL}politicians.txt" target="_blank" rel="noopener noreferrer">politicians</a> · <a href="${EDIT_URL}relations.txt" target="_blank" rel="noopener noreferrer">relations</a> · <a href="${EDIT_URL}news.txt" target="_blank" rel="noopener noreferrer">news</a></p></div>`}
-function show(v){$('#v-home').hidden=v!=='home';$('#v-tracker').hidden=v!=='tracker';document.querySelectorAll('#top button').forEach(b=>b.classList.toggle('on',b.dataset.show===v));if(v==='tracker')fit();if(location.hash!=='#'+v)history.replaceState(null,'','#'+v)}
-$('#v-home').addEventListener('click',e=>{const b=e.target.closest('[data-show],[data-nf],[data-dg],[data-go]');if(!b)return;
-if(b.dataset.show)show(b.dataset.show);else if(b.dataset.nf!==undefined){nf=b.dataset.nf;rHome()}else if(b.dataset.dg)select(dyn[+b.dataset.dg].m[0]);else select(+b.dataset.go)});
-$('#top').addEventListener('click',e=>{const b=e.target.closest('[data-show]');if(b)show(b.dataset.show)});
-window.addEventListener('hashchange',()=>show(location.hash==='#tracker'?'tracker':'home'));
-rHome();show(location.hash==='#tracker'?'tracker':'home');
+function rHome(){const cats=['All',...new Set(NEWS.map(n=>n.cat))],list=NEWS.filter(n=>nf==='All'||n.cat===nf),cnt={},gc={};
+P.forEach(p=>{const k=cat(p);cnt[k.lv]=(cnt[k.lv]||0)+1;gc[k.gr]=(gc[k.gr]||0)+1});
+const top=Object.keys(gc).sort((a,b)=>gc[b]-gc[a]).slice(0,4),nd=dyn.map((d,i)=>[d,i]).filter(x=>x[0].m.length>1);
+$('#v-home').innerHTML=`<div class="hero"><div class="hw"><div><h1>Welcome to Buwaya Tracker</h1><p>Find Philippine politicians, their platforms and track records with sources, and see which families hold power.</p><input id="hq" placeholder="Search politicians, positions, platforms…" autocomplete="off"><div id="hr"></div><div class="hc">${top.map(g=>`<button data-grp="${esc(g)}">${esc(g)}</button>`).join('')}</div></div>
+<div class="hcard"><h3>Browse by level</h3><div class="tiles">${LV.filter(l=>cnt[l]).map(l=>`<button data-lv="${l}"><b>${cnt[l]}</b>${l}</button>`).join('')}</div><button class="vall" data-lv="All">View all politicians</button></div></div></div>
+<div class="wrap"><div class="cols"><div><h2>Latest news</h2><div class="chips">${cats.map(c=>`<button data-nf="${esc(c)}" class="${c===nf?'on':''}">${esc(c)}</button>`).join('')}</div><div class="news">${list.length?list.map(newsCard).join(''):'<p class="mute">No news yet.</p>'}</div></div>
+<div><h2>Dynasty watch</h2>${nd.length?nd.map(([d,i])=>`<div class="card"><b>${esc(d.name)}</b><div class="mute">${d.m.length} members · ${[...new Set(d.m.map(id=>byId.get(id).pos))].map(esc).join(', ')}</div><button class="lk" data-dg="${i}">Open profile</button> · <button class="lk" data-show="tracker">View graph</button></div>`).join(''):'<p class="mute">No family links yet.</p>'}</div></div>
+<p class="mute" style="margin-top:28px">Edit the data on GitHub: <a href="${EDIT_URL}politicians.txt" target="_blank" rel="noopener noreferrer">politicians</a> · <a href="${EDIT_URL}relations.txt" target="_blank" rel="noopener noreferrer">relations</a> · <a href="${EDIT_URL}news.txt" target="_blank" rel="noopener noreferrer">news</a></p></div>`;
+$('#hq').oninput=e=>{const v=e.target.value.trim().toLowerCase();$('#hr').innerHTML=v?(P.filter(p=>(p.name+' '+p.pos+' '+p.plat).toLowerCase().includes(v)).slice(0,6).map(p=>`<button data-go="${p.id}">${esc(p.name)} <span class="mute">${esc(p.pos)}</span></button>`).join('')||'<div class="mute" style="padding:8px 12px">No matching records found.</div>'):''};
+$('#hq').onkeydown=e=>{if(e.key==='Enter'){dq=e.target.value.trim();dl='All';show('dir')}}}
+/* ---------- news search ---------- */
+$('#v-news').innerHTML=`<div class="wrap"><h1>News search</h1><p class="mute">Most news sites don’t allow embedding, so these buttons open the search in a new tab. To keep a search box on this page, create a free Google Programmable Search Engine and put its ID in <code>CSE_ID</code> at the top of the script.</p><select id="nsp"><option value="">Choose a politician…</option>${P.map(p=>`<option>${esc(p.name)}</option>`).join('')}</select><input id="nsq" placeholder="Or type a search"><button class="btn" data-ns="g">Google News</button> <button class="btn" data-ns="b">Bing News</button><div id="cse" style="margin-top:14px"></div></div>`;
+$('#nsp').onchange=e=>{$('#nsq').value=e.target.value?'"'+e.target.value+'"':''};
+$('#v-news').addEventListener('click',e=>{const b=e.target.closest('[data-ns]');if(!b)return;const v=$('#nsq').value.trim();if(!v)return;window.open((b.dataset.ns==='g'?'https://news.google.com/search?q=':'https://www.bing.com/news/search?q=')+encodeURIComponent(v),'_blank','noopener')});
+if(CSE_ID){const sc=document.createElement('script');sc.src='https://cse.google.com/cse.js?cx='+encodeURIComponent(CSE_ID);sc.async=true;document.head.appendChild(sc);$('#cse').innerHTML='<div class="gcse-search"></div>'}
+/* ---------- routing and global clicks ---------- */
+const VIEWS=['home','dir','tracker','cmp','news','data'];
+function show(v){if(!VIEWS.includes(v))v='home';VIEWS.forEach(x=>{$('#v-'+x).hidden=x!==v});document.querySelectorAll('#top button[data-show]').forEach(b=>b.classList.toggle('on',b.dataset.show===v));
+if(v==='tracker')fit();if(v==='dir')rDir();if(v==='cmp')rCmp();if(v==='data')rData();if(location.hash!=='#'+v)history.replaceState(null,'','#'+v)}
+document.addEventListener('click',e=>{const b=e.target.closest('[data-go],[data-show],[data-lv],[data-grp],[data-nf],[data-dg],[data-edit],[data-graph],[data-cmpw]');if(!b)return;const d=b.dataset;
+if(d.go)openProf(+d.go);
+else if(d.show){closeM();show(d.show)}
+else if(d.lv){dl=d.lv;dq='';closeM();show('dir')}
+else if(d.grp){dq=d.grp;dl='All';show('dir')}
+else if(d.nf!==undefined){nf=d.nf;rHome()}
+else if(d.dg)openProf(dyn[+d.dg].m[0]);
+else if(d.edit)openEdit(d.edit==='new'?null:+d.edit);
+else if(d.graph){closeM();sel=+d.graph;show('tracker');go('dyn')}
+else if(d.cmpw){const v=+$('#cw').value;if(v){cA=+d.cmpw;cB=v;closeM();show('cmp')}}});
+window.addEventListener('hashchange',()=>show(location.hash.slice(1)));
+rHome();show(location.hash.slice(1));
 }
-main().catch(e=>{console.error(e);const h=document.getElementById('v-home');h.hidden=false;h.innerHTML='<div class="wrap"><h2>Couldn’t load the data files</h2><p class="mute">'+String(e.message||e).replace(/[<>&]/g,'')+'. Open this site through GitHub Pages or a local server (for example <code>python -m http.server</code>) instead of double-clicking the file.</p></div>'});
+main().catch(e=>{console.error(e);const h=document.getElementById('v-home');h.hidden=false;h.innerHTML='<div class="wrap"><h2>Couldn’t load the data files</h2><p class="mute">'+String(e.message||e).replace(/[<>&]/g,'')+'. Open this site through GitHub Pages or a local server (for example <code>python -m http.server</code>) instead of double-clicking the file. The data files must be in a <code>data</code> folder or the repository root.</p></div>'});
 </script>
-
-<!-- Supplementary features. Configure Supabase to enable real authentication and database-backed editing. -->
-<section id="extra-view" hidden aria-live="polite"><div class="extra-wrap">
-  <div class="extra-head"><div><h1 id="extra-title">News &amp; Sources</h1><p class="mute" id="extra-subtitle">Search and verify reporting before drawing conclusions.</p></div><button class="btn" id="extra-close">Back to tracker</button></div>
-  <div id="extra-content"></div>
-</div></section>
-<script>
-(function(){
- const $=s=>document.querySelector(s), view=$('#extra-view'), content=$('#extra-content');
- const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
- const getUser=()=>{try{return JSON.parse(localStorage.getItem('bt_demo_user')||'null')}catch{return null}};
- let liveRole='visitor';
- const isAdmin=()=>liveRole==='admin';
- async function refreshRole(){liveRole='visitor';let user=null;if(sb){const result=await sb.auth.getUser();user=result?.data?.user||null;if(user){const {data}=await sb.from('profiles').select('role').eq('id',user.id).maybeSingle();liveRole=data?.role==='admin'?'admin':'visitor';localStorage.setItem('bt_demo_user',JSON.stringify({email:user.email||'',role:liveRole}))}}else{user=getUser();liveRole=user?.role==='admin'?'admin':'visitor'};updateAccountButtons(!!user);return user}
- function updateAccountButtons(signedIn){const b=$('#open-auth'),out=$('#open-logout');if(!b||!out)return;b.textContent=signedIn?'👤 Account':'Sign in';b.title=signedIn?'Manage account details':'Sign in';b.setAttribute('aria-label',signedIn?'Manage account details':'Sign in');out.hidden=!signedIn;}
- async function signOut(){if(sb){const {error}=await sb.auth.signOut();if(error){alert(error.message);return}}localStorage.removeItem('bt_demo_user');liveRole='visitor';updateAccountButtons(false);close();}
- const demoPeople=[
-  {id:'sample-1',name:'Sample Politician A',party:'Example Party',position:'Public official',platform:'Public service and transparency',record:'DEMO ENTRY: Replace with verified, dated claims before publishing.',status:'Needs verification',sources:[{label:'Official government portal',url:'https://www.gov.ph/'},{label:'Official gazette',url:'https://www.officialgazette.gov.ph/'}]},
-  {id:'sample-2',name:'Sample Politician B',party:'Example Party',position:'Legislator',platform:'Legislation and public accountability',record:'DEMO ENTRY: Add a sourced record; do not treat this placeholder as a factual claim.',status:'Needs verification',sources:[{label:'House of Representatives',url:'https://www.congress.gov.ph/'},{label:'Senate of the Philippines',url:'https://senate.gov.ph/'}]},
-  {id:'sample-3',name:'Sample Politician C',party:'Independent',position:'Local official',platform:'Local governance and public services',record:'DEMO ENTRY: Add documented actions, dates, outcomes, and case status where relevant.',status:'Needs verification',sources:[{label:'Commission on Audit',url:'https://www.coa.gov.ph/'},{label:'Commission on Elections',url:'https://comelec.gov.ph/'}]}
- ];
- const loadPeople=async()=>{if(sb){const [ps,ss]=await Promise.all([dbRows('politicians'),dbRows('sources')]);return ps.map(p=>({...p,id:String(p.id),position:p.position||'',record:p.track_record||'',sources:ss.filter(s=>String(s.politician_id)===String(p.id)).map(s=>({label:s.label,url:s.url}))}))}try{const x=JSON.parse(localStorage.getItem('bt_demo_people')||'null');return Array.isArray(x)?x:demoPeople.map(p=>({...p,sources:p.sources.map(s=>({...s}))}))}catch{return demoPeople}};
- const savePeople=p=>localStorage.setItem('bt_demo_people',JSON.stringify(p));
- const currentUser=()=>sb?.auth?.getUser();
- function open(title,sub,html){$('#extra-title').textContent=title;$('#extra-subtitle').textContent=sub;content.innerHTML=html;view.hidden=false}
- function close(){view.hidden=true}
- $('#extra-close').onclick=close;
- $('#open-news').onclick=()=>news();
- $('#open-data').onclick=()=>table();
- $('#open-auth').onclick=()=>auth();
- $('#open-logout').onclick=()=>signOut();
- function news(){
-  open('News search & source desk','Search the web for coverage, then record the original source and date. Search results are external and are not endorsements.',`
-  <div class="card"><h2>Search news</h2><form id="news-form"><input id="news-q" placeholder="e.g. politician name, bill number, audit report" required><select id="news-source"><option value="https://news.google.com/search?q=">Google News</option><option value="https://www.google.com/search?q=">Google Search</option><option value="https://www.youtube.com/results?search_query=">YouTube reporting</option></select><button class="btn">Search in new tab</button></form>
-  <p class="mute">A true embedded search/results feed usually needs a provider API or backend. Many search engines block iframe embedding, so this opens the selected search provider safely instead.</p></div>
-  <div class="extra-grid"><div class="card"><h2>Source checklist</h2><ul><li>Prefer official documents for laws, votes, budgets, and case status.</li><li>Use multiple reputable news reports for disputed events.</li><li>Separate allegations from findings, convictions, acquittals, and appeals.</li><li>Record publication date, author, original URL, and the exact claim supported.</li></ul></div>
-  <div class="card"><h2>Example source portals</h2><ul><li><a target="_blank" rel="noopener noreferrer" href="https://www.gov.ph/">Philippine government portal</a></li><li><a target="_blank" rel="noopener noreferrer" href="https://www.officialgazette.gov.ph/">Official Gazette</a></li><li><a target="_blank" rel="noopener noreferrer" href="https://www.coa.gov.ph/">Commission on Audit</a></li><li><a target="_blank" rel="noopener noreferrer" href="https://comelec.gov.ph/">Commission on Elections</a></li></ul></div></div>`);
-  $('#news-form').onsubmit=e=>{e.preventDefault();const q=$('#news-q').value.trim(),base=$('#news-source').value;if(q)window.open(base+encodeURIComponent(q),'_blank','noopener,noreferrer')};
- }
- async function table(){
-  // Refresh the authenticated session and server-managed role before deciding whether editing is available.
-  await refreshRole();
-  const people=await loadPeople();
-  open('Politician records','Searchable, readable records. Editing is available only to accounts with the administrator role.',`
-  <div class="extra-note"><b>Data mode:</b> ${sb?(isAdmin()?'Supabase administrator mode':'Read-only visitor mode'):(isAdmin()?'Local demo admin mode':'Read-only visitor mode')}. ${isAdmin()?(sb?'Changes save to Supabase and are enforced by database policies.':'Demo changes save only in this browser.'):'Sign in with an administrator account to enable record editing.'}</div>
-  <input id="people-filter" placeholder="Filter by name, party, position, record…">
-  <div class="extra-table-wrap"><table class="extra-table"><thead><tr><th>Name</th><th>Party / position</th><th>Platform</th><th>Track record</th><th>Sources</th><th>Actions</th></tr></thead><tbody id="people-body"></tbody></table></div>
-  ${isAdmin()?'<div class="card"><h2>Add / edit record</h2><form id="person-form"><input type="hidden" id="p-id"><input id="p-name" placeholder="Full name" required><input id="p-party" placeholder="Party"><input id="p-position" placeholder="Position"><textarea id="p-platform" placeholder="Platform"></textarea><textarea id="p-record" placeholder="Track record — distinguish verified facts from allegations"></textarea><input id="p-status" placeholder="Status / verification note"><textarea id="p-sources" placeholder="One source per line: Label | https://example.com/source" required></textarea><button class="btn">Save record</button> <button type="button" id="p-new">Clear form</button></form><button class="btn" id="export-json">Export local records as JSON</button> <button class="btn" id="export-txt">Export politicians.txt format</button><span id="export-msg" class="ok"></span></div>':''}`);
-  const body=$('#people-body');
-  async function render(){const q=($('#people-filter').value||'').toLowerCase();const allPeople=await loadPeople();const filtered=allPeople.filter(p=>[p.name,p.party,p.position,p.platform,p.record].join(' ').toLowerCase().includes(q));
-   body.innerHTML=filtered.map(p=>`<tr><td><b>${esc(p.name)}</b><br><span class="pill">${esc(p.status||'Unreviewed')}</span></td><td>${esc(p.party)}<br>${esc(p.position)}</td><td>${esc(p.platform)}</td><td>${esc(p.record)}</td><td>${(p.sources||[]).map((s,i)=>`<div><sup class="cite"><a href="${/^https?:\/\//i.test(s.url)?esc(s.url):'#'}" target="_blank" rel="noopener noreferrer" data-tip="${esc(s.label)}">${i+1}</a></sup> <a href="${/^https?:\/\//i.test(s.url)?esc(s.url):'#'}" target="_blank" rel="noopener noreferrer">${esc(s.label)}</a></div>`).join('')}</td><td>${isAdmin()?`<button class="btn" data-edit="${esc(p.id)}">Edit</button> <button data-delete="${esc(p.id)}">Delete</button>`:'<span class="mute">Read only</span>'}</td></tr>`).join('')||'<tr><td colspan="6">No matching records.</td></tr>';
-  }
-  $('#people-filter').oninput=()=>render();render();
-  if(isAdmin()){
-   const clear=()=>{$('#person-form').reset();$('#p-id').value=''};
-   $('#p-new').onclick=clear;
-   body.onclick=async e=>{const eb=e.target.closest('[data-edit]'),db=e.target.closest('[data-delete]');let ps=await loadPeople();if(db&&confirm('Delete this record?')){if(sb){const {error}=await sb.from('politicians').delete().eq('id',db.dataset.delete);if(error){alert(error.message);return}}else savePeople(ps.filter(p=>p.id!==db.dataset.delete));await render()}if(eb){const p=ps.find(x=>String(x.id)===eb.dataset.edit);if(!p)return;$('#p-id').value=p.id;$('#p-name').value=p.name;$('#p-party').value=p.party;$('#p-position').value=p.position;$('#p-platform').value=p.platform;$('#p-record').value=p.record;$('#p-status').value=p.status||'';$('#p-sources').value=(p.sources||[]).map(s=>s.label+' | '+s.url).join('\n');window.scrollTo({top:document.body.scrollHeight,behavior:'smooth'})}};
-   $('#person-form').onsubmit=async e=>{e.preventDefault();const ps=await loadPeople(),rawId=$('#p-id').value,sources=$('#p-sources').value.split(/\r?\n/).map(l=>{const i=l.indexOf('|');return i<0?null:{label:l.slice(0,i).trim(),url:l.slice(i+1).trim()}}).filter(s=>s&&s.label&&/^https?:\/\//i.test(s.url));const p={name:$('#p-name').value.trim(),party:$('#p-party').value.trim(),position:$('#p-position').value.trim(),platform:$('#p-platform').value.trim(),track_record:$('#p-record').value.trim(),status:$('#p-status').value.trim()};if(sb){let saved;if(rawId){const {data,error}=await sb.from('politicians').update(p).eq('id',rawId).select('id').single();if(error){$('#export-msg').textContent=error.message;return}saved=data}else{const {data,error}=await sb.from('politicians').insert(p).select('id').single();if(error){$('#export-msg').textContent=error.message;return}saved=data}const {error:delErr}=await sb.from('sources').delete().eq('politician_id',saved.id);if(delErr){$('#export-msg').textContent=delErr.message;return}if(sources.length){const {error:insErr}=await sb.from('sources').insert(sources.map(s=>({...s,politician_id:saved.id})));if(insErr){$('#export-msg').textContent=insErr.message;return}}}else{const id=rawId||('local-'+Date.now()),localP={id,...p,record:p.track_record,sources};const i=ps.findIndex(x=>String(x.id)===id);if(i>=0)ps[i]=localP;else ps.push(localP);savePeople(ps)}await render();clear();$('#export-msg').textContent=sb?'Saved to database.':'Saved in this browser only.'};
-   $('#export-json').onclick=async()=>download('politicians.json',JSON.stringify(await loadPeople(),null,2),'application/json');
-   $('#export-txt').onclick=async()=>{const lines=(await loadPeople()).map((p,i)=>[i+1,p.name,p.party,p.position,p.platform,p.record].map(x=>String(x||'').replace(/[|\r\n]/g,' ')).join('|')).join('\n');download('politicians.txt',lines,'text/plain;charset=utf-8')};
-  }
- }
- function download(name,data,type){const a=document.createElement('a'),u=URL.createObjectURL(new Blob([data],{type}));a.href=u;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(u),1000)}
- async function auth(){
-  const liveUser=await refreshRole(); const u=liveUser?{email:liveUser.email||'',role:liveRole}:getUser();
-  open(u?'Account details':'Sign in / sign up',u?'Manage your signed-in account and access.':(sb?'Sign in or create an account to access your account.':'Connect Supabase to enable real sign-in and account creation.'),u?`<div class="extra-grid"><div class="card"><h2>👤 Account details</h2><p>Email: <b>${esc(u.email||'Not available')}</b></p><p>Access role: <b>${esc(u.role||'visitor')}</b></p><p class="mute">${u.role==='admin'?'Administrator access is managed securely in Supabase.':'Your account currently has visitor access.'}</p></div><div class="card"><h2>Update account</h2><form id="account-email-form"><label for="account-email">Change email</label><input id="account-email" type="email" placeholder="New email address" required><button class="btn">Update email</button></form><form id="account-password-form"><label for="account-password">Change password</label><input id="account-password" type="password" minlength="8" placeholder="New password (8+ characters)" required><button class="btn">Update password</button></form><p id="account-msg" role="status"></p></div></div>${u.role==='admin'?'<div class="card"><h2>Admin tools</h2><p>Open the records table to add, edit, or delete politician records.</p><button class="btn" id="account-open-records">Open records table</button></div>':''}<div class="extra-note">For security, administrator permissions come from the Supabase profile role; they cannot be granted from this page.</div>`:`
-  <div class="extra-grid"><div class="card"><h2>Sign in</h2><form id="signin"><input id="in-email" type="email" placeholder="Email" required><input id="in-pass" type="password" placeholder="Password" required><button class="btn">Sign in</button></form></div>
-  <div class="card"><h2>Create account</h2><form id="signup"><input id="up-email" type="email" placeholder="Email" required><input id="up-pass" type="password" minlength="8" placeholder="Password (8+ characters)" required><button class="btn">Create account</button></form><p class="mute">New accounts start with visitor access. Supabase handles authentication when configured.</p></div></div>
-  <div class="extra-note"><b>Admin access:</b> administrator permissions are assigned in Supabase, never through a browser form. ${sb?"Supabase is configured.":"Add your Supabase project URL and public anon/publishable key to enable authentication."}</div><p id="auth-msg" role="status"></p>`);
-  if(u){
-   $('#account-email-form').onsubmit=async e=>{e.preventDefault();const msg=$('#account-msg');if(!sb){msg.textContent='Connect Supabase to update account details securely.';return}const {error}=await sb.auth.updateUser({email:$('#account-email').value.trim()});msg.textContent=error?error.message:'Email update requested. Check your inbox for any confirmation link.'};
-   $('#account-password-form').onsubmit=async e=>{e.preventDefault();const msg=$('#account-msg');if(!sb){msg.textContent='Connect Supabase to update account details securely.';return}const {error}=await sb.auth.updateUser({password:$('#account-password').value});msg.textContent=error?error.message:'Password updated successfully.';if(!error)e.target.reset()};
-   const recordsBtn=$('#account-open-records');if(recordsBtn)recordsBtn.onclick=()=>table();return
-  }
-  $('#signin').onsubmit=async e=>{e.preventDefault();if(!sb){$('#auth-msg').textContent='Add your Supabase project URL and anon key to enable real sign-in.';return}const {error}=await sb.auth.signInWithPassword({email:$('#in-email').value.trim(),password:$('#in-pass').value});if(error){$('#auth-msg').textContent=error.message;return}await auth();};
-  $('#signup').onsubmit=async e=>{e.preventDefault();if(!sb){$('#auth-msg').textContent='Add your Supabase project URL and anon key to enable real sign-up.';return}const {error}=await sb.auth.signUp({email:$('#up-email').value.trim(),password:$('#up-pass').value});if(error){$('#auth-msg').textContent=error.message;return}$('#auth-msg').textContent='Account created. Check your email if confirmation is enabled, then sign in.'};
- }
- // Restore the visible account/sign-out controls when a saved session exists.
- refreshRole().catch(()=>updateAccountButtons(false));
-})();
-</script>
-
 </body>
 </html>
