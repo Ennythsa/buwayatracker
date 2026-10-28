@@ -36,3 +36,26 @@
 34|Jemcerson T. Sable|unknown|Barangay Captain|unknown|unknown
 35|Aurelio R. Laspoña|unknown|Barangay Captain|unknown|unknown
 36|Sergio S. Ocaña|unknown|Barangay Captain|unknown|unknown
+37|Jovito S. Ladrazo|unknown|Barangay Captain|unknown|unknown
+38|Clifford Jude G. Niñal|unknown|Barangay Captain|unknown|unknown
+39|Danilo P. Teves|unknown|Barangay Captain|unknown|unknown
+40|Eleno M. Andales Jr.|unknown|Barangay Captain|unknown|unknown
+41|Jose U. Cadampog|unknown|Barangay Captain|unknown|unknown
+42|Danilo C. Lim|unknown|Barangay Captain|unknown|unknown
+43|Francisco S. De Gracia Jr.|unknown|Barangay Captain|unknown|unknown
+44|Irma B. Labitad|unknown|Barangay Captain|unknown|unknown
+45|Arnulfo R. Cambonga|unknown|Barangay Captain|unknown|unknown
+46|Roseller V. Salvador|unknown|Barangay Captain|unknown|unknown
+47|Derrick C. Yap|unknown|Barangay Captain|unknown|unknown
+48|Susan B. Enriquez|unknown|Barangay Captain|unknown|unknown
+49|Carlitos E. Ceniza|unknown|Barangay Captain|unknown|unknown
+50|Kirk Bryan J. Repollo|unknown|Barangay Captain|unknown|unknown
+51|Apol Ross G. Enriquez|unknown|Barangay Captain|unknown|unknown
+52|Nobie A. Cabatino|unknown|Barangay Captain|unknown|unknown
+53|Jay A. Bacalso|unknown|Barangay Captain|unknown|unknown
+54|Ester G. Concha|unknown|Barangay Captain|unknown|unknown
+55|Rosalita D. Callino|unknown|Barangay Captain|unknown|unknown
+56|Junah B. Abellanosa|unknown|Barangay Captain|unknown|unknown
+57|Gremar C. Barete|unknown|Barangay Captain|unknown|unknown
+58|Grace M. Duragos|unknown|Barangay Captain|unknown|unknown
+59|Norman A. Navarro|unknown|Barangay Captain|unknown|unknown
