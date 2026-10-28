@@ -1,0 +1,8 @@
+# Extra profile info (all optional). Format: id|photo|level|group|area
+# photo: a link, or a file in the photos folder (for example photos/3.jpg).
+# level and group: leave blank to detect them from the position. area: a district or place shown as a sub-heading.
+5||||Ilocos Norte, 1st District
+6||||Ilocos Norte
+7||||Leyte, 1st District
+11||||Davao City, 1st District
+12||||Davao City
