@@ -41,9 +41,12 @@ ul{margin:6px 0 0;padding-left:0;list-style:none}li{margin-bottom:4px}.ok{color:
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}
 .pc{display:flex;flex-direction:column;align-items:center;gap:6px;padding:16px 8px;background:var(--panel);border:1px solid var(--line);border-radius:12px;font:inherit;color:var(--ink);cursor:pointer;text-align:center}.pc:hover{box-shadow:0 4px 14px rgba(0,0,0,.14)}
 .av{position:relative;border-radius:50%;overflow:hidden;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;flex:none}.av img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-sup.cite{position:relative;font-size:.75em;margin-left:1px}sup.cite a{text-decoration:none;font-weight:600}
-sup.cite .tip{display:none;position:absolute;left:0;top:1.6em;z-index:20;width:210px;padding:8px;background:var(--panel);color:var(--ink);border:1px solid var(--line);border-radius:6px;font-size:12px;line-height:1.35;word-break:break-all;box-shadow:0 4px 14px rgba(0,0,0,.18)}
+sup.cite{position:relative;display:inline-block;font-size:.75em;line-height:1;margin-left:2px;vertical-align:super}
+sup.cite>a{font-weight:600;text-decoration:none;border-bottom:1px dotted currentColor}
+sup.cite>a:hover,sup.cite>a:focus{text-decoration:underline}
+sup.cite .tip{display:none;position:absolute;left:0;top:calc(100% + 5px);z-index:100;width:min(260px,70vw);padding:9px 10px;background:var(--panel);color:var(--ink);border:1px solid var(--line);border-radius:7px;font-size:12px;line-height:1.4;white-space:normal;overflow-wrap:anywhere;box-shadow:0 4px 14px rgba(0,0,0,.2)}
 sup.cite:hover .tip,sup.cite:focus-within .tip{display:block}
+sup.cite .tip a{display:inline-block;margin-top:4px;font-weight:400;overflow-wrap:anywhere}
 #modal{position:fixed;inset:0;background:rgba(0,0,0,.55);display:flex;justify-content:center;padding:20px 12px;overflow:auto;z-index:50}
 .mb{position:relative;background:var(--panel);border-radius:12px;width:min(720px,100%);padding:20px;margin:auto 0;height:fit-content}.x{position:absolute;right:10px;top:6px;font-size:26px;background:none;border:0;color:var(--mute);cursor:pointer}
 .ph{display:flex;gap:16px;align-items:center;margin-bottom:12px}.fg label{display:block;font-size:12px;color:var(--mute)}.rr{display:flex;gap:6px}.rr select{margin-bottom:6px}
@@ -197,7 +200,15 @@ const ini=n=>n.split(/\s+/).filter(w=>/^[A-Za-z]/.test(w)).map(w=>w[0]).slice(0,
 const av=(p,z)=>{const f=PF.get(p.id)||{},ph=/^(https?:\/\/|photos\/)/.test(f.photo||'')?f.photo:'';
 return`<div class="av" style="width:${z}px;height:${z}px;font-size:${Math.round(z/3)}px;background:${PAL[comp.get(p.id)%PAL.length]}"><span>${esc(ini(p.name))}</span>${ph?`<img src="${esc(ph)}" alt="${esc(p.name)}" loading="lazy">`:''}</div>`};
 document.addEventListener('error',e=>{if(e.target.tagName==='IMG'&&e.target.closest('.av'))e.target.remove()},true);
-function fmtRec(id,t){const m=SRC.get(id)||{};return esc(t).replace(/\[(\d+)\]/g,(x,n)=>{const s=m[n];return s&&/^https?:\/\//.test(s.u)?`<sup class="cite"><a href="${esc(s.u)}" target="_blank" rel="noopener noreferrer">[${n}]</a><span class="tip"><b>${esc(s.t)}</b><br>${esc(s.u)}</span></sup>`:x})}
+function fmtRec(id,t){
+  const m=SRC.get(id)||{};
+  return esc(t).replace(/\[(\d+)\]/g,(marker,n)=>{
+    const source=m[n];
+    if(!source||!/^https?:\/\//i.test(source.u||''))return marker;
+    const url=esc(source.u),title=esc(source.t||'Open source');
+    return `<sup class="cite"><a href="${url}" target="_blank" rel="noopener noreferrer" aria-label="Source ${n}: ${title}">[${n}]</a><span class="tip" role="tooltip"><b>[${n}] ${title}</b><br><a href="${url}" target="_blank" rel="noopener noreferrer">${url}</a></span></sup>`;
+  });
+}
 function srcList(id){const m=SRC.get(id);if(!m)return'';return'<div style="margin-top:8px">'+Object.keys(m).sort((a,b)=>a-b).map(n=>/^https?:\/\//.test(m[n].u)?`<div class="mute">[${n}] <a href="${esc(m[n].u)}" target="_blank" rel="noopener noreferrer">${esc(m[n].t)}</a></div>`:'').join('')+'</div>'}
 const chip=id=>`<button class="lk" data-go="${id}">${esc(byId.get(id).name)}</button>`;
 const nameOf=id=>byId.get(+id)?byId.get(+id).name:'?';
