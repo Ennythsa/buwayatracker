@@ -25,5 +25,6 @@
 23|Pia Cayetano|Not yet added|Senator|To be added|To be added
 24|test|Not yet added|Senator|To be added|To be added
 25|testing the test||Senator||
-26|Cesar B. Dolorito|unknown|Barangay Captain|unknown|unknown
+26|Cesar B. Dolorito|unknown|Barangay Captain|stan loona|unknown
 27|Isidro F. Tumulak Jr.|unknown|Barangay Captain|unknown|unknown
+28|Alejandro D. Borres|unknown|unknown|unknown|unknown
