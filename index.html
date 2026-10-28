@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cse.google.com https://www.google.com https://www.gstatic.com; style-src 'self' 'unsafe-inline' https://www.google.com https://fonts.googleapis.com; img-src 'self' data: blob: https:; connect-src 'self' https://api.github.com https://cse.google.com https://www.google.com; frame-src https://cse.google.com https://www.google.com; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://cse.google.com https://www.google.com https://www.gstatic.com; style-src 'self' 'unsafe-inline' https://www.google.com https://fonts.googleapis.com; img-src 'self' data: blob: https:; connect-src 'self' https://hfkwmqvbopizmzdkboan.supabase.co https://api.github.com https://cse.google.com https://www.google.com; frame-src https://cse.google.com https://www.google.com; object-src 'none'; base-uri 'none'; form-action 'none'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <title>Buwaya Tracker</title>
 <style>
@@ -76,14 +76,18 @@ aside{display:flex;flex-direction:column;min-height:0;background:var(--panel);bo
 <main id="v-tracker" hidden><section id="stage"><canvas id="cv"></canvas><div id="legend"></div></section><aside><div id="tabs"></div><div id="pane"></div></aside></main>
 <section id="v-cmp" hidden></section><section id="v-news" hidden></section><section id="v-data" hidden></section>
 <div id="modal" hidden><div class="mb"><button class="x" id="mx" aria-label="Close">×</button><div id="mc"></div></div></div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
+const SUPABASE_URL='https://hfkwmqvbopizmzdkboan.supabase.co',SUPABASE_ANON_KEY='sb_publishable_AIdhguufnXgAcSbq22V-1A_vAhcxfQn';   /* public key only, never a service_role key */
+const sb=window.supabase?window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY):null;
+const SFILES={};   /* data files saved in Supabase (table site_files); the .txt files are the fallback */
 const REPO0='ariehaku/bububububub',BRANCH='main',CSE_ID='';   /* CSE_ID: optional Google Programmable Search Engine ID */
 const _h=location.hostname,_p=location.pathname.split('/')[1];
 const REPO=_h.endsWith('.github.io')&&_p?_h.split('.')[0]+'/'+_p:REPO0;   /* detected from the site address */
 let DIR='data/',EDIT_URL='';
 const $=s=>document.querySelector(s);
 const txt=async f=>{const r=await fetch(f,{cache:'no-store'});if(!r.ok)throw new Error('Could not load '+f+' ('+r.status+')');return r.text()};
-const get=async f=>{try{return await txt(DIR+f)}catch(e){if(DIR){DIR='';return await txt(f)}throw e}};   /* data/ folder, or repo root */
+const get=async f=>{if(SFILES[f]!=null)return SFILES[f];try{return await txt(DIR+f)}catch(e){if(DIR){DIR='';return await txt(f)}throw e}};   /* data/ folder, or repo root */
 const rows=t=>t.split(/\r?\n/).map(l=>l.trim()).filter(l=>l&&l[0]!=='#').map(l=>l.split('|').map(x=>x.trim()));
 const sn=n=>{const w=n.split(/\s+/);let i=w.length-1;while(i>0&&/^(de|del|dela|delos|san|santa|van|von)$/i.test(w[i-1]))i--;return w.slice(i).join(' ')};
 async function main(){
@@ -96,28 +100,20 @@ const RAW={},HEAD={},SHA={};
 const lead=t=>{const o=[];for(const l of t.split(/\r?\n/)){const x=l.trim();if(x[0]==='#')o.push(x);else if(x)break}return o.join('\n')};
 const norm=(k,c)=>{const n=TB[k].size;c=c.slice(0,n-1).concat([c.slice(n-1).join('|')]);while(c.length<n)c.push('');return c};
 const parse=(k,t)=>{HEAD[k]=lead(t);RAW[k]=rows(t).map(c=>norm(k,c))};
+if(sb){try{const{data}=await sb.from('site_files').select('name,content');(data||[]).forEach(r=>{SFILES[r.name]=r.content})}catch(e){}}
 const T={pol:await get('politicians.txt')};
 for(const k of ['rel','news','src','prof'])T[k]=await get(TB[k].f).catch(()=>'');
 for(const k in T)parse(k,T[k]);
 EDIT_URL='https://github.com/'+REPO+'/edit/'+BRANCH+'/'+DIR;$('#contrib').href='https://github.com/'+REPO;
 
   
-/* ---------- admin session (GitHub token) ---------- */
-let tok=sessionStorage.getItem('bt-tok')||'',admin=false,idle=0,msg='';
-const api=(path,o={})=>fetch('https://api.github.com/'+path,{...o,headers:{Accept:'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28',Authorization:'Bearer '+tok,...(o.headers||{})}});
-const b64=s=>{let b='';new TextEncoder().encode(s).forEach(c=>{b+=String.fromCharCode(c)});return btoa(b)};
-const unb64=s=>new TextDecoder().decode(Uint8Array.from(atob(s.replace(/\s/g,'')),c=>c.charCodeAt(0)));
-function signOut(){tok='';admin=false;sessionStorage.removeItem('bt-tok');location.reload()}
-const bump=()=>{clearTimeout(idle);if(admin)idle=setTimeout(signOut,900000)};
+/* ---------- login (Supabase) ---------- */
+let user=null,admin=false,idle=0,msg='';
+async function signOut(){if(sb)await sb.auth.signOut();user=null;admin=false;location.reload()}
+const bump=()=>{clearTimeout(idle);if(user)idle=setTimeout(signOut,900000)};
 ['pointerdown','keydown'].forEach(ev=>document.addEventListener(ev,bump));
-async function signIn(t){tok=t.trim();const r=await api('repos/'+REPO);
-if(!r.ok)throw new Error(r.status===401?'That token was rejected.':'Could not open the repository ('+r.status+'). Check the token’s repository access.');
-const j=await r.json();if(j.permissions&&!j.permissions.push)throw new Error('This token has no write access to '+REPO+'.');
-for(const k in TB){const f=await api(`repos/${REPO}/contents/${DIR}${TB[k].f}?ref=${BRANCH}`);
-if(f.ok){const d=await f.json();SHA[k]=d.sha;parse(k,unb64(d.content))}else if(f.status===404){SHA[k]=undefined}else throw new Error('Could not load '+TB[k].f+' ('+f.status+')')}
-admin=true;sessionStorage.setItem('bt-tok',tok);bump()}
-if(tok){try{await signIn(tok)}catch(e){tok='';admin=false;sessionStorage.removeItem('bt-tok')}}   /* admins always see the freshest data */
-$('#adm').textContent=admin?'Sign out (admin)':'Admin sign in';
+if(sb){try{const r=await sb.auth.getUser();user=r.data?.user||null;if(user){const{data}=await sb.from('profiles').select('role').eq('id',user.id).maybeSingle();admin=data?.role==='admin';bump()}}catch(e){}}   /* admin = role in the profiles table */
+$('#adm').textContent=admin?'Sign out (admin)':user?'Sign out':'Sign in';
 const P=RAW.pol.filter(c=>/^\d+$/.test(c[0])&&c[1]).map(c=>({id:+c[0],name:c[1],party:c[2],pos:c[3],plat:c[4],rec:c[5],s:sn(c[1])}));
 const ids=new Set(P.map(p=>p.id));
 const R=RAW.rel.filter(c=>ids.has(+c[0])&&ids.has(+c[1])&&['spouse','parent','sibling','cousin'].includes(c[2])).map(c=>[+c[0],+c[1],c[2]]);
@@ -233,7 +229,7 @@ $('#mc').innerHTML=`<h2>${id?'Edit profile':'Add profile'} <span class="mute">#$
 <label>Platform (max 300)<textarea id="f-plat" maxlength="300">${ph(p.plat)}</textarea></label>
 <label>Track record (max 300; add [1], [2] for sources listed on the Data tab)<textarea id="f-rec" maxlength="300">${ph(p.rec)}</textarea></label></div>
 <b>Relations</b> <span class="mute">(optional)</span><div id="rl">${rl.map(x=>relRow(x[0],x[1])).join('')}</div><button class="lk" type="button" data-ar>+ Add a relation</button>
-<p><button class="btn" data-save>Save to GitHub</button> <button class="btn2" data-cancel>Cancel</button></p><div class="ok" id="ms"></div>`;
+<p><button class="btn" data-save>Save</button> <button class="btn2" data-cancel>Cancel</button></p><div class="ok" id="ms"></div>`;
 $('#modal').hidden=false}
 const st=m=>{const e=$('#ms');if(e)e.textContent=m};
 const setRow=(k,id,row)=>{const i=RAW[k].findIndex(r=>+r[0]===id);if(i>=0)RAW[k][i]=row;else RAW[k].push(row)};
@@ -245,10 +241,10 @@ document.querySelectorAll('#mc .rr').forEach(r=>{const o=r.querySelector('.rp').
 st('Saving…');for(const k of ['pol','prof','rel']){const er=await commit(k);if(er){st('Not saved: '+er);return}}
 st('Saved. Reloading…');location.reload()}
 async function upPhoto(f){const im=await createImageBitmap(f),s=Math.min(1,480/Math.max(im.width,im.height)),c=document.createElement('canvas');c.width=Math.round(im.width*s);c.height=Math.round(im.height*s);c.getContext('2d').drawImage(im,0,0,c.width,c.height);
-const bl=await new Promise(r=>c.toBlob(r,'image/jpeg',.85));let bin='';new Uint8Array(await bl.arrayBuffer()).forEach(x=>{bin+=String.fromCharCode(x)});
-const path='photos/'+curEdit+'.jpg',ex=await api(`repos/${REPO}/contents/${path}?ref=${BRANCH}`),sha=ex.ok?(await ex.json()).sha:undefined;
-const r=await api(`repos/${REPO}/contents/${path}`,{method:'PUT',body:JSON.stringify({message:'Add photo '+path,content:btoa(bin),sha,branch:BRANCH})});
-if(r.ok){$('#f-photo').value=path;$('#f-prev').innerHTML=`<img src="${URL.createObjectURL(bl)}" alt="" width="90" style="border-radius:50%">`;st('Photo uploaded.')}else st('Photo upload failed ('+r.status+').')}
+const bl=await new Promise(r=>c.toBlob(r,'image/jpeg',.85));if(!sb){st('Supabase is not configured.');return}
+const path=curEdit+'-'+Date.now()+'.jpg',{error}=await sb.storage.from('photos').upload(path,bl,{contentType:'image/jpeg'});
+if(error){st('Photo upload failed: '+error.message);return}
+$('#f-photo').value=sb.storage.from('photos').getPublicUrl(path).data.publicUrl;$('#f-prev').innerHTML=`<img src="${URL.createObjectURL(bl)}" alt="" width="90" style="border-radius:50%">`;st('Photo uploaded. Press Save to keep it.')}
 $('#modal').addEventListener('click',e=>{const t=e.target;if(t.id==='modal'||t.id==='mx'||t.dataset.cancel!==undefined)closeM();
 else if(t.dataset.rx!==undefined)t.closest('.rr').remove();
 else if(t.dataset.ar!==undefined)$('#rl').insertAdjacentHTML('beforeend',relRow('','spouse'));
@@ -311,27 +307,30 @@ return e}
 async function commit(k){const rs=clean(k),er=validate(k,rs);if(er.length)return er.slice(0,6).join(' · ');RAW[k]=rs;
 if(k==='prof'&&!HEAD.prof)HEAD.prof='# Extra profile info. Format: id|photo (link or photos/file.jpg)|level|group|area\n# Leave level and group blank to detect them from the position.';
 const text=(HEAD[k]?HEAD[k]+'\n':'')+rs.map(r=>r.join('|')).join('\n')+'\n';
-const r=await api(`repos/${REPO}/contents/${DIR}${TB[k].f}`,{method:'PUT',body:JSON.stringify({message:'Update '+TB[k].f+' from the admin page',content:b64(text),sha:SHA[k],branch:BRANCH})});
-if(r.ok){SHA[k]=(await r.json()).content.sha;return''}
-return(r.status===409||r.status===422)?'GitHub has a newer version of '+TB[k].f+'. Sign out, sign in again and retry.':'Save failed ('+r.status+').'}
+if(!sb)return'Supabase is not configured.';
+const{error}=await sb.from('site_files').upsert({name:TB[k].f,content:text,updated_at:new Date().toISOString()});
+return error?error.message:''}
 function fmtCell(r,c,v){if(dk==='pol'&&c===5)return fmtRec(+RAW.pol[r][0],v);
 if(dk==='rel'&&c<2)return esc(v)+' <span class="mute">'+esc(nameOf(v))+'</span>';
 if(/^https?:\/\//.test(v)&&((dk==='news'&&c===4)||(dk==='src'&&c===3)))return`<a href="${esc(v)}" target="_blank" rel="noopener noreferrer">${esc(dk==='src'?v:'link')}</a>`;return esc(v)}
 function rData(){const t=TB[dk],rs=RAW[dk];
-const bar=admin?`<div class="card">Signed in as admin. Edit the cells, then press <b>Save to GitHub</b>. Nothing is saved until you do. You are signed out after 15 idle minutes. Tip: use <b>+ Add profile</b> on the Directory page for a friendlier form.</div>`
-:`<div class="card"><b>Admin sign in</b><div class="mute" style="margin:4px 0 8px">Only people with write access to the GitHub repository <code>${esc(REPO)}</code> can edit. Paste a fine-grained access token with “Contents: Read and write” for this repository. It stays in this browser tab only. Public sign-up isn’t available because this site has no server.</div><input id="tk" type="password" autocomplete="off" placeholder="GitHub token (github_pat_…)"> <button class="btn" id="si">Sign in</button></div>`;
+const bar=admin?`<div class="card">Signed in as admin. Edit the cells, then press <b>Save</b>. Nothing is saved until you do. You are signed out after 15 idle minutes. Tip: use <b>+ Add profile</b> on the Directory page for a friendlier form.</div>`
+:user?`<div class="card"><b>Signed in as ${esc(user.email||'')}</b><div class="mute" style="margin:4px 0 8px">Visitor access: you can read everything but not edit. An admin role is set in Supabase (profiles table).</div><button class="btn" id="so">Sign out</button></div>`
+:`<div class="card"><b>Sign in</b><div class="mute" style="margin:4px 0 8px">Sign in or create an account. New accounts are visitors; admins are set in Supabase.</div><input id="em" type="email" autocomplete="email" placeholder="Email"><input id="pw" type="password" autocomplete="current-password" placeholder="Password (8+ characters)"><button class="btn" id="si">Sign in</button> <button class="btn2" id="su">Create account</button></div>`;
 const cell=(r,c,v)=>admin?`<input data-r="${r}" data-c="${c}" value="${esc(v)}" style="min-width:${t.w[c]}px">`:fmtCell(r,c,v);
 $('#v-data').innerHTML=`<div class="wrap"><h1>Data tables</h1><p class="mute">The same information as the text files in the <code>${esc(DIR||'repository root')}</code>, shown as tables.</p><div class="chips">${Object.keys(TB).map(k=>`<button data-dk="${k}" class="${k===dk?'on':''}">${TB[k].n}</button>`).join('')}</div>${msg?`<div class="card">${msg}</div>`:''}${bar}
 <div class="tw"><table class="dt"><thead><tr>${t.cols.map(c=>`<th>${esc(c)}</th>`).join('')}${admin?'<th></th>':''}</tr></thead><tbody>${rs.map((r,i)=>`<tr>${r.map((v,c)=>`<td>${cell(i,c,v)}</td>`).join('')}${admin?`<td><button class="lk" data-del="${i}">Delete</button></td>`:''}</tr>`).join('')||'<tr><td class="mute">No rows.</td></tr>'}</tbody></table></div>
-${admin?'<p><button class="btn" data-add="1">Add row</button> <button class="btn" data-save="1">Save to GitHub</button></p>':''}</div>`;msg=''}
+${admin?'<p><button class="btn" data-add="1">Add row</button> <button class="btn" data-save="1">Save</button></p>':''}</div>`;msg=''}
 $('#v-data').addEventListener('input',e=>{const t=e.target;if(t.dataset.r!==undefined)RAW[dk][+t.dataset.r][+t.dataset.c]=t.value});
 $('#v-data').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;const d=b.dataset;
 if(d.dk){dk=d.dk;rData()}
 else if(d.del!==undefined){RAW[dk].splice(+d.del,1);rData()}
 else if(d.add){const r=Array(TB[dk].size).fill('');if(dk==='pol'){r[0]=String(Math.max(0,...RAW.pol.map(x=>+x[0]||0))+1);r[2]='Not yet added';r[4]='To be added';r[5]='To be added'}if(dk==='rel')r[2]='spouse';if(dk==='news')r[0]=new Date().toISOString().slice(0,10);if(dk==='src')r[1]='1';RAW[dk].push(r);rData()}
-else if(d.save){commit(dk).then(er=>{msg=er?'<b>Not saved.</b> '+esc(er):'Saved '+esc(TB[dk].f)+' to GitHub. Reload the page to see it everywhere.';rData()}).catch(er=>{msg='Network error: '+esc(er.message);rData()})}
-else if(b.id==='si'){const v=$('#tk').value;if(!v.trim())return;b.disabled=true;signIn(v).then(()=>location.reload()).catch(er=>{tok='';msg='<b>Sign in failed.</b> '+esc(er.message);rData()})}});
-$('#adm').onclick=()=>{if(admin)signOut();else show('data')};
+else if(d.save){commit(dk).then(er=>{msg=er?'<b>Not saved.</b> '+esc(er):'Saved '+esc(TB[dk].f)+' Reload the page to see it everywhere.';rData()}).catch(er=>{msg='Network error: '+esc(er.message);rData()})}
+else if(b.id==='si'||b.id==='su'){const em=$('#em').value.trim(),pw=$('#pw').value,up=b.id==='su';if(!em||!pw||!sb)return;b.disabled=true;
+(up?sb.auth.signUp({email:em,password:pw}):sb.auth.signInWithPassword({email:em,password:pw})).then(({error})=>{if(error){msg='<b>'+(up?'Sign up':'Sign in')+' failed.</b> '+esc(error.message);rData();return}if(up){msg='Account created. Check your email if confirmation is enabled, then sign in.';rData()}else location.reload()}).catch(er=>{msg='Network error: '+esc(er.message);rData()})}
+else if(b.id==='so')signOut();});
+$('#adm').onclick=()=>{if(user)signOut();else show('data')};
 /* ---------- home ---------- */
 const newsCard=n=>{const d=new Date(n.date+'T00:00:00'),ds=isNaN(d)?n.date:d.toLocaleDateString('en-US',{year:'numeric',month:'short',day:'numeric'}),p=byId.get(+n.pid);
 return`<div class="card"><span class="tag">${esc(n.cat)}</span><span class="mute">${esc(ds)}</span><h3>${esc(n.title)}</h3><div>${esc(n.sum)}</div><div style="margin-top:6px">${/^https?:\/\//.test(n.link)?`<a href="${esc(n.link)}" target="_blank" rel="noopener noreferrer">Read more</a> `:''}${p?`<button class="lk" data-go="${p.id}">Profile: ${esc(p.name)}</button>`:''}</div></div>`};
