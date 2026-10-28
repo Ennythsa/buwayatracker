@@ -65,10 +65,13 @@ aside{display:flex;flex-direction:column;min-height:0;background:var(--panel);bo
 @media (max-width:760px){.hw,.cols,.c3,.c2{grid-template-columns:1fr}.hero h1{font-size:28px}#v-tracker{grid-template-columns:1fr;grid-template-rows:48% 1fr}aside{border-left:0;border-top:1px solid var(--line)}.vs{margin:4px auto}}
 </style>
 </head>
+
+
+  
 <body>
 <header class="bar"><div class="brand"><div class="logo">BT</div><div><b>Buwaya Tracker</b><div class="mute">A community-run tracker of Philippine politicians</div></div></div>
 <div id="top"><button data-show="home">Home</button><button data-show="dir">Directory</button><button data-show="tracker">Dynasty graph</button><button data-show="cmp">Compare</button><button data-show="news">News search</button><button data-show="data">Data</button><button id="adm">Admin sign in</button></div></header>
-<div class="ban"><b>Help keep it accurate</b><span>Pinakakurakot sa T1</span><a class="byel" id="contrib" target="_blank" rel="noopener noreferrer">Contribute →</a></div>
+<div class="ban"><b>Pinakakurakot sa T1</b><a class="byel" id="contrib" target="_blank" rel="noopener noreferrer">Contribute →</a></div>
 <section id="v-home"></section><section id="v-dir" hidden></section>
 <main id="v-tracker" hidden><section id="stage"><canvas id="cv"></canvas><div id="legend"></div></section><aside><div id="tabs"></div><div id="pane"></div></aside></main>
 <section id="v-cmp" hidden></section><section id="v-news" hidden></section><section id="v-data" hidden></section>
@@ -97,6 +100,8 @@ const T={pol:await get('politicians.txt')};
 for(const k of ['rel','news','src','prof'])T[k]=await get(TB[k].f).catch(()=>'');
 for(const k in T)parse(k,T[k]);
 EDIT_URL='https://github.com/'+REPO+'/edit/'+BRANCH+'/'+DIR;$('#contrib').href='https://github.com/'+REPO;
+
+  
 /* ---------- admin session (GitHub token) ---------- */
 let tok=sessionStorage.getItem('bt-tok')||'',admin=false,idle=0,msg='';
 const api=(path,o={})=>fetch('https://api.github.com/'+path,{...o,headers:{Accept:'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28',Authorization:'Bearer '+tok,...(o.headers||{})}});
