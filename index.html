@@ -43,7 +43,7 @@ ul{margin:6px 0 0;padding-left:0;list-style:none}li{margin-bottom:4px}.ok{color:
 .av{position:relative;border-radius:50%;overflow:hidden;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;flex:none}.av img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 sup.cite{position:relative;font-size:.75em;margin-left:1px}sup.cite a{text-decoration:none;font-weight:600}
 sup.cite .tip{display:none;position:absolute;left:0;top:1.6em;z-index:20;width:210px;padding:8px;background:var(--panel);color:var(--ink);border:1px solid var(--line);border-radius:6px;font-size:12px;line-height:1.35;word-break:break-all;box-shadow:0 4px 14px rgba(0,0,0,.18)}
-sup.cite:hover .tip,sup.cite:focus-within .tip,sup.cite.open .tip{display:block}sup.cite .tip::before{content:'';position:absolute;left:0;right:0;top:-14px;height:14px}sup.cite .tip{max-width:70vw;top:1.2em}sup.cite .tip a{word-break:break-all;font-weight:400}.si{display:flex;gap:6px;flex-wrap:wrap;margin:-2px 0 8px}.si button{padding:2px 9px}
+sup.cite:hover .tip,sup.cite:focus-within .tip{display:block}
 #modal{position:fixed;inset:0;background:rgba(0,0,0,.55);display:flex;justify-content:center;padding:20px 12px;overflow:auto;z-index:50}
 .mb{position:relative;background:var(--panel);border-radius:12px;width:min(720px,100%);padding:20px;margin:auto 0;height:fit-content}.x{position:absolute;right:10px;top:6px;font-size:26px;background:none;border:0;color:var(--mute);cursor:pointer}
 .ph{display:flex;gap:16px;align-items:center;margin-bottom:12px}.fg label{display:block;font-size:12px;color:var(--mute)}.rr{display:flex;gap:6px}.rr select{margin-bottom:6px}
@@ -197,7 +197,7 @@ const ini=n=>n.split(/\s+/).filter(w=>/^[A-Za-z]/.test(w)).map(w=>w[0]).slice(0,
 const av=(p,z)=>{const f=PF.get(p.id)||{},ph=/^(https?:\/\/|photos\/)/.test(f.photo||'')?f.photo:'';
 return`<div class="av" style="width:${z}px;height:${z}px;font-size:${Math.round(z/3)}px;background:${PAL[comp.get(p.id)%PAL.length]}"><span>${esc(ini(p.name))}</span>${ph?`<img src="${esc(ph)}" alt="${esc(p.name)}" loading="lazy">`:''}</div>`};
 document.addEventListener('error',e=>{if(e.target.tagName==='IMG'&&e.target.closest('.av'))e.target.remove()},true);
-function fmtRec(id,t){const m=SRC.get(id)||{};return esc(t).replace(/\[(\d+)\]/g,(x,n)=>{const s=m[n];return s&&/^https?:\/\//.test(s.u)?`<sup class="cite"><a href="${esc(s.u)}" target="_blank" rel="noopener noreferrer">[${n}]</a><span class="tip"><b>${esc(s.t)}</b><br><a href="${esc(s.u)}" target="_blank" rel="noopener noreferrer">${esc(s.u)}</a></span></sup>`:x})}
+function fmtRec(id,t){const m=SRC.get(id)||{};return esc(t).replace(/\[(\d+)\]/g,(x,n)=>{const s=m[n];return s&&/^https?:\/\//.test(s.u)?`<sup class="cite"><a href="${esc(s.u)}" target="_blank" rel="noopener noreferrer">[${n}]</a><span class="tip"><b>${esc(s.t)}</b><br>${esc(s.u)}</span></sup>`:x})}
 function srcList(id){const m=SRC.get(id);if(!m)return'';return'<div style="margin-top:8px">'+Object.keys(m).sort((a,b)=>a-b).map(n=>/^https?:\/\//.test(m[n].u)?`<div class="mute">[${n}] <a href="${esc(m[n].u)}" target="_blank" rel="noopener noreferrer">${esc(m[n].t)}</a></div>`:'').join('')+'</div>'}
 const chip=id=>`<button class="lk" data-go="${id}">${esc(byId.get(id).name)}</button>`;
 const nameOf=id=>byId.get(+id)?byId.get(+id).name:'?';
@@ -227,22 +227,18 @@ $('#mc').innerHTML=`<h2>${id?'Edit profile':'Add profile'} <span class="mute">#$
 <label>Group (blank = detect, e.g. City Councilors)<input id="f-gr" value="${esc(f.group||'')}"></label>
 <label>Area / district (e.g. Cebu City, 1st District)<input id="f-area" value="${esc(f.area||'')}"></label>
 <label>Platform (max 300)<textarea id="f-plat" maxlength="300">${ph(p.plat)}</textarea></label>
-<label>Track record (max 300). Type [1], [2]… after a statement, or use the buttons below<textarea id="f-rec" maxlength="300">${ph(p.rec)}</textarea></label>
-<div class="si" id="f-ins"></div>
-<label>Sources, one per line: Title | https://link (numbered 1, 2, 3… in order)<textarea id="f-src" placeholder="Senate record | https://example.com/page">${Object.keys(SRC.get(id)||{}).sort((a,b)=>a-b).map(n=>SRC.get(id)[n].t+' | '+SRC.get(id)[n].u).join('\n')}</textarea></label></div>
+<label>Track record (max 300; add [1], [2] for sources listed on the Data tab)<textarea id="f-rec" maxlength="300">${ph(p.rec)}</textarea></label></div>
 <b>Relations</b> <span class="mute">(optional)</span><div id="rl">${rl.map(x=>relRow(x[0],x[1])).join('')}</div><button class="lk" type="button" data-ar>+ Add a relation</button>
 <p><button class="btn" data-save>Save</button> <button class="btn2" data-cancel>Cancel</button></p><div class="ok" id="ms"></div>`;
-$('#modal').hidden=false;insBtns()}
-function insBtns(){const n=$('#f-src').value.split(/\r?\n/).filter(l=>/\|\s*https?:\/\//.test(l)).length;$('#f-ins').innerHTML=n?'<span class="mute">Insert citation:</span>'+Array.from({length:n},(_,i)=>`<button class="btn2" type="button" data-ins="${i+1}">[${i+1}]</button>`).join(''):''}
+$('#modal').hidden=false}
 const st=m=>{const e=$('#ms');if(e)e.textContent=m};
 const setRow=(k,id,row)=>{const i=RAW[k].findIndex(r=>+r[0]===id);if(i>=0)RAW[k][i]=row;else RAW[k].push(row)};
 async function saveProf(){const g=s=>$('#'+s).value.trim(),id=curEdit;
 setRow('pol',id,[String(id),g('f-name'),g('f-party')||'Not yet added',g('f-pos'),g('f-plat')||'To be added',g('f-rec')||'To be added']);
 setRow('prof',id,[String(id),g('f-photo'),g('f-lv'),g('f-gr'),g('f-area')]);
-RAW.src=RAW.src.filter(r=>+r[0]!==id);let sn_=0;$('#f-src').value.split(/\r?\n/).forEach(l=>{const i=l.indexOf('|');if(i<0)return;const t=l.slice(0,i).trim(),u=l.slice(i+1).trim();if(t&&/^https?:\/\//.test(u))RAW.src.push([String(id),String(++sn_),t,u])});
 RAW.rel=RAW.rel.filter(r=>+r[0]!==id&&+r[1]!==id);
 document.querySelectorAll('#mc .rr').forEach(r=>{const o=r.querySelector('.rp').value,t=r.querySelector('.rt').value;if(!o)return;if(t==='child')RAW.rel.push([o,String(id),'parent']);else RAW.rel.push([String(id),o,t])});
-st('Saving…');for(const k of ['pol','prof','rel','src']){const er=await commit(k);if(er){st('Not saved: '+er);return}}
+st('Saving…');for(const k of ['pol','prof','rel']){const er=await commit(k);if(er){st('Not saved: '+er);return}}
 st('Saved. Reloading…');location.reload()}
 async function upPhoto(f){const im=await createImageBitmap(f),s=Math.min(1,480/Math.max(im.width,im.height)),c=document.createElement('canvas');c.width=Math.round(im.width*s);c.height=Math.round(im.height*s);c.getContext('2d').drawImage(im,0,0,c.width,c.height);
 const bl=await new Promise(r=>c.toBlob(r,'image/jpeg',.85));if(!sb){st('Supabase is not configured.');return}
@@ -252,9 +248,7 @@ $('#f-photo').value=sb.storage.from('photos').getPublicUrl(path).data.publicUrl;
 $('#modal').addEventListener('click',e=>{const t=e.target;if(t.id==='modal'||t.id==='mx'||t.dataset.cancel!==undefined)closeM();
 else if(t.dataset.rx!==undefined)t.closest('.rr').remove();
 else if(t.dataset.ar!==undefined)$('#rl').insertAdjacentHTML('beforeend',relRow('','spouse'));
-else if(t.dataset.ins){const a=$('#f-rec'),i=a.selectionStart??a.value.length,v='['+t.dataset.ins+']';a.value=a.value.slice(0,i)+v+a.value.slice(a.selectionEnd??i);a.focus();a.selectionStart=a.selectionEnd=i+v.length}
 else if(t.dataset.save!==undefined)saveProf().catch(er=>st('Error: '+er.message))});
-$('#modal').addEventListener('input',e=>{if(e.target.id==='f-src')insBtns()});
 $('#modal').addEventListener('change',e=>{if(e.target.id==='f-file'&&e.target.files[0])upPhoto(e.target.files[0]).catch(er=>st('Upload failed: '+er.message))});
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeM()});
 /* ---------- directory ---------- */
@@ -369,7 +363,6 @@ else if(d.dg)openProf(dyn[+d.dg].m[0]);
 else if(d.edit)openEdit(d.edit==='new'?null:+d.edit);
 else if(d.graph){closeM();sel=+d.graph;show('tracker');go('dyn')}
 else if(d.cmpw){const v=+$('#cw').value;if(v){cA=+d.cmpw;cB=v;closeM();show('cmp')}}});
-document.addEventListener('click',e=>{const a=e.target.closest('sup.cite>a');document.querySelectorAll('sup.cite.open').forEach(x=>{if(!a||x!==a.parentNode)x.classList.remove('open')});if(a&&matchMedia('(hover:none)').matches&&!a.parentNode.classList.contains('open')){e.preventDefault();a.parentNode.classList.add('open')}});
 window.addEventListener('hashchange',()=>show(location.hash.slice(1)));
 rHome();show(location.hash.slice(1));
 }
