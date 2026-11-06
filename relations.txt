@@ -1,7 +1,4 @@
-# Auto-generated from Supabase by .github/workflows/sync-supabase-txt.yml
-# Family links between politicians. Format: id|id|type
-# Types: spouse, parent, sibling, cousin. For "parent", the FIRST id is the parent.
-# IDs come from politicians.txt. Lines starting with # are ignored.
+# relations - auto-generated from Supabase. Do not edit by hand.
 4|6|parent
 17|19|parent
 16|18|parent

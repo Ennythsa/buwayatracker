@@ -1,5 +1,4 @@
-# Auto-generated from Supabase by .github/workflows/sync-supabase-txt.yml
-# Format: id|name|party|position|platform|track record
+# politicians - auto-generated from Supabase. Do not edit by hand.
 1|Ferdinand Marcos Sr.|Not yet added|Former President|To be added|To be added
 2|Imelda Marcos|Not yet added|Former First Lady|To be added|To be added
 3|Bongbong Marcos|Not yet added|President|To be added|To be added
@@ -58,26 +57,26 @@
 58|Grace M. Duragos|unknown|Barangay Captain|unknown|unknown
 59|Norman A. Navarro|unknown|Barangay Captain|unknown|unknown
 60|Cesar B. Dolorito|unknown|Barangay Captain|unknown|unknown
-61|Gemma B. Arcayan|(BO-PK)|barangay captain|agriculture and community livelihood projects|N/A
-62|Pedro P. Damaolao|N/A|barangay captain|Access to Clean Water and Public Safety and Order|N/A
-63|Virgil "Jingjing" Cabigon|(BO-PK)|barangay captain|Establishing an "Action Team" and Disaster Prevention and Drainage Clearing|Corruption Charges Complaint, Administrative and Criminal Complaints
-64|Winston Pepito|Partido Kusug|barangay captain|Digitalization of City Hall Services, Education and Scholarships, and Infrastructure Acceleration|N/A
-65|Greg B. Yap|N/A|barangay captain|No Complete Platform Founds|N/A
-66|Viviane O. Ruste|N/A|barangay captain|Conditional Support for Waste-to-Energy (WTE) and Health and Community Services|N/A
-67|Nerissa G. Antolihao|N/A|barangay captain|Participatory Development Planning, Anti-Gambling and Anti-Drugs Campaign and, Livelihood and Community Development|N/A
-68|Eliodoro "Yody" A. Sanchez|Partido Barug|barangay captain|Road Safety Appeals, Illegal Construction Issues|Gulity of Simple Misconduct
-69|Reynald A. Lauron|Lakas–CMD|barangay captain|Agricultural Support, Opposition to Waste-to-Energy Facility, Community Livelihood Programs|N/A
-70|Kelly Quijada|N/A|barangay captain|Disaster Response and Community Safety, Environmental Protection, Infrastructure Coordination|N/A
-71|Antonio Conahap|N/A|barangay captain|Anti-Drug Campaign, Community Welfare|N/A
-72|Omar Durano|N/A|barangay captain|Infrastructure and Facilities, Community Safety and Disaster Preparedness, Equipment and Services|warrant of arrest for violation of the Anti-Graft and Corrupt Practices Act
-73|Freddie T. Esmas|(BO-PK)|barangay captain|Disaster Preparedness and Response, Anti-Drug Campaign, Anti-Drug Campaign, Livelihood and Social Assistance|N/A
-74|Hon. Rica G. Jayme|N/A|barangay captain|No Complete Platform Found|N/A
-75|Orlan B. Herrera|N/A|barangay captain|Infrastructure and Basic Services, WTE Project Position|N/A
-76|Ruperto "Dondon" Bacolod|N/A|barangay captain|Infrastructure Improvement, Disaster Preparedness, Resident Welfare|N/A
-77|Rex Y. Millan|Partido Barug, LPD|barangay captain|Concern for Barangay Operations, Support for Education and Youth, Commitment to Public Safety|N/A
-78|Raquel E. Avila|Barug PDP-Laban|barangay captain|"Reform Kamagayan", Infrastructure and Social Services, Relocation Site Support|Illegal Gambling Accusations, Usurpation of Authority Complaint
+61|Gemma B. Arcayan|(BO-PK)|Barangay Captain|agriculture and community livelihood projects|N/A
+62|Pedro P. Damaolao|N/A|Barangay Captain|Access to Clean Water and Public Safety and Order|N/A
+63|Virgil "Jingjing" Cabigon|(BO-PK)|Barangay Captain|Establishing an "Action Team" and Disaster Prevention and Drainage Clearing|Corruption Charges Complaint, Administrative and Criminal Complaints
+64|Winston Pepito|Partido Kusug|Barangay Captain|Digitalization of City Hall Services, Education and Scholarships, and Infrastructure Acceleration|N/A
+65|Greg B. Yap|N/A|Barangay Captain|No Complete Platform Founds|N/A
+66|Viviane O. Ruste|N/A|Barangay Captain|Conditional Support for Waste-to-Energy (WTE) and Health and Community Services|N/A
+67|Nerissa G. Antolihao|N/A|Barangay Captain|Participatory Development Planning, Anti-Gambling and Anti-Drugs Campaign and, Livelihood and Community Development|N/A
+68|Eliodoro "Yody" A. Sanchez|Partido Barug|Barangay Captain|Road Safety Appeals, Illegal Construction Issues|Gulity of Simple Misconduct
+69|Reynald A. Lauron|Lakas–CMD|Barangay Captain|Agricultural Support, Opposition to Waste-to-Energy Facility, Community Livelihood Programs|N/A
+70|Kelly Quijada|N/A|Barangay Captain|Disaster Response and Community Safety, Environmental Protection, Infrastructure Coordination|N/A
+71|Antonio Conahap|N/A|Barangay Captain|Anti-Drug Campaign, Community Welfare|N/A
+72|Omar Durano|N/A|Barangay Captain|Infrastructure and Facilities, Community Safety and Disaster Preparedness, Equipment and Services|warrant of arrest for violation of the Anti-Graft and Corrupt Practices Act
+73|Freddie T. Esmas|(BO-PK)|Barangay Captain|Disaster Preparedness and Response, Anti-Drug Campaign, Anti-Drug Campaign, Livelihood and Social Assistance|N/A
+74|Hon. Rica G. Jayme|N/A|Barangay Captain|No Complete Platform Found|N/A
+75|Orlan B. Herrera|N/A|Barangay Captain|Infrastructure and Basic Services, WTE Project Position|N/A
+76|Ruperto "Dondon" Bacolod|N/A|Barangay Captain|Infrastructure Improvement, Disaster Preparedness, Resident Welfare|N/A
+77|Rex Y. Millan|Partido Barug, LPD|Barangay Captain|Concern for Barangay Operations, Support for Education and Youth, Commitment to Public Safety|N/A
+78|Raquel E. Avila|Barug PDP-Laban|Barangay Captain|"Reform Kamagayan", Infrastructure and Social Services, Relocation Site Support|Illegal Gambling Accusations, Usurpation of Authority Complaint
 79|Harold Go|Partido Kusug|barangay captain|Transportation and Traffic, Consumer Protection and Water Services, Public Safety, Fiscal Responsibility|N/A
-80|Franklyn Ong|Partido Barug, LPD|barangay captain|Barangay Welfare and Services, Waste Management Solutions, Fiscal Responsibility|N/A
-81|Hazel Ann M. Empleo|N/A|barangay captain|Mental Health Services, Community Safety and Recovery|N/A
-82|Nilo Dela Cerna|N/A|barangay captain|Housing Resettlement, Flood Prevention and Canal Cleaning|Accused of killing a barangay Tanod
-83|Agustin P. Partulan|(BO-PK)|barangay captain|Disaster Response and Recovery, Environmental Management|Arrested for illegal possession of firearms.
+80|Franklyn Ong|Partido Barug, LPD|Barangay Captain|Barangay Welfare and Services, Waste Management Solutions, Fiscal Responsibility|N/A
+81|Hazel Ann M. Empleo|N/A|Barangay Captain|Mental Health Services, Community Safety and Recovery|N/A
+82|Nilo Dela Cerna|N/A|Barangay Captain|Housing Resettlement, Flood Prevention and Canal Cleaning|Accused of killing a barangay Tanod
+83|Agustin P. Partulan|(BO-PK)|Barangay Captain|Disaster Response and Recovery, Environmental Management|Arrested for illegal possession of firearms.
