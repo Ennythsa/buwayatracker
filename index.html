@@ -121,7 +121,7 @@ if(sb){try{const r=await sb.auth.getUser();user=r.data?.user||null;if(user){cons
 $('#adm').textContent=admin?'Sign out (admin)':user?'Sign out':'Sign in';
 const P=RAW.pol.filter(c=>/^\d+$/.test(c[0])&&c[1]).map(c=>({id:+c[0],name:c[1],party:c[2],pos:c[3],plat:c[4],rec:c[5],s:sn(c[1])}));
 const ids=new Set(P.map(p=>p.id));
-const R=RAW.rel.filter(c=>ids.has(+c[0])&&ids.has(+c[1])&&['spouse','parent','sibling','cousin'].includes(c[2])).map(c=>[+c[0],+c[1],c[2]]);
+const R=RAW.rel.filter(c=>ids.has(+c[0])&&ids.has(+c[1])&&['spouse','parent','sibling','cousin','ally','other'].includes(c[2])).map(c=>[+c[0],+c[1],c[2]]);
 const NEWS=RAW.news.filter(c=>c[0]&&c[2]).map(c=>({date:c[0],cat:c[1],title:c[2],sum:c[3],link:c[4],pid:c[5]})).sort((a,b)=>b.date.localeCompare(a.date));
 const SRC=new Map();RAW.src.forEach(c=>{if(/^\d+$/.test(c[0])&&/^\d+$/.test(c[1])){const m=SRC.get(+c[0])||{};m[+c[1]]={t:c[2],u:c[3]};SRC.set(+c[0],m)}});
 const PF=new Map(RAW.prof.filter(c=>/^\d+$/.test(c[0])).map(c=>[+c[0],{photo:c[1],level:c[2],group:c[3],area:c[4]}]));
