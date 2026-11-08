@@ -9,7 +9,7 @@
 7|Martin Romualdez|Not yet added|Leyte Congressman|To be added|To be added
 8|Vicente Duterte|Not yet added|Former Davao Governor|To be added|To be added
 9|Rodrigo Duterte|Not yet added|Former President|To be added|To be added
-10|Sara Duterte|Not yet added|Vice President|To be added|To be added
+10|Sara Duterte|Not yet added|Vice President|To be added|this is a test [1]
 11|Paolo Duterte|Not yet added|Davao City Congressman|To be added|To be added
 12|Sebastian Duterte|Not yet added|Davao City Mayor|To be added|To be added
 13|Joseph Estrada|Not yet added|Former President|To be added|To be added
@@ -23,61 +23,80 @@
 21|Erwin Tulfo|Not yet added|Senator|To be added|To be added
 22|Alan Peter Cayetano|Not yet added|Senator|To be added|To be added
 23|Pia Cayetano|Not yet added|Senator|To be added|To be added
-26|Cesar B. Dolorito|unknown|Barangay Captain|stan loona|unknown
-27|Isidro F. Tumulak Jr.|unknown|Barangay Captain|unknown|unknown
-28|Alejandro D. Borres|unknown|unknown|unknown|unknown
-29|Bernardo L. Lapiña Jr.|unknown|Barangay Captain|unknown|unknown
-30|Ana C. Tabal|unknown|Barangay Captain|unknown|unknown
-31|Lucresia D. Gabato|unknown|Barangay Captain|unknown|unknown
-32|Winefredo A. Macario|unknown|Barangay Captain|unknown|unknown
-33|Mark Jason Tabucal|unknown|Barangay Captain|unknown|unknown
-34|Jemcerson T. Sable|unknown|Barangay Captain|unknown|unknown
-35|Aurelio R. Laspoña|unknown|Barangay Captain|unknown|unknown
-36|Sergio S. Ocaña|unknown|Barangay Captain|unknown|unknown
-37|Jovito S. Ladrazo|unknown|Barangay Captain|unknown|unknown
-38|Clifford Jude G. Niñal|unknown|Barangay Captain|unknown|unknown
-39|Danilo P. Teves|unknown|Barangay Captain|unknown|unknown
-40|Eleno M. Andales Jr.|unknown|Barangay Captain|unknown|unknown
-41|Jose U. Cadampog|unknown|Barangay Captain|unknown|unknown
-42|Danilo C. Lim|unknown|Barangay Captain|unknown|unknown
-43|Francisco S. De Gracia Jr.|unknown|Barangay Captain|unknown|unknown
-44|Irma B. Labitad|unknown|Barangay Captain|unknown|unknown
-45|Arnulfo R. Cambonga|unknown|Barangay Captain|unknown|unknown
-46|Roseller V. Salvador|unknown|Barangay Captain|unknown|unknown
-47|Derrick C. Yap|unknown|Barangay Captain|unknown|unknown
-48|Susan B. Enriquez|unknown|Barangay Captain|unknown|unknown
-49|Carlitos E. Ceniza|unknown|Barangay Captain|unknown|unknown
-50|Kirk Bryan J. Repollo|unknown|Barangay Captain|unknown|unknown
-51|Apol Ross G. Enriquez|unknown|Barangay Captain|unknown|unknown
-52|Nobie A. Cabatino|unknown|Barangay Captain|unknown|unknown
-53|Jay A. Bacalso|unknown|Barangay Captain|unknown|unknown
-54|Ester G. Concha|unknown|Barangay Captain|unknown|unknown
-55|Rosalita D. Callino|unknown|Barangay Captain|unknown|unknown
-56|Junah B. Abellanosa|unknown|Barangay Captain|unknown|unknown
-57|Gremar C. Barete|unknown|Barangay Captain|unknown|unknown
-58|Grace M. Duragos|unknown|Barangay Captain|unknown|unknown
-59|Norman A. Navarro|unknown|Barangay Captain|unknown|unknown
-60|Cesar B. Dolorito|unknown|Barangay Captain|unknown|unknown
-61|Gemma B. Arcayan|(BO-PK)|Barangay Captain|agriculture and community livelihood projects|N/A
-62|Pedro P. Damaolao|N/A|Barangay Captain|Access to Clean Water and Public Safety and Order|N/A
-63|Virgil "Jingjing" Cabigon|(BO-PK)|Barangay Captain|Establishing an "Action Team" and Disaster Prevention and Drainage Clearing|Corruption Charges Complaint, Administrative and Criminal Complaints
-64|Winston Pepito|Partido Kusug|Barangay Captain|Digitalization of City Hall Services, Education and Scholarships, and Infrastructure Acceleration|N/A
-65|Greg B. Yap|N/A|Barangay Captain|No Complete Platform Founds|N/A
-66|Viviane O. Ruste|N/A|Barangay Captain|Conditional Support for Waste-to-Energy (WTE) and Health and Community Services|N/A
-67|Nerissa G. Antolihao|N/A|Barangay Captain|Participatory Development Planning, Anti-Gambling and Anti-Drugs Campaign and, Livelihood and Community Development|N/A
-68|Eliodoro "Yody" A. Sanchez|Partido Barug|Barangay Captain|Road Safety Appeals, Illegal Construction Issues|Gulity of Simple Misconduct
-69|Reynald A. Lauron|Lakas–CMD|Barangay Captain|Agricultural Support, Opposition to Waste-to-Energy Facility, Community Livelihood Programs|N/A
-70|Kelly Quijada|N/A|Barangay Captain|Disaster Response and Community Safety, Environmental Protection, Infrastructure Coordination|N/A
-71|Antonio Conahap|N/A|Barangay Captain|Anti-Drug Campaign, Community Welfare|N/A
-72|Omar Durano|N/A|Barangay Captain|Infrastructure and Facilities, Community Safety and Disaster Preparedness, Equipment and Services|warrant of arrest for violation of the Anti-Graft and Corrupt Practices Act
-73|Freddie T. Esmas|(BO-PK)|Barangay Captain|Disaster Preparedness and Response, Anti-Drug Campaign, Anti-Drug Campaign, Livelihood and Social Assistance|N/A
-74|Hon. Rica G. Jayme|N/A|Barangay Captain|No Complete Platform Found|N/A
-75|Orlan B. Herrera|N/A|Barangay Captain|Infrastructure and Basic Services, WTE Project Position|N/A
-76|Ruperto "Dondon" Bacolod|N/A|Barangay Captain|Infrastructure Improvement, Disaster Preparedness, Resident Welfare|N/A
-77|Rex Y. Millan|Partido Barug, LPD|Barangay Captain|Concern for Barangay Operations, Support for Education and Youth, Commitment to Public Safety|N/A
-78|Raquel E. Avila|Barug PDP-Laban|Barangay Captain|"Reform Kamagayan", Infrastructure and Social Services, Relocation Site Support|Illegal Gambling Accusations, Usurpation of Authority Complaint
-79|Harold Go|Partido Kusug|barangay captain|Transportation and Traffic, Consumer Protection and Water Services, Public Safety, Fiscal Responsibility|N/A
-80|Franklyn Ong|Partido Barug, LPD|Barangay Captain|Barangay Welfare and Services, Waste Management Solutions, Fiscal Responsibility|N/A
-81|Hazel Ann M. Empleo|N/A|Barangay Captain|Mental Health Services, Community Safety and Recovery|N/A
-82|Nilo Dela Cerna|N/A|Barangay Captain|Housing Resettlement, Flood Prevention and Canal Cleaning|Accused of killing a barangay Tanod
-83|Agustin P. Partulan|(BO-PK)|Barangay Captain|Disaster Response and Recovery, Environmental Management|Arrested for illegal possession of firearms.
+24|Ronald "Bato" dela Rosa|Not yet added|Senator|To be added|To be added
+25|Rodante Marcoleta|Not yet added|Senator|To be added|To be added
+26|Francis "Kiko" Pangilinan|Not yet added|Senator|To be added|To be added
+27|Isidro F. Tumulak Jr.|Partido Kusug|Barangay Captain|No Complete Platform Found|N/A
+28|Raffy Tulfo|Not yet added|Senator|To be added|To be added
+29|Bernardo L. Lapiña Jr.|N/A|Barangay Captain|No Complete Platform Found|N/A
+30|Ana C. Tabal|N/A|Barangay Captain|No Complete Platform Found|N/A
+31|Lucresia D. Gabato|N/A|Barangay Captain|No Complete Platform Found|N/A
+32|Winefredo A. Macario|N/A|Barangay Captain|No Complete Platform Found|N/A
+33|Mark Jason Tabucal|N/A|Barangay Captain|No Complete Platform Found|N/A
+34|Jemcerson T. Sable|N/A|Barangay Captain|No Complete Platform Found|N/A
+35|Aurelio R. Laspoña|N/A|Barangay Captain|No Complete Platform Found|N/A
+36|Sergio S. Ocaña|N/A|Barangay Captain|No Complete Platform Found|N/A
+37|Jovito S. Ladrazo|N/A|Barangay Captain|No Complete Platform Found|N/A
+38|Clifford Jude G. Niñal|N/A|Barangay Captain|No Complete Platform Found|N/A
+39|Danilo P. Teves|N/A|Barangay Captain|No Complete Platform Found|N/A
+40|Eleno M. Andales Jr.|N/A|Barangay Captain|No Complete Platform Found|N/A
+41|Jose U. Cadampog|N/A|Barangay Captain|No Complete Platform Found|N/A
+42|Danilo C. Lim|Board of Directors, Liga ng mga Barangay Cebu City|Barangay Captain|No Complete Platform Found|N/A
+43|Francisco S. De Gracia Jr.|N/A|Barangay Captain|No Complete Platform Found|N/A
+44|Irma B. Labitad|N/A|Barangay Captain|No Complete Platform Found|N/A
+45|Arnulfo R. Cambonga|N/A|Barangay Captain|No Complete Platform Found|N/A
+46|Roseller V. Salvador|N/A|Barangay Captain|No Complete Platform Found|N/A
+47|Derrick C. Yap|N/A|Barangay Captain|No Complete Platform Found|N/A
+48|Susan B. Enriquez|Board of Directors, Liga ng mga Barangay Cebu City|Barangay Captain|No Complete Platform Found|N/A
+49|Carlitos E. Ceniza|Vice President, Liga ng mga Barangay Cebu City|Barangay Captain|No Complete Platform Found|N/A
+50|Kirk Bryan J. Repollo|N/A|Barangay Captain|No Complete Platform Found|Guilty of Simple Misconduct (suspended one month and one day, 2024)
+51|Apol Ross G. Enriquez|Board of Directors, Liga ng mga Barangay Cebu City|Barangay Captain|No Complete Platform Found|N/A
+52|Nobie A. Cabatino|N/A|Barangay Captain|No Complete Platform Found|N/A
+53|Jay A. Bacalso|N/A|Barangay Captain|No Complete Platform Found|N/A
+54|Ester G. Concha|N/A|Barangay Captain|No Complete Platform Found|N/A
+55|Rosalita D. Callino|N/A|Barangay Captain|No Complete Platform Found|N/A
+56|Junah B. Abellanosa|N/A|Barangay Captain|No Complete Platform Found|N/A
+57|Gremar C. Barete|Board of Directors, Liga ng mga Barangay Cebu City|Barangay Captain|No Complete Platform Found|N/A
+58|Grace M. Duragos|N/A|Barangay Captain|No Complete Platform Found|N/A
+59|Norman A. Navarro|N/A|Barangay Captain|No Complete Platform Found|N/A
+60|Cesar B. Dolorito|unknown|Barangay Captain|Community-based programs for drug awareness and prevention|Led the declaration of Barangay Babag as drug-free in 2024  [1]  The Commission on Audit (COA) ordered a probe into a missing camera in the barangay (2024); Dolorito had not responded to requests for comment. [2]
+61|Dave Tumulak|Kusug – Aksyon Demokratiko|City Counselor|To be added|To be added
+62|Gemma B. Arcayan|(BO-PK)|Barangay Captain|agriculture and community livelihood projects|P20 Bugas sa Barangay Adlaon [1]
+63|Pedro P. Damaolao|Not yet added|Barangay Captain|Access to Clean Water and Public Safety and Order|MCWD water to reach mountain villages [1]
+64|Virgil "Jingjing" Cabigon|(BO-PK)|Barangay Captain|Establishing an "Action Team" and Disaster Prevention and Drainage Clearing|Corruption Charges Complaint, Administrative and Criminal Complaints [1]
+65|Winston Pepito|Partido Kusug|Barangay Captain|Digitalization of City Hall Services, Education and Scholarships, and Infrastructure Acceleration|To be added
+66|Greg B. Yap|ally of Mayor Gabriel Luis "Luigi" Quisumbing|Barangay Captain|No Complete Platform Found|To be added
+67|Viviane O. Ruste|Nominations Committee for the Liga ng mga Barangay|Barangay Captain|Conditional Support for Waste-to-Energy (WTE) and Health and Community Services|To be added
+68|Christopher "Bong" Go|Not yet added|Senator|No Complete Platform Found|To be added
+69|Nerissa G. Antolihao|N/A|Barangay Captain|Participatory Development Planning, Anti-Gambling and Anti-Drugs Campaign and, Livelihood and Community Development|N/A
+70|Eliodoro "Yody" A. Sanchez|Partido Barug|Barangay Captain|Road Safety Appeals, Illegal Construction Issues|Guilty of Simple Misconduct
+71|Reynald A. Lauron|Lakas–CMD|Barangay Captain|Agricultural Support, Opposition to Waste-to-Energy Facility, Community Livelihood Programs|N/A
+72|Kelly Quijada|N/A|Barangay Captain|Disaster Response and Community Safety, Environmental Protection, Infrastructure Coordination|N/A
+73|Antonio Conahap|N/A|Barangay Captain|Anti-Drug Campaign, Community Welfare|N/A
+74|Omar Durano|N/A|Barangay Captain|Infrastructure and Facilities, Community Safety and Disaster Preparedness, Equipment and Services|Warrant of arrest for violation of the Anti-Graft and Corrupt Practices Act
+75|Freddie T. Esmas|(BO-PK)|Barangay Captain|Disaster Preparedness and Response, Anti-Drug Campaign, Livelihood and Social Assistance|N/A
+76|Hon. Rica G. Jayme|N/A|Barangay Captain|No Complete Platform Found|N/A
+77|Orlan B. Herrera|N/A|Barangay Captain|Infrastructure and Basic Services, WTE Project Position|N/A
+78|Ruperto "Dondon" Bacolod|N/A|Barangay Captain|Infrastructure Improvement, Disaster Preparedness, Resident Welfare|N/A
+79|Rex Y. Millan|Partido Barug, LPD|Barangay Captain|Concern for Barangay Operations, Support for Education and Youth, Commitment to Public Safety|N/A
+80|Raquel E. Avila|Barug PDP-Laban|Barangay Captain|"Reform Kamagayan", Infrastructure and Social Services, Relocation Site Support|Illegal Gambling Accusations, Usurpation of Authority Complaint
+81|Harold Go|Partido Kusug|Barangay Captain|Transportation and Traffic, Consumer Protection and Water Services, Public Safety, Fiscal Responsibility|N/A
+82|Franklyn Ong|Partido Barug, LPD|Barangay Captain|Barangay Welfare and Services, Waste Management Solutions, Fiscal Responsibility|N/A
+83|Hazel Ann M. Empleo|N/A|Barangay Captain|Mental Health Services, Community Safety and Recovery|N/A
+84|Nilo Dela Cerna|N/A|Barangay Captain|Housing Resettlement, Flood Prevention and Canal Cleaning|Accused of killing a barangay Tanod
+85|Agustin P. Partulan|(BO-PK)|Barangay Captain|Disaster Response and Recovery, Environmental Management|Arrested for illegal possession of firearms.
+86|Renato S. Labrador Jr.|N/A|Barangay Captain|No Complete Platform Found|N/A
+87|Alejandro D. Borres|Partido Barug|Barangay Captain|Major Water and Sanitation Handovers|Sued for committing graft
+88|Atty. Daniel Francis Arguedo|BSKE|Barangay Captain|Model Waste Management Initiatives|N/A
+89|Dennis M. Dabuco|N/A|Barangay Captain|No Complete Platform Found|N/A
+90|Carlo V. Yap|N/A|Barangay Captain|No Complete Platform Found|N/A
+91|Arnulfo R. Cambonga|affiliated with Team Rama|Barangay Captain|No Complete Platform Found|N/A
+92|Lucita Lazarte|N/A|Barangay Captain|No Complete Platform Found|N/A
+93|Neresa Villa D. Calalang|N/A|Barangay Captain|No Complete Platform Found|N/A
+94|Nilo C. Tariman|(BO-PK)|Barangay Captain|No Complete Platform Found|N/A
+95|John Barry V. Miñoza|N/A|Barangay Captain|Infrastructure and Safety Focus|N/A
+96|Maria Ailien R. Guardo|PFP|Barangay Captain|Infrastructure and Urban Development|Accused of real estate fraud indictments
+97|Keith Noel T. Wenceslao|associated with Partido Barug|Barangay Captain|Public-Private Infrastructure Partnerships, Urban and Community Development|N/A
+98|Daido Stephen D. Abcede Jr.|N/A|Barangay Captain|Anti-Drug Abuse Initiatives, Community Safety & Police Partnerships, Youth and Sports Development|N/A
+99|Edgardo C. Borces|N/A|Barangay Captain|Infrastructure and Urban Development, Digital Literacy and Social Welfare|N/A
+100|Virginia N. Abenoja|N/A|Barangay Captain|To be added|To be added

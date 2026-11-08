@@ -6,3 +6,68 @@
 7||||Leyte, 1st District
 11||||Davao City, 1st District
 12||||Davao City
+10|https://hfkwmqvbopizmzdkboan.supabase.co/storage/v1/object/public/photos/10-1793177475006.jpg|||
+60||||Cebu City, South District
+26||National||
+27||Barangay||Cebu City, 2nd District
+28||National||
+29||Barangay||Cebu City, 2nd District
+30||Barangay||Cebu City, 2nd District
+31||Barangay||Cebu City, 2nd District
+32||Barangay||Cebu City, 2nd District
+33||Barangay||Cebu City, 2nd District
+34||Barangay||Cebu City, 2nd District
+35||Barangay||Cebu City, 2nd District
+36||Barangay||Cebu City, 2nd District
+37||Barangay||Cebu City, 2nd District
+38||Barangay||Cebu City, 2nd District
+39||Barangay||Cebu City, 2nd District
+40||Barangay||Cebu City, 2nd District
+41||Barangay||Cebu City, 2nd District
+42||Barangay||Cebu City, 2nd District
+43||Barangay||Cebu City, 2nd District
+44||Barangay||Cebu City, 2nd District
+45||Barangay||Cebu City, 2nd District
+46||Barangay||Cebu City, 2nd District
+47||Barangay||Cebu City, 2nd District
+48||Barangay||Cebu City, 2nd District
+49||Barangay||Cebu City, 2nd District
+50||Barangay||Cebu City, 2nd District
+51||Barangay||Cebu City, 2nd District
+52||Barangay||Cebu City, 2nd District
+53||Barangay||Cebu City, 2nd District
+54||Barangay||Cebu City, 2nd District
+55||Barangay||Cebu City, 2nd District
+56||Barangay||Cebu City, 2nd District
+57||Barangay||Cebu City, 2nd District
+58||Barangay||Cebu City, 2nd District
+59||Barangay||Cebu City, 2nd District
+60||Barangay||Cebu City, 2nd District
+61||City / Municipal|City Councilors|
+62|https://hfkwmqvbopizmzdkboan.supabase.co/storage/v1/object/public/photos/62-1794066902838.jpg|Barangay||Cebu City, 1st District
+63|https://hfkwmqvbopizmzdkboan.supabase.co/storage/v1/object/public/photos/63-1794066919978.jpg|Barangay||Cebu City, 1st District
+64|https://hfkwmqvbopizmzdkboan.supabase.co/storage/v1/object/public/photos/64-1794066936578.jpg|Barangay||Cebu City, 1st District
+65|https://hfkwmqvbopizmzdkboan.supabase.co/storage/v1/object/public/photos/65-1794066951844.jpg|Barangay||Cebu City, 1st District
+66|https://hfkwmqvbopizmzdkboan.supabase.co/storage/v1/object/public/photos/66-1794066968717.jpg|Barangay||Cebu City, 1st District
+67|https://hfkwmqvbopizmzdkboan.supabase.co/storage/v1/object/public/photos/67-1794067022234.jpg|Barangay||Cebu City, 1st District
+68||Barangay||Cebu City, 1st District
+69|https://hfkwmqvbopizmzdkboan.supabase.co/storage/v1/object/public/photos/69-1794067037250.jpg|Barangay||Cebu City, 1st District
+70|https://hfkwmqvbopizmzdkboan.supabase.co/storage/v1/object/public/photos/70-1794067050395.jpg|Barangay||Cebu City, 1st District
+71|https://hfkwmqvbopizmzdkboan.supabase.co/storage/v1/object/public/photos/71-1794067076284.jpg|Barangay||Cebu City, 1st District
+72|https://hfkwmqvbopizmzdkboan.supabase.co/storage/v1/object/public/photos/72-1794067093037.jpg|Barangay||Cebu City, 1st District
+73|https://hfkwmqvbopizmzdkboan.supabase.co/storage/v1/object/public/photos/73-1794067108412.jpg|Barangay||Cebu City, 1st District
+74|https://hfkwmqvbopizmzdkboan.supabase.co/storage/v1/object/public/photos/74-1794067120918.jpg|Barangay||Cebu City, 1st District
+75|https://hfkwmqvbopizmzdkboan.supabase.co/storage/v1/object/public/photos/75-1794067132780.jpg|Barangay||Cebu City, 1st District
+76|https://hfkwmqvbopizmzdkboan.supabase.co/storage/v1/object/public/photos/76-1794067157926.jpg|Barangay||Cebu City, 1st District
+77|https://hfkwmqvbopizmzdkboan.supabase.co/storage/v1/object/public/photos/77-1794067275591.jpg|Barangay||Cebu City, 1st District
+78|https://hfkwmqvbopizmzdkboan.supabase.co/storage/v1/object/public/photos/78-1794067291584.jpg|Barangay||Cebu City, 1st District
+79|https://hfkwmqvbopizmzdkboan.supabase.co/storage/v1/object/public/photos/79-1794067306631.jpg|Barangay||Cebu City, 1st District
+80|https://hfkwmqvbopizmzdkboan.supabase.co/storage/v1/object/public/photos/80-1794067320767.jpg|Barangay||Cebu City, 1st District
+81|https://hfkwmqvbopizmzdkboan.supabase.co/storage/v1/object/public/photos/81-1794067333651.jpg|Barangay||Cebu City, 1st District
+82|https://hfkwmqvbopizmzdkboan.supabase.co/storage/v1/object/public/photos/82-1794067383891.jpg|Barangay||Cebu City, 1st District
+83|https://hfkwmqvbopizmzdkboan.supabase.co/storage/v1/object/public/photos/83-1794067401143.jpg|Barangay||Cebu City, 1st District
+84|https://hfkwmqvbopizmzdkboan.supabase.co/storage/v1/object/public/photos/84-1794067413377.jpg|Barangay||Cebu City, 1st District
+85|https://hfkwmqvbopizmzdkboan.supabase.co/storage/v1/object/public/photos/85-1794067426449.jpg|Barangay||Cebu City, 1st District
+15|https://hfkwmqvbopizmzdkboan.supabase.co/storage/v1/object/public/photos/15-1794061416074.jpg|||
+87|https://hfkwmqvbopizmzdkboan.supabase.co/storage/v1/object/public/photos/87-1794061604357.jpg|||Cebu City, 2nd District
+3|https://hfkwmqvbopizmzdkboan.supabase.co/storage/v1/object/public/photos/3-1794066978915.jpg|||

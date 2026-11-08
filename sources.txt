@@ -1,0 +1,19 @@
+10|1|Filipino Times|https://filipinotimes.net/latest-news/2026/10/28/prosecution-says-evidence-against-sara-duterte-is-checkmate/
+62|1|Department of Agriculture Regional Office VII|https://rfo7.da.gov.ph/index.php/p20-bugas-miabot-na-sa-bukirang-bahin-sa-sugbo/#main-content
+63|1|Sunstar|https://www.sunstar.com.ph/cebu/mcwd-water-to-reach-mountain-villages
+64|1|Sunstar|https://www.sunstar.com.ph/cebu/apas-officials-sued
+65|1|Manila Times|https://www.manilatimes.net/2026/02/18/regions/cebu-councilor-urges-president-marcos-to-fast-track-bus-rapid-transit-project/2279736#1
+66|1|Philstar|https://www.philstar.com/banat/balita/2025/09/24/2475049/pagbuhat-og-drainage-plan-sa-barangay-banilad-gisuportahan
+67|1|Philstar|https://www.philstar.com/banat/balita/2026/01/20/2502181/archival-andam-kun-dunay-imbestigasyon-bahin-sa-binaliw
+60|1|Sundaypunch|https://sundaypunch.ph/cebu-citys-barangay-babag-declared-drug-free/
+60|2|headtopics|https://co.headtopics.com/news/coa-orders-probe-into-missing-camera-in-cebu-city-barangay-63887671#1
+30|1|Cebu Technological University|https://www.ctu.edu.ph/2026/04/ctu-main-barangay-tisa-sign-moa-for-phase-2-of-food-waste-reduction-program/
+29|1|Philstar|https://www.philstar.com/the-freeman/cebu-news/2018/05/12/1814550/osmea-sues-22-more-barangay-captains-graft
+86|1|Cebu Daily News|https://cebudailynews.inquirer.net/174625/58-village-chiefs-cebu-city-sued-osmena-barangay-election-nears
+31|1|Cebu Technological University|https://www.ctu.edu.ph/2026/04/ctu-main-barangay-tisa-sign-moa-for-phase-2-of-food-waste-reduction-program/
+10|2|Inquirer|https://newsinfo.inquirer.net/1836358/ovps-p125-m-confidential-fund-in-2022-spent-in-just-11-days-quimbo-admits
+10|3|ovp gov|https://www.ovp.gov.ph/post/ovp-deploys-relief-operations-ahead-typhoons-landfall-northern-luzon
+3|1|Phil Information Agency|https://pia.gov.ph/news/pbbm-transforms-reinvigorates-ph-us-alliance-through-edca/
+3|2|Pbbm|https://pbbm.com.ph/#:~:text=18%20to%20fix%20that.%20We%20Build%20Better,tomorrow.%20will%20be%20better%20than%20their%20today.
+3|3|Pbbm|https://pbbm.com.ph/#:~:text=In%202023%2C%20we%20posted%20a%205.6%25%20GDP,we%20have%20exited%20the%20FATF%20Grey%20List.
+3|4|Business World Online|https://bworldonline.com/the-nation/2026/11/01/790591/inflation-peso-deepen-discontent-with-marcos-as-ratings-deteriorate/
