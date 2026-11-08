@@ -1,2 +1,4 @@
-# news - auto-generated from Supabase. Do not edit by hand.
-
+# Auto-generated from Supabase by .github/workflows/sync-supabase-txt.yml
+# Format: date|category|title|summary|link (optional)|politician id (optional)
+# Date must be YYYY-MM-DD. Newest items appear first. Do not use the | character inside a field.
+# Write the summary in your own words and link to the original article.
