@@ -1,5 +1,4 @@
-# Auto-generated from Supabase by .github/workflows/sync-supabase-txt.yml
-# Format: id|name|party|position|platform|track record
+# politicians - auto-generated from Supabase. Do not edit by hand.
 1|Ferdinand Marcos Sr.|Not yet added|Former President|To be added|To be added
 2|Imelda Marcos|Not yet added|Former First Lady|To be added|To be added
 3|Bongbong Marcos|Not yet added|President|To be added|To be added
