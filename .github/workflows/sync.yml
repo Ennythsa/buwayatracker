@@ -16,5 +16,7 @@ jobs:
       - run: |
           git config user.name "sync-bot"
           git config user.email "bot@users.noreply.github.com"
-          git add for f in politicians relations news profiles sources; do [ -f $f.txt ] && git add $f.txt; done
+          for f in politicians relations news profiles sources; do
+            if [ -f "$f.txt" ]; then git add "$f.txt"; fi
+          done
           git diff --staged --quiet || (git commit -m "Sync from Supabase" && git push)
