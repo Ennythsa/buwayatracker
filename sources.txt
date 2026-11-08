@@ -13,7 +13,7 @@
 31|1|Cebu Technological University|https://www.ctu.edu.ph/2026/04/ctu-main-barangay-tisa-sign-moa-for-phase-2-of-food-waste-reduction-program/
 10|2|Inquirer|https://newsinfo.inquirer.net/1836358/ovps-p125-m-confidential-fund-in-2022-spent-in-just-11-days-quimbo-admits
 10|3|ovp gov|https://www.ovp.gov.ph/post/ovp-deploys-relief-operations-ahead-typhoons-landfall-northern-luzon
-3|1|Phil Information Agency|https://pia.gov.ph/news/pbbm-transforms-reinvigorates-ph-us-alliance-through-edca/
-3|2|Pbbm|https://pbbm.com.ph/#:~:text=18%20to%20fix%20that.%20We%20Build%20Better,tomorrow.%20will%20be%20better%20than%20their%20today.
-3|3|Pbbm|https://pbbm.com.ph/#:~:text=In%202023%2C%20we%20posted%20a%205.6%25%20GDP,we%20have%20exited%20the%20FATF%20Grey%20List.
-3|4|Business World Online|https://bworldonline.com/the-nation/2026/11/01/790591/inflation-peso-deepen-discontent-with-marcos-as-ratings-deteriorate/
+3|1|dof.gov.ph|https://www.dof.gov.ph/dofs-prudent-fiscal-and-economic-management-delivers-tangible-gains-for-the-filipino-people/
+3|2|pco.gov.ph|https://pco.gov.ph/news_releases/president-marcos-spends-productive-week-in-india-forges-strategic-partnership-secures-trade-deals/
+3|3|reuters|https://www.reuters.com/sustainability/philippines-forms-independent-body-probe-anomalies-infrastructure-projects-2025-09-11/
+3|4|Inquirer|https://newsinfo.inquirer.net/2088008/3-years-of-marcos-presidency-a-mix-of-promises-achieved-still-hanging

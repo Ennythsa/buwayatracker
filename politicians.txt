@@ -2,14 +2,14 @@
 # Format: id|name|party|position|platform|track record
 1|Ferdinand Marcos Sr.|Not yet added|Former President|To be added|To be added
 2|Imelda Marcos|Not yet added|Former First Lady|To be added|To be added
-3|Bongbong Marcos|Not yet added|President|Ran under the "UniTeam" alliance prioritizing national unity. Key platform promises included lowering rice prices to ₱20/kg, supporting agriculture, boosting MSMEs, continuing infrastructure development, modernizing energy/digital systems, and expanding foreign investments.|To be added
+3|Bongbong Marcos|Not yet added|President|Ran under the "UniTeam" alliance prioritizing national unity. Key platform promises included lowering rice prices to ₱20/kg, supporting agriculture, boosting MSMEs, continuing infrastructure development, modernizing energy/digital systems, and expanding foreign investments.|GDP averaged ~5.9%; inflation fell to 3.2% in 2024; major infrastructure and foreign-investment initiatives advanced. [1][2] PHP545B flood-control spending faced corruption allegations; probes found substandard/undelivered projects; growth stayed below target. [3][4]
 4|Imee Marcos|Not yet added|Senator|To be added|To be added
 5|Sandro Marcos|Not yet added|Congressman|To be added|To be added
 6|Matthew Manotoc|Not yet added|Ilocos Norte Governor|To be added|To be added
 7|Martin Romualdez|Not yet added|Leyte Congressman|To be added|To be added
 8|Vicente Duterte|Not yet added|Former Davao Governor|To be added|To be added
 9|Rodrigo Duterte|Not yet added|Former President|To be added|To be added
-10|Sara Duterte|Not yet added|Vice President|Focused on job creation, economic recovery, strengthening quality basic education, national security, peace and order, continuing key Duterte administration programs, and promoting strong national unity and public service.|this is a test [1]
+10|Sara Duterte|Not yet added|Vice President|Focused on job creation, economic recovery, strengthening quality basic education, national security, peace and order, continuing key Duterte administration programs, and promoting strong national unity and public service.|As DepEd secretary, she launched the MATATAG curriculum, Catch-Up Fridays, expanded school feeding, and mental-health programs. Criticism over persistent food inflation, high national debt, the controversial Maharlika Investment Fund, and family tax issues.
 11|Paolo Duterte|Not yet added|Davao City Congressman|To be added|To be added
 12|Sebastian Duterte|Not yet added|Davao City Mayor|To be added|To be added
 13|Joseph Estrada|Not yet added|Former President|To be added|To be added
